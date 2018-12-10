@@ -5,3 +5,4 @@ App de cotação de moedas
 - Picasso
 - Retrofit
 - Java
+- RXJava

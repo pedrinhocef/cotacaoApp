@@ -2,8 +2,7 @@ package com.pedrosoares.cotacaoapp.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-
-public class ARS {
+public class GBP {
 
     @SerializedName("code")
     public String code;
@@ -29,7 +28,4 @@ public class ARS {
     public String timestamp;
     @SerializedName("create_date")
     public String createDate;
-
-
-
 }

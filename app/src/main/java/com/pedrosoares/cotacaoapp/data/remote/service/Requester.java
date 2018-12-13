@@ -17,7 +17,7 @@ public class Requester {
         OkHttpClient.Builder client = new OkHttpClient.Builder();
         client.addInterceptor(interceptor);
         String URL = "https://economia.awesomeapi.com.br/";
-        
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())

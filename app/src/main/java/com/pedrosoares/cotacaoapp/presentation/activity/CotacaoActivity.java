@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.pedrosoares.cotacaoapp.R;
+import com.pedrosoares.cotacaoapp.core.base.BaseActivity;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoAdapter;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoListener;
 import com.pedrosoares.cotacaoapp.presentation.fragment.AlertCambioFragment;
@@ -21,7 +22,7 @@ import com.pedrosoares.cotacaoapp.presentation.fragment.AlertCambioFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class CotacaoActivity extends AppCompatActivity {
+public class CotacaoActivity extends BaseActivity {
 
     @Bind(R.id.rv_list_cambio)
     RecyclerView rvListCambio;

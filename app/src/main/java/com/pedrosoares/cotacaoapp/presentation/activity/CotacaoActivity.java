@@ -21,6 +21,7 @@ import com.pedrosoares.cotacaoapp.presentation.fragment.AlertCambioFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CotacaoActivity extends BaseActivity {
 
@@ -33,7 +34,7 @@ public class CotacaoActivity extends BaseActivity {
     @Bind(R.id.iv_test)
     ImageView imageView;
 
-    Fragment fragment;
+    AlertCambioFragment fragment;
     CotacaoAdapter cotacaoAdapter;
 
     @Override
@@ -43,22 +44,20 @@ public class CotacaoActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Teste",Toast.LENGTH_SHORT).show();
-
-                fragment = new AlertCambioFragment();
-                contentFragment.setVisibility(View.VISIBLE);
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.content_frame,fragment);
-
-            }
-        });
-
         setupRecycler();
+        teste();
 
+    }
+
+    @OnClick( R.id.iv_test)
+    void teste() {
+        Toast.makeText(getApplicationContext(),"Teste",Toast.LENGTH_SHORT).show();
+
+        fragment = new AlertCambioFragment();
+        contentFragment.setVisibility(View.VISIBLE);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.content_frame,fragment);
     }
 
     private void  setupRecycler(){

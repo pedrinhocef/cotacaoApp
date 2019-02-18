@@ -31,6 +31,8 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<CotacaoAdapter.ViewHol
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+
+
         }
     }
 

@@ -9,15 +9,10 @@ import android.view.ViewGroup;
 
 import com.pedrosoares.cotacaoapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class CotacaoFragment extends Fragment {
+public class AlertCambioFragment extends Fragment {
 
 
-    public CotacaoFragment() {
-        // Required empty public constructor
-    }
+    public AlertCambioFragment() {}
 
 
     @Override

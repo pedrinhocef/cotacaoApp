@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pedrosoares.cotacaoapp.R;
+import com.pedrosoares.cotacaoapp.core.base.BaseContract;
+import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
 
-public class AlertCambioFragment extends Fragment {
+public class AlertCambioFragment extends BaseFragment {
 
 
     public AlertCambioFragment() {}
@@ -22,4 +24,8 @@ public class AlertCambioFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_cotacao, container, false);
     }
 
+    @Override
+    public BaseContract.Presenter createPresenter() {
+        return null;
+    }
 }

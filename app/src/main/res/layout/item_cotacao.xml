@@ -12,6 +12,7 @@
         android:layout_margin="20dp"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/tv_coin_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="USD"
@@ -20,6 +21,7 @@
             android:textColor="#000"
             android:gravity="center"/>
         <TextView
+            android:id="@+id/tv_alert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -27,6 +29,7 @@
             android:textColor="#000"
             android:gravity="center"/>
         <TextView
+            android:id="@+id/tv_coin_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

@@ -8,10 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.activity.CotacaoActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
     <FrameLayout
         android:visibility="gone"
@@ -27,24 +23,15 @@
         android:textColor="#000"
         android:text="Atualizado em 16 de fevereiro, às 00:50"/>
 
-    <ImageView
-        android:id="@+id/iv_test"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher_background"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_list_cambio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/greenWeek"
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         />
-    </LinearLayout>
 
 
 

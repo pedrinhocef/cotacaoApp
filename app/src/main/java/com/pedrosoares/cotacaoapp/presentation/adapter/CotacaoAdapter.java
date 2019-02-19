@@ -6,50 +6,32 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.pedrosoares.cotacaoapp.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class CotacaoAdapter  extends RecyclerView.Adapter<CotacaoAdapter.ViewHolder>{
+public class CotacaoAdapter  extends RecyclerView.Adapter<CotacaoAdapter.CotacaoViewHolder>{
 
-    private CotacaoListener listener;
+    //private CotacaoListener listener;
     private Context context;
 
-    public CotacaoAdapter(Context context, CotacaoListener listener){
+    public CotacaoAdapter(Context context){
         this.context = context;
-        this.listener = listener;
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
-
-        @Bind(R.id.rv_list_cambio)
-        RecyclerView rvListCambio;
-
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            ButterKnife.bind(this,itemView);
-
-
-        }
+        //this.listener = listener;
     }
 
 
-    public  ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+    public CotacaoAdapter.CotacaoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cotacao, parent, false);
-        return new ViewHolder(view);
+        return new CotacaoViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        holder.rvListCambio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onItemClick();
-            }
-        });
+    public void onBindViewHolder(@NonNull CotacaoViewHolder holder, int i) {
 
     }
 
@@ -57,6 +39,29 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<CotacaoAdapter.ViewHol
     public int getItemCount() {
         return 1;
     }
+/////////////////////////////////////////////////////////////////
+
+
+
+    class CotacaoViewHolder extends RecyclerView.ViewHolder{
+
+        @Bind(R.id.tv_coin_name)
+        TextView tvCoinName;
+
+        @Bind(R.id.tv_alert)
+        TextView tvAlert;
+
+        @Bind(R.id.tv_coin_value)
+        TextView tvCoinValue;
+
+
+        public CotacaoViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+            setIsRecyclable(false);
+        }
+    }
+
 
 
 }

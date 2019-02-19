@@ -31,11 +31,17 @@ public class CotacaoActivity extends BaseActivity {
     @Bind(R.id.content_frame)
     FrameLayout contentFragment;
 
-    @Bind(R.id.iv_test)
-    ImageView imageView;
-
     AlertCambioFragment fragment;
     CotacaoAdapter cotacaoAdapter;
+
+    @OnClick(R.id.rv_list_cambio)
+    public void onClick(){
+        fragment = new AlertCambioFragment();
+        contentFragment.setVisibility(View.VISIBLE);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.content_frame,fragment);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,43 +50,32 @@ public class CotacaoActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
+//        rvListCambio.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+
         setupRecycler();
-        teste();
+
 
     }
 
-    @OnClick( R.id.iv_test)
-    void teste() {
-        Toast.makeText(getApplicationContext(),"Teste",Toast.LENGTH_SHORT).show();
-
-        fragment = new AlertCambioFragment();
-        contentFragment.setVisibility(View.VISIBLE);
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.content_frame,fragment);
-    }
 
     private void  setupRecycler(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvListCambio.setLayoutManager(layoutManager);
 
+        cotacaoAdapter = new CotacaoAdapter(getApplicationContext());
+
         // Adiciona o adapter que irá anexar os objetos à lista.
         // Está sendo criado com lista vazia, pois será preenchida posteriormente.
-        cotacaoAdapter = new CotacaoAdapter(getApplicationContext(), new CotacaoListener() {
-            @Override
-            public void onItemClick() {
-                fragment = new AlertCambioFragment();
-                contentFragment.setVisibility(View.VISIBLE);
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.content_frame,fragment);
-            }
-        });
         rvListCambio.setAdapter(cotacaoAdapter);
-
         // Configurando um dividr entre linhas, para uma melhor visualização.
         rvListCambio.addItemDecoration(
                 new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
     }
 
 

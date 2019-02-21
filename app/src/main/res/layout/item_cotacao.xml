@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="4dp"
     card_view:cardBackgroundColor="@color/greenWeek2"
     card_view:cardElevation="10dp">
     <LinearLayout

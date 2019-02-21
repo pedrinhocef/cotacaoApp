@@ -9,12 +9,14 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseActivity;
+import com.pedrosoares.cotacaoapp.model.util.RecyclerItemClickListener;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoAdapter;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoListener;
 import com.pedrosoares.cotacaoapp.presentation.fragment.AlertCambioFragment;
@@ -25,23 +27,12 @@ import butterknife.OnClick;
 
 public class CotacaoActivity extends BaseActivity {
 
-    @Bind(R.id.rv_list_cambio)
-    RecyclerView rvListCambio;
 
     @Bind(R.id.content_frame)
     FrameLayout contentFragment;
 
-    AlertCambioFragment fragment;
-    CotacaoAdapter cotacaoAdapter;
-
-    @OnClick(R.id.rv_list_cambio)
-    public void onClick(){
-        fragment = new AlertCambioFragment();
-        contentFragment.setVisibility(View.VISIBLE);
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.content_frame,fragment);
-    }
+    @Bind(R.id.rv_list_cambio)
+    RecyclerView rvListCambio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +50,13 @@ public class CotacaoActivity extends BaseActivity {
 
         setupRecycler();
 
+        listOnClick();
+
 
     }
+    AlertCambioFragment fragment;
+
+    CotacaoAdapter cotacaoAdapter;
 
 
     private void  setupRecycler(){
@@ -78,5 +74,26 @@ public class CotacaoActivity extends BaseActivity {
 
     }
 
+
+    private void listOnClick(){
+
+       rvListCambio.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvListCambio, new RecyclerItemClickListener.OnItemClickListener() {
+           @Override
+           public void onItemClick(View view, int position) {
+               Toast.makeText(getApplicationContext(),"Teste",Toast.LENGTH_SHORT).show();
+               fragment = new AlertCambioFragment();
+               contentFragment.setVisibility(View.VISIBLE);
+               FragmentManager fm = getSupportFragmentManager();
+               FragmentTransaction ft = fm.beginTransaction();
+               ft.replace(R.id.content_frame,fragment);
+           }
+
+           @Override
+           public void onLongItemClick(View view, int position) {}
+
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
+       }));
+    }
 
 }

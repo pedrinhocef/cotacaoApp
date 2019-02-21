@@ -37,7 +37,7 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<CotacaoAdapter.Cotacao
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 2;
     }
 /////////////////////////////////////////////////////////////////
 

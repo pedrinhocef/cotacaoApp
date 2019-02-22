@@ -1,5 +1,7 @@
 package com.pedrosoares.cotacaoapp.presentation.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,10 +18,13 @@ import android.widget.Toast;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseActivity;
+import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.model.util.RecyclerItemClickListener;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoAdapter;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoListener;
 import com.pedrosoares.cotacaoapp.presentation.fragment.AlertCambioFragment;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -34,6 +39,12 @@ public class CotacaoActivity extends BaseActivity {
     @Bind(R.id.rv_list_cambio)
     RecyclerView rvListCambio;
 
+    Fragment fragment;
+
+    List<CoinsDomain> list;
+
+    CotacaoAdapter cotacaoAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,29 +52,19 @@ public class CotacaoActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
-//        rvListCambio.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-
         setupRecycler();
 
         listOnClick();
 
 
     }
-    AlertCambioFragment fragment;
-
-    CotacaoAdapter cotacaoAdapter;
 
 
     private void  setupRecycler(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvListCambio.setLayoutManager(layoutManager);
 
-        cotacaoAdapter = new CotacaoAdapter(getApplicationContext());
+       cotacaoAdapter = new CotacaoAdapter(this,list);
 
         // Adiciona o adapter que irá anexar os objetos à lista.
         // Está sendo criado com lista vazia, pois será preenchida posteriormente.
@@ -80,19 +81,16 @@ public class CotacaoActivity extends BaseActivity {
        rvListCambio.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvListCambio, new RecyclerItemClickListener.OnItemClickListener() {
            @Override
            public void onItemClick(View view, int position) {
-               Toast.makeText(getApplicationContext(),"Teste",Toast.LENGTH_SHORT).show();
-               fragment = new AlertCambioFragment();
-               contentFragment.setVisibility(View.VISIBLE);
-               FragmentManager fm = getSupportFragmentManager();
-               FragmentTransaction ft = fm.beginTransaction();
-               ft.replace(R.id.content_frame,fragment);
            }
 
            @Override
            public void onLongItemClick(View view, int position) {}
 
            @Override
-           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               Intent intent = new Intent(getApplicationContext(),Teste1.class);
+               startActivity(intent);
+           }
        }));
     }
 

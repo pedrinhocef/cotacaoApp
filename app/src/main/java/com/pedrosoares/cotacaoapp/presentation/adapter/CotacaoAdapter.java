@@ -9,20 +9,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.pedrosoares.cotacaoapp.R;
+import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class CotacaoAdapter  extends RecyclerView.Adapter<CotacaoAdapter.CotacaoViewHolder>{
 
-    //private CotacaoListener listener;
     private Context context;
+    private List<CoinsDomain> listCoins;
 
-    public CotacaoAdapter(Context context){
+    public CotacaoAdapter(Context context, List<CoinsDomain> listCoins){
         this.context = context;
-        //this.listener = listener;
+        this.listCoins = listCoins;
     }
-
 
 
     public CotacaoAdapter.CotacaoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,13 +33,18 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<CotacaoAdapter.Cotacao
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CotacaoViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull CotacaoViewHolder holder, int position) {
+        CoinsDomain coinsDomain = listCoins.get(position);
+
+        holder.tvCoinName.setText(coinsDomain.getUSD().getName());
+        holder.tvCoinValue.setText(coinsDomain.getUSD().getBid());
+
 
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return listCoins.size();
     }
 /////////////////////////////////////////////////////////////////
 

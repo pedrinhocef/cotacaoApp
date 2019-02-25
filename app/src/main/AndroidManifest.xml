@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.activity.CotacaoActivity"></activity>
+        <activity android:name=".presentation.activity.Teste1"></activity>
     </application>
 
 </manifest>

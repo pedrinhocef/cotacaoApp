@@ -29,7 +29,6 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<CotacaoAdapter.Cotacao
     }
 
 
-
     public CotacaoAdapter.CotacaoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cotacao, parent, false);
         return new CotacaoViewHolder(view);

@@ -75,12 +75,6 @@ public class CotacaoActivity extends BaseActivity {
        rvListCambio.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvListCambio, new RecyclerItemClickListener.OnItemClickListener() {
            @Override
            public void onItemClick(View view, int position) {
-               Toast.makeText(getApplicationContext(),"Teste",Toast.LENGTH_SHORT).show();
-               fragment = new AlertCambioFragment();
-               contentFragment.setVisibility(View.VISIBLE);
-               FragmentManager fm = getSupportFragmentManager();
-               FragmentTransaction ft = fm.beginTransaction();
-               ft.replace(R.id.content_frame,fragment);
            }
 
            @Override

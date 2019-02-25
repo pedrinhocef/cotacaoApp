@@ -41,12 +41,7 @@ public class CotacaoActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
-//        rvListCambio.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+
 
         setupRecycler();
 

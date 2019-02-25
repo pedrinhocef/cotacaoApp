@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.pedrosoares.cotacaoapp.R;
+import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -16,6 +20,7 @@ import butterknife.ButterKnife;
 public class CotacaoAdapter  extends RecyclerView.Adapter<CotacaoAdapter.CotacaoViewHolder>{
 
     //private CotacaoListener listener;
+    private List<CoinsDomain> coinsDomainsList  = new ArrayList<>();
     private Context context;
 
     public CotacaoAdapter(Context context){
@@ -31,13 +36,18 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<CotacaoAdapter.Cotacao
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CotacaoViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull CotacaoViewHolder holder, int position) {
+        CoinsDomain coinsDomains = coinsDomainsList.get(position);
+
+
+        holder.tvCoinName.setText(coinsDomains.getUSD().getName());
+        holder.tvCoinValue.setText(coinsDomains.getUSD().getBid());
 
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return coinsDomainsList.size();
     }
 /////////////////////////////////////////////////////////////////
 
@@ -58,7 +68,6 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<CotacaoAdapter.Cotacao
         public CotacaoViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
-            setIsRecyclable(false);
         }
     }
 

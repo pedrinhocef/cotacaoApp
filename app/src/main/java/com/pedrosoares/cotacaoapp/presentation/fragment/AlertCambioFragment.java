@@ -4,16 +4,13 @@ package com.pedrosoares.cotacaoapp.presentation.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.pedrosoares.cotacaoapp.R;
-import com.pedrosoares.cotacaoapp.core.base.BaseContract;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
 import com.pedrosoares.cotacaoapp.presentation.CoinsPresentationContract;
-import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
 
 public class AlertCambioFragment extends BaseFragment<CoinsPresentationContract.CoinsPresenter> implements CoinsPresentationContract.Fragment {
 
@@ -25,7 +22,7 @@ public class AlertCambioFragment extends BaseFragment<CoinsPresentationContract.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cotacao, container, false);
+        return inflater.inflate(R.layout.fragment_alert_cambio, container, false);
     }
 
     @Override
@@ -36,7 +33,8 @@ public class AlertCambioFragment extends BaseFragment<CoinsPresentationContract.
 
     @Override
     public CoinsPresentationContract.CoinsPresenter createPresenter() {
-        return new CoinsPresenter(getContext(), this);
+        //return new CoinsPresenter(getContext(), this);
+        return null;
     }
 
     @Override

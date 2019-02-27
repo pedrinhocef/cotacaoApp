@@ -21,12 +21,11 @@ import butterknife.ButterKnife;
 public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
 
     //private CotacaoListener listener;
-    private CoinsDomain coinsDomains ;
     private Context context;
     private static final int USD_COIN = 0;
     private static final int EURO_COIN = 1;
     private static final int BITCOIN = 2;
-    List<Comparable> data;
+    private List<Comparable> data;
 
 
     public CotacaoAdapter(Context context){
@@ -34,35 +33,33 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
         //this.listener = listener;
     }
 
-
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        context = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cotacao, parent, false);
-//
-//        BaseViewHolder baseViewHolder;
-//        if (viewType == )
-//
-//
-//
-//        if (holder == )
-        //return new BaseViewHolder(view);
-        return null;
+
+        switch(viewType){
+            case USD_COIN: {
+                return new DolarViewHolder(view);
+            }
+            case EURO_COIN: {
+                return new EuroViewHolder(view);
+            }
+            case BITCOIN: {
+                return new BitCoinsViewHolder(view);
+            }
+            default:{
+                throw new IllegalArgumentException("Invalid view type");
+            }
+        }
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
 
+       Comparable element =  data.get(position);
+       holder.bind(element);
 
-
-        if (getItemViewType(position) == USD_COIN) {
-            DolarViewHolder usd = (DolarViewHolder) holder;
-            usd.tvCoinName.setText(coinsDomains.getUSD().getName());
-            usd.tvCoinValue.setText(coinsDomains.getUSD().getBid());
-        } else if (getItemViewType(position) == EURO_COIN) {
-//            usd = new DolarViewHolder(holder.itemView);
-//            usd.tvCoinName.setText();
-//            usd.tvCoinValue.setText();
-        }
     }
 
 
@@ -73,76 +70,78 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
 
     @Override
     public int getItemViewType(int position) {
-        Object object = data.get(position);
+        Comparable element = data.get(position);
 
-        if(object instanceof DolarViewHolder) {
+        if(element instanceof DolarViewHolder) {
             return USD_COIN;
-        } else if(object instanceof EuroViewHolder) {
+        } else if(element instanceof EuroViewHolder) {
             return EURO_COIN;
-        }else {
+        }else if(element instanceof BitCoinsViewHolder){
             return BITCOIN;
         }
+        throw new IllegalArgumentException("Invalid position " + position);
     }
 /////////////////////////////////////////////////////////////////
 
 
 
- public static class DolarViewHolder extends BaseViewHolder{
+ public static class DolarViewHolder extends BaseViewHolder<CoinsDomain>{
 
      @Bind(R.id.tv_coin_name)
      TextView tvCoinName;
 
-     @Bind(R.id.tv_alert)
-     TextView tvAlert;
-
      @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
-
 
      public DolarViewHolder(@NonNull View itemView) {
          super(itemView);
      }
 
+     @Override
+     public void bind(CoinsDomain coinsDomain) {
+         tvCoinName.setText(coinsDomain.getUSD().getName());
+         tvCoinValue.setText(coinsDomain.getUSD().getBid());
+     }
  }
 
- public static class EuroViewHolder extends BaseViewHolder{
+ public static class EuroViewHolder extends BaseViewHolder<CoinsDomain> {
 
-        @Bind(R.id.tv_coin_name)
-        TextView tvCoinName;
+     @Bind(R.id.tv_coin_name)
+     TextView tvCoinName;
 
-        @Bind(R.id.tv_alert)
-        TextView tvAlert;
+     @Bind(R.id.tv_coin_value)
+     TextView tvCoinValue;
 
-        @Bind(R.id.tv_coin_value)
-        TextView tvCoinValue;
+     public EuroViewHolder(@NonNull View itemView) {
+         super(itemView);
+     }
 
+     @Override
+     public void bind(CoinsDomain coinsDomain) {
+         tvCoinName.setText(coinsDomain.getEUR().getName());
+         tvCoinValue.setText(coinsDomain.getEUR().getBid());
+     }
 
+ }
 
+ public static class BitCoinsViewHolder extends BaseViewHolder<CoinsDomain> {
 
-        public EuroViewHolder(@NonNull View itemView) {
-            super(itemView);
-        }
-    }
+     @Bind(R.id.tv_coin_name)
+     TextView tvCoinName;
 
+     @Bind(R.id.tv_coin_value)
+     TextView tvCoinValue;
 
- public static class BitCoinViewHolder extends BaseViewHolder{
+     public BitCoinsViewHolder(@NonNull View itemView) {
+         super(itemView);
+     }
 
-        @Bind(R.id.tv_coin_name)
-        TextView tvCoinName;
-
-        @Bind(R.id.tv_alert)
-        TextView tvAlert;
-
-        @Bind(R.id.tv_coin_value)
-        TextView tvCoinValue;
-
-
-        public BitCoinViewHolder(@NonNull View itemView) {
-            super(itemView);
-        }
-    }
-
-
+     @Override
+     public void bind(CoinsDomain coinsDomain) {
+         tvCoinName.setText(coinsDomain.getBTC().getName());
+         tvCoinValue.setText(coinsDomain.getBTC().getBid());
+     }
+ }
 
 
 

@@ -21,6 +21,8 @@ import com.pedrosoares.cotacaoapp.presentation.CoinsPresentationContract;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoAdapter;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoListener;
 import com.pedrosoares.cotacaoapp.presentation.fragment.AlertCambioFragment;
+import com.pedrosoares.cotacaoapp.presentation.fragment.CotacaoFragment;
+import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,12 +30,8 @@ import butterknife.OnClick;
 
 public class CotacaoActivity extends BaseActivity implements CoinsPresentationContract.Activity {
 
-
     @Bind(R.id.content_frame)
     FrameLayout contentFragment;
-
-    @Bind(R.id.rv_list_cambio)
-    RecyclerView rvListCambio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,53 +40,18 @@ public class CotacaoActivity extends BaseActivity implements CoinsPresentationCo
 
         ButterKnife.bind(this);
 
-
-
-        setupRecycler();
-
-        listOnClick();
-
-
-    }
-    AlertCambioFragment fragment;
-
-    CotacaoAdapter cotacaoAdapter;
-
-
-    private void  setupRecycler(){
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        rvListCambio.setLayoutManager(layoutManager);
-
-        cotacaoAdapter = new CotacaoAdapter(getApplicationContext());
-
-        // Adiciona o adapter que irá anexar os objetos à lista.
-        // Está sendo criado com lista vazia, pois será preenchida posteriormente.
-        rvListCambio.setAdapter(cotacaoAdapter);
-        // Configurando um dividr entre linhas, para uma melhor visualização.
-        rvListCambio.addItemDecoration(
-                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
+        if (savedInstanceState== null){
+            CotacaoFragment fragment = new CotacaoFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.content_frame,fragment)
+                    .commit();
+        }
     }
 
 
-    private void listOnClick(){
-
-       rvListCambio.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvListCambio, new RecyclerItemClickListener.OnItemClickListener() {
-           @Override
-           public void onItemClick(View view, int position) {
-           }
-
-           @Override
-           public void onLongItemClick(View view, int position) {}
-
-           @Override
-           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
-       }));
-    }
 
     @Override
     public void populateCoins() {
-
     }
 
     @Override

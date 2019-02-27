@@ -12,11 +12,11 @@ import io.reactivex.Observable;
 
 public class CoinsUseCase implements CoinsModelContract.UseCase {
 
-
+    private Context context;
     private Requester requester;
 
-    public CoinsUseCase(Context context) {
-        this.requester = requester;
+    public CoinsUseCase(Context context){
+        this.context = context;
     }
 
     @Override

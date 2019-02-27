@@ -10,9 +10,7 @@ import com.pedrosoares.cotacaoapp.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
-
-    RecyclerView.ViewHolder holder;
+public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
 
     public BaseViewHolder(@NonNull View itemView) {
@@ -20,5 +18,7 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void objectHolder(String nameHolder, RecyclerView.ViewHolder holder) { }
+    public abstract void bind(T type);
+
+    //public void objectHolder(String nameHolder, RecyclerView.ViewHolder holder) { }
 }

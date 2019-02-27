@@ -1,6 +1,6 @@
 package com.pedrosoares.cotacaoapp.model.domain;
 
-public class CAD{
+public class CADDomain {
 	private String varBid;
 	private String high;
 	private String pctChange;

@@ -4,37 +4,37 @@ import com.google.gson.annotations.SerializedName;
 
 public class CoinsResponse{
 
-	@SerializedName("AUD")
+	@SerializedName("AUDDomain")
 	private AUD aUD;
 
-	@SerializedName("BTC")
+	@SerializedName("BTCDomain")
 	private BTC bTC;
 
-	@SerializedName("CHF")
+	@SerializedName("CHFDomain")
 	private CHF cHF;
 
-	@SerializedName("ARS")
+	@SerializedName("ARSDomain")
 	private ARS aRS;
 
-	@SerializedName("JPY")
+	@SerializedName("JPYDomain")
 	private JPY jPY;
 
-	@SerializedName("EUR")
+	@SerializedName("EURDomain")
 	private EUR eUR;
 
-	@SerializedName("GBP")
+	@SerializedName("GBPDomain")
 	private GBP gBP;
 
-	@SerializedName("USD")
+	@SerializedName("USDDomain")
 	private USD uSD;
 
-	@SerializedName("CAD")
+	@SerializedName("CADDomain")
 	private CAD cAD;
 
-	@SerializedName("USDT")
+	@SerializedName("USDTDomain")
 	private USDT uSDT;
 
-	@SerializedName("LTC")
+	@SerializedName("LTCDomain")
 	private LTC lTC;
 
 	public void setAUD(AUD aUD){

@@ -1,103 +1,103 @@
 package com.pedrosoares.cotacaoapp.model.domain;
 
 public class CoinsDomain{
-	private AUD aUD;
-	private BTC bTC;
-	private CHF cHF;
-	private ARS aRS;
-	private JPY jPY;
-	private EUR eUR;
-	private GBP gBP;
-	private USD uSD;
-	private CAD cAD;
-	private USDT uSDT;
-	private LTC lTC;
+	private AUDDomain aUD;
+	private BTCDomain bTC;
+	private CHFDomain cHF;
+	private ARSDomain aRS;
+	private JPYDomain jPY;
+	private EURDomain eUR;
+	private GBPDomain gBP;
+	private USDDomain uSD;
+	private CADDomain cAD;
+	private USDTDomain uSDT;
+	private LTCDomain lTC;
 
-	public void setAUD(AUD aUD){
+	public void setAUD(AUDDomain aUD){
 		this.aUD = aUD;
 	}
 
-	public AUD getAUD(){
+	public AUDDomain getAUD(){
 		return aUD;
 	}
 
-	public void setBTC(BTC bTC){
+	public void setBTC(BTCDomain bTC){
 		this.bTC = bTC;
 	}
 
-	public BTC getBTC(){
+	public BTCDomain getBTC(){
 		return bTC;
 	}
 
-	public void setCHF(CHF cHF){
+	public void setCHF(CHFDomain cHF){
 		this.cHF = cHF;
 	}
 
-	public CHF getCHF(){
+	public CHFDomain getCHF(){
 		return cHF;
 	}
 
-	public void setARS(ARS aRS){
+	public void setARS(ARSDomain aRS){
 		this.aRS = aRS;
 	}
 
-	public ARS getARS(){
+	public ARSDomain getARS(){
 		return aRS;
 	}
 
-	public void setJPY(JPY jPY){
+	public void setJPY(JPYDomain jPY){
 		this.jPY = jPY;
 	}
 
-	public JPY getJPY(){
+	public JPYDomain getJPY(){
 		return jPY;
 	}
 
-	public void setEUR(EUR eUR){
+	public void setEUR(EURDomain eUR){
 		this.eUR = eUR;
 	}
 
-	public EUR getEUR(){
+	public EURDomain getEUR(){
 		return eUR;
 	}
 
-	public void setGBP(GBP gBP){
+	public void setGBP(GBPDomain gBP){
 		this.gBP = gBP;
 	}
 
-	public GBP getGBP(){
+	public GBPDomain getGBP(){
 		return gBP;
 	}
 
-	public void setUSD(USD uSD){
+	public void setUSD(USDDomain uSD){
 		this.uSD = uSD;
 	}
 
-	public USD getUSD(){
+	public USDDomain getUSD(){
 		return uSD;
 	}
 
-	public void setCAD(CAD cAD){
+	public void setCAD(CADDomain cAD){
 		this.cAD = cAD;
 	}
 
-	public CAD getCAD(){
+	public CADDomain getCAD(){
 		return cAD;
 	}
 
-	public void setUSDT(USDT uSDT){
+	public void setUSDT(USDTDomain uSDT){
 		this.uSDT = uSDT;
 	}
 
-	public USDT getUSDT(){
+	public USDTDomain getUSDT(){
 		return uSDT;
 	}
 
-	public void setLTC(LTC lTC){
+	public void setLTC(LTCDomain lTC){
 		this.lTC = lTC;
 	}
 
-	public LTC getLTC(){
+	public LTCDomain getLTC(){
 		return lTC;
 	}
 }

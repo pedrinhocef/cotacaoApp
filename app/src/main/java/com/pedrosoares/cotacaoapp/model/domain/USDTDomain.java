@@ -1,14 +1,14 @@
 package com.pedrosoares.cotacaoapp.model.domain;
 
-public class GBP{
+public class USDTDomain {
 	private String varBid;
 	private String high;
 	private String pctChange;
 	private String code;
 	private String low;
-	private String codein;
-	private String name;
 	private String ask;
+	private String name;
+	private String codein;
 	private String bid;
 	private String createDate;
 	private String timestamp;
@@ -53,12 +53,12 @@ public class GBP{
 		return low;
 	}
 
-	public void setCodein(String codein){
-		this.codein = codein;
+	public void setAsk(String ask){
+		this.ask = ask;
 	}
 
-	public String getCodein(){
-		return codein;
+	public String getAsk(){
+		return ask;
 	}
 
 	public void setName(String name){
@@ -69,12 +69,12 @@ public class GBP{
 		return name;
 	}
 
-	public void setAsk(String ask){
-		this.ask = ask;
+	public void setCodein(String codein){
+		this.codein = codein;
 	}
 
-	public String getAsk(){
-		return ask;
+	public String getCodein(){
+		return codein;
 	}
 
 	public void setBid(String bid){

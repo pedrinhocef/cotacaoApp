@@ -1,6 +1,6 @@
 package com.pedrosoares.cotacaoapp.model.domain;
 
-public class BTC{
+public class GBPDomain {
 	private String varBid;
 	private String high;
 	private String pctChange;

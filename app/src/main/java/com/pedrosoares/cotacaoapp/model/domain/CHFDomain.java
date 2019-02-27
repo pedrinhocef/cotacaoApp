@@ -1,6 +1,6 @@
 package com.pedrosoares.cotacaoapp.model.domain;
 
-public class ARS{
+public class CHFDomain {
 	private String varBid;
 	private String high;
 	private String pctChange;

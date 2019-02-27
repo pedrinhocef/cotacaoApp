@@ -1,12 +1,12 @@
 package com.pedrosoares.cotacaoapp.model;
 
-import com.pedrosoares.cotacaoapp.model.domain.Coins;
+import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 
 import io.reactivex.Observable;
 
 public interface CoinsModelContract {
 
     interface UseCase{
-        Observable<Coins> getCoins();
+        Observable<CoinsDomain> getCoins();
     }
 }

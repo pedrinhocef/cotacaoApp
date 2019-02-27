@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseActivity;
 import com.pedrosoares.cotacaoapp.model.util.RecyclerItemClickListener;
+import com.pedrosoares.cotacaoapp.presentation.CoinsPresentationContract;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoAdapter;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoListener;
 import com.pedrosoares.cotacaoapp.presentation.fragment.AlertCambioFragment;
@@ -25,7 +26,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CotacaoActivity extends BaseActivity {
+public class CotacaoActivity extends BaseActivity implements CoinsPresentationContract.Activity {
 
 
     @Bind(R.id.content_frame)
@@ -85,4 +86,18 @@ public class CotacaoActivity extends BaseActivity {
        }));
     }
 
+    @Override
+    public void populateCoins() {
+
+    }
+
+    @Override
+    public void loading() {
+
+    }
+
+    @Override
+    public void error() {
+
+    }
 }

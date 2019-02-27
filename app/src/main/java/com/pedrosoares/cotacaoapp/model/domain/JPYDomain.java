@@ -1,6 +1,6 @@
 package com.pedrosoares.cotacaoapp.model.domain;
 
-public class USD{
+public class JPYDomain {
 	private String varBid;
 	private String high;
 	private String pctChange;

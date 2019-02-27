@@ -24,16 +24,16 @@ public class CoinsPresenter extends BasePresenter implements CoinsPresentationCo
 
     @Override
     public void fetchCoins() {
+        view.loading();
         Disposable disposable = useCase.getCoins()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(it -> {
                             if (it != null) {
-                                //success
-                               // view.populateFields(it);
+                                view.populateCoins();
                             }
                         },
-                        Throwable::getMessage);
+                        error -> view.error());
         compositeDisposable.add(disposable);
     }
 

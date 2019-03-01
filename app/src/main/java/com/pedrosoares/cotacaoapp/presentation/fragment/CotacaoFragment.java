@@ -69,13 +69,14 @@ public class CotacaoFragment extends BaseFragment<CoinsPresentationContract.Coin
 
         if (getContext() != null) {
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-            rvListCambio.setLayoutManager(layoutManager);
+
 
             cotacaoAdapter = new CotacaoAdapter(getContext());
 
             // Adiciona o adapter que irá anexar os objetos à lista.
             // Está sendo criado com lista vazia, pois será preenchida posteriormente.
             rvListCambio.setAdapter(cotacaoAdapter);
+            rvListCambio.setLayoutManager(layoutManager);
             // Configurando um dividr entre linhas, para uma melhor visualização.
             rvListCambio.addItemDecoration(
                     new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));

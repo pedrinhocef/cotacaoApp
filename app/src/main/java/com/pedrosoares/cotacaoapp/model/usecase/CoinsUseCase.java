@@ -17,6 +17,7 @@ public class CoinsUseCase implements CoinsModelContract.UseCase {
 
     public CoinsUseCase(Context context){
         this.context = context;
+        this.requester = new Requester();
     }
 
     @Override

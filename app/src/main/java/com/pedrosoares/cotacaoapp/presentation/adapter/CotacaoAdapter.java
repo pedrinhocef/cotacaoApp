@@ -26,12 +26,24 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
     private static final int EURO_COIN = 1;
     private static final int BITCOIN = 2;
     private List<Comparable> data;
+    private List<CoinsDomain> coinsDomainList;
 
 
-    public CotacaoAdapter(Context context){
+    public CotacaoAdapter(Context context, List<CoinsDomain> coinsDomainList){
         this.context = context;
+        this.coinsDomainList = coinsDomainList;
         //this.listener = listener;
     }
+
+    public void addTo(List coinsDomainsList) {
+        if (data == null) {
+            data = new ArrayList<>();
+        }
+        data.clear();
+        data.addAll(coinsDomainsList);
+        notifyDataSetChanged();
+    }
+
 
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
@@ -56,21 +68,21 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-
-       Comparable element =  data.get(position);
-       holder.bind(element);
-
+       //Comparable element = data.get(position);
+       CoinsDomain coinsDomain = coinsDomainList.get(position);
+       holder.bind(coinsDomain);
     }
 
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return coinsDomainList.size();
     }
 
     @Override
     public int getItemViewType(int position) {
         Comparable element = data.get(position);
+
 
         if(element instanceof DolarViewHolder) {
             return USD_COIN;

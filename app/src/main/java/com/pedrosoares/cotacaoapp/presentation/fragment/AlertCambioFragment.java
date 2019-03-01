@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
+import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.presentation.CoinsPresentationContract;
 
 public class AlertCambioFragment extends BaseFragment<CoinsPresentationContract.CoinsPresenter> implements CoinsPresentationContract.Fragment {
@@ -38,7 +39,7 @@ public class AlertCambioFragment extends BaseFragment<CoinsPresentationContract.
     }
 
     @Override
-    public void populateCoins() {
+    public void populateCoins(CoinsDomain coinsDomain) {
 
     }
 

@@ -12,14 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseActivity;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
+import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.model.util.RecyclerItemClickListener;
 import com.pedrosoares.cotacaoapp.presentation.CoinsPresentationContract;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoAdapter;
 import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -30,6 +35,10 @@ public class CotacaoFragment extends BaseFragment<CoinsPresentationContract.Coin
     RecyclerView rvListCambio;
 
     CotacaoAdapter cotacaoAdapter;
+
+    List<Comparable> data;
+
+    List<CoinsDomain> coinsDomainList = new ArrayList<>();
 
 
     @Override
@@ -50,9 +59,24 @@ public class CotacaoFragment extends BaseFragment<CoinsPresentationContract.Coin
     }
 
     @Override
-    public void populateCoins() {
-          setupRecycler();
-          listOnClick();
+    public void populateCoins(CoinsDomain coinsDomain) {
+        coinsDomainList.add(coinsDomain);
+
+        if (getContext() != null) {
+            //LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
+
+
+            cotacaoAdapter = new CotacaoAdapter(getContext(),coinsDomainList);
+
+            cotacaoAdapter.addTo(coinsDomainList);
+            rvListCambio.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvListCambio.setAdapter(cotacaoAdapter);
+
+            rvListCambio.addItemDecoration(
+                    new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        }
+
+        listOnClick();
     }
 
     @Override
@@ -64,25 +88,6 @@ public class CotacaoFragment extends BaseFragment<CoinsPresentationContract.Coin
     public void error() {
 
     }
-
-    private void  setupRecycler(){
-
-        if (getContext() != null) {
-            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-
-
-            cotacaoAdapter = new CotacaoAdapter(getContext());
-
-            // Adiciona o adapter que irá anexar os objetos à lista.
-            // Está sendo criado com lista vazia, pois será preenchida posteriormente.
-            rvListCambio.setAdapter(cotacaoAdapter);
-            rvListCambio.setLayoutManager(layoutManager);
-            // Configurando um dividr entre linhas, para uma melhor visualização.
-            rvListCambio.addItemDecoration(
-                    new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        }
-    }
-
 
     private void listOnClick(){
 

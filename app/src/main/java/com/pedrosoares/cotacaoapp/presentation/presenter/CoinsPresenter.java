@@ -30,7 +30,7 @@ public class CoinsPresenter extends BasePresenter implements CoinsPresentationCo
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(it -> {
                             if (it != null) {
-                                view.populateCoins();
+                                view.populateCoins(it);
                             }
                         },
                         error -> view.error());

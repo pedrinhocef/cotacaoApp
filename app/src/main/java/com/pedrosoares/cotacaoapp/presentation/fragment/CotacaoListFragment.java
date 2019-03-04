@@ -104,6 +104,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsPresentationContract.
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
 
             cotacaoAdapter = new CotacaoAdapter(getContext(),coinsDomainList);
+            cotacaoAdapter.addTo(coinsDomainList);
 
             rvListCotacao.setLayoutManager(layoutManager);
             rvListCotacao.setAdapter(cotacaoAdapter);

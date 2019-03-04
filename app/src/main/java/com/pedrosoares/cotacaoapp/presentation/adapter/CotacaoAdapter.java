@@ -11,7 +11,15 @@ import android.widget.Toast;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
+import com.pedrosoares.cotacaoapp.data.entity.BTC;
+import com.pedrosoares.cotacaoapp.data.entity.EUR;
+import com.pedrosoares.cotacaoapp.data.entity.LTC;
+import com.pedrosoares.cotacaoapp.data.entity.USD;
+import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
+import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
+import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
+import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +36,6 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
     private static final int LITECOIN = 3;
     private List<Comparable> data;
     private List<CoinsDomain> coinsDomainList;
-    private CoinsDomain coinsDomain;
-
 
     public CotacaoAdapter(Context context, List<CoinsDomain> coinsDomainList){
         this.context = context;
@@ -37,17 +43,18 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
         //this.listener = listener;
     }
 
-    public void addTo(List coinsDomainsList) {
+    public void addTo(List coinsDomain) {
         if (data == null) {
             data = new ArrayList<>();
         }
         data.clear();
-        data.addAll(coinsDomainsList);
+        data.addAll(coinsDomain);
         notifyDataSetChanged();
     }
 
 
 
+    @NonNull
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cotacao, parent, false);
@@ -74,27 +81,26 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-       //Comparable element = data.get(position);
-       CoinsDomain coinsDomain = coinsDomainList.get(position);
+       Comparable coinsDomain = data.get(position);
        holder.bind(coinsDomain);
     }
 
 
     @Override
     public int getItemCount() {
-        return coinsDomainList.size();
+        return data.size();
     }
 
     public int getItemViewType(int position) {
         Comparable element = data.get(position);
 
-        if(element instanceof DolarViewHolder) {
+        if(element instanceof USDDomain) {
             return USD_COIN;
-        } else if(element instanceof EuroViewHolder) {
+        } else if(element instanceof EURDomain) {
             return EURO_COIN;
-        }else if(element instanceof  BitCoinViewHolder){
+        }else if(element instanceof BTCDomain){
             return BITCOIN;
-        }else if(element instanceof LiteCoinViewHolder){
+        }else if(element instanceof LTCDomain){
             return LITECOIN;
         }else Toast.makeText(context,"Erro ao carregar lista de moedas",Toast.LENGTH_SHORT).show();
 
@@ -102,7 +108,6 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
     }
 
 /////////////////////////////////////////////////////////////////
-
 
 
  public static class DolarViewHolder extends BaseViewHolder<CoinsDomain>{
@@ -113,7 +118,7 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
-     DolarViewHolder(@NonNull View itemView) {
+     private DolarViewHolder(@NonNull View itemView) {
          super(itemView);
      }
 
@@ -153,7 +158,7 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      TextView tvCoinValue;
 
 
-     public BitCoinViewHolder(@NonNull View itemView) {
+     private BitCoinViewHolder(@NonNull View itemView) {
          super(itemView);
      }
 
@@ -172,7 +177,7 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
-     public LiteCoinViewHolder(@NonNull View itemView) {
+     private LiteCoinViewHolder(@NonNull View itemView) {
          super(itemView);
      }
 

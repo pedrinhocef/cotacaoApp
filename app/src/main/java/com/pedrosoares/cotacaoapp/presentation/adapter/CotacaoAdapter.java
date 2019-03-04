@@ -63,6 +63,10 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
        holder.bind(coinsDomain);
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
 
     @Override
     public int getItemCount() {

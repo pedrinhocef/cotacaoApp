@@ -113,7 +113,7 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
-     public DolarViewHolder(@NonNull View itemView) {
+     DolarViewHolder(@NonNull View itemView) {
          super(itemView);
      }
 
@@ -132,7 +132,7 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
-     public EuroViewHolder(@NonNull View itemView) {
+     private EuroViewHolder(@NonNull View itemView) {
          super(itemView);
      }
 
@@ -151,6 +151,7 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
 
      @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
+
 
      public BitCoinViewHolder(@NonNull View itemView) {
          super(itemView);

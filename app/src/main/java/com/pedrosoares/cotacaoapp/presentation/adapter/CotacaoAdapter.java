@@ -25,7 +25,6 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
     private static final int USD_COIN = 0;
     private static final int EURO_COIN = 1;
     private static final int BITCOIN = 2;
-    private List<Comparable> data;
     private List<CoinsDomain> coinsDomainList;
 
 
@@ -33,15 +32,6 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
         this.context = context;
         this.coinsDomainList = coinsDomainList;
         //this.listener = listener;
-    }
-
-    public void addTo(List coinsDomainsList) {
-        if (data == null) {
-            data = new ArrayList<>();
-        }
-        data.clear();
-        data.addAll(coinsDomainsList);
-        notifyDataSetChanged();
     }
 
 
@@ -79,20 +69,6 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
         return coinsDomainList.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        Comparable element = data.get(position);
-
-
-        if(element instanceof DolarViewHolder) {
-            return USD_COIN;
-        } else if(element instanceof EuroViewHolder) {
-            return EURO_COIN;
-        }else if(element instanceof BitCoinsViewHolder){
-            return BITCOIN;
-        }
-        throw new IllegalArgumentException("Invalid position " + position);
-    }
 /////////////////////////////////////////////////////////////////
 
 

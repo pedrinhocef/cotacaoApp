@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.activity.CotacaoActivity"></activity>
-        <activity android:name=".presentation.fragment.CotacaoFragment"></activity>
     </application>
 
 </manifest>

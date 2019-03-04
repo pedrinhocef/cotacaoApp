@@ -12,6 +12,7 @@ import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.presentation.CoinsPresentationContract;
+import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
 
 public class AlertCambioFragment extends BaseFragment<CoinsPresentationContract.CoinsPresenter> implements CoinsPresentationContract.Fragment {
 
@@ -34,8 +35,7 @@ public class AlertCambioFragment extends BaseFragment<CoinsPresentationContract.
 
     @Override
     public CoinsPresentationContract.CoinsPresenter createPresenter() {
-        //return new CoinsPresenter(getContext(), this);
-        return null;
+        return new CoinsPresenter(getContext(), this);
     }
 
     @Override

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.activity.CotacaoActivity">
+
+    <include
+        android:id="@+id/fragment_error"
+        layout="@layout/fragment_error"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/fragment_loading"
+        layout="@layout/fragment_loading"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/ll_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_date_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000"
+            tools:text="Atualizado em 16 de fevereiro, às 00:50"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list_cotacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_cotacao"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

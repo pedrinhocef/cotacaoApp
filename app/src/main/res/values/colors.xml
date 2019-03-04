@@ -10,5 +10,8 @@
     <color name="greenWeek2">#9ACE62</color>
     <color name="greenStrong">#509A99</color>
 
+    <color name="colorSilver">#F2F3F4</color>
+    <color name="colorDarkGreyBlue">#2A3E52</color>
+    <color name="colorCoolGray">#959DA6</color>
 
 </resources>

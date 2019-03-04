@@ -12,11 +12,9 @@ import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
 
@@ -85,7 +83,7 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
-     public DolarViewHolder(@NonNull View itemView) {
+     DolarViewHolder(@NonNull View itemView) {
          super(itemView);
      }
 
@@ -104,7 +102,7 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
-     public EuroViewHolder(@NonNull View itemView) {
+     private EuroViewHolder(@NonNull View itemView) {
          super(itemView);
      }
 
@@ -124,7 +122,7 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
-     public BitCoinsViewHolder(@NonNull View itemView) {
+     private BitCoinsViewHolder(@NonNull View itemView) {
          super(itemView);
      }
 

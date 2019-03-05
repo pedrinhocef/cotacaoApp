@@ -11,10 +11,6 @@ import android.widget.Toast;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
-import com.pedrosoares.cotacaoapp.data.entity.BTC;
-import com.pedrosoares.cotacaoapp.data.entity.EUR;
-import com.pedrosoares.cotacaoapp.data.entity.LTC;
-import com.pedrosoares.cotacaoapp.data.entity.USD;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
@@ -56,8 +52,8 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
 
     @NonNull
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cotacao, parent, false);
+        Context context = parent.getContext();
+        View view = LayoutInflater.from(context).inflate(R.layout.item_cotacao, parent, false);
 
         switch(viewType){
             case USD_COIN: {
@@ -91,20 +87,22 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
         return data.size();
     }
 
+    @Override
     public int getItemViewType(int position) {
         Comparable element = data.get(position);
 
-        if(element instanceof USDDomain) {
-            return USD_COIN;
-        } else if(element instanceof EURDomain) {
-            return EURO_COIN;
-        }else if(element instanceof BTCDomain){
+        if (((CoinsDomain) element).getBTC() instanceof BTCDomain) {
             return BITCOIN;
-        }else if(element instanceof LTCDomain){
+        } else if (((CoinsDomain) element).getEUR() instanceof EURDomain) {
+            return EURO_COIN;
+        } else if (((CoinsDomain) element).getUSD() instanceof USDDomain) {
+            return USD_COIN;
+        } else if (((CoinsDomain) element).getLTC() instanceof LTCDomain) {
             return LITECOIN;
-        }else Toast.makeText(context,"Erro ao carregar lista de moedas",Toast.LENGTH_SHORT).show();
+        } else
+            Toast.makeText(context, "Erro ao carregar lista de moedas", Toast.LENGTH_SHORT).show();
 
-        return -1;
+        return 0;
     }
 
 /////////////////////////////////////////////////////////////////

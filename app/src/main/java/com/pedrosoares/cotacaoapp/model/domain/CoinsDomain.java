@@ -1,8 +1,6 @@
 package com.pedrosoares.cotacaoapp.model.domain;
 
-import android.support.annotation.NonNull;
-
-public class CoinsDomain implements Comparable{
+public class CoinsDomain implements Comparable<CoinsDomain>{
 	private AUDDomain aUD;
 	private BTCDomain bTC;
 	private CHFDomain cHF;
@@ -104,7 +102,10 @@ public class CoinsDomain implements Comparable{
 	}
 
 	@Override
-	public int compareTo(@NonNull Object o) {
-		return 0;
+	public int compareTo(CoinsDomain coins) {
+		if (bTC.getName().equals(coins.bTC.getName())) {
+			return bTC.getCode().compareTo(coins.getBTC().getCode());
+		}
+		return -1;
 	}
 }

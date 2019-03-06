@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.pedrosoares.cotacaoapp.presentation.activity.CotacaoActivity;
+import com.pedrosoares.cotacaoapp.presentation.view.activity.CotacaoActivity;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.activity.CotacaoActivity"></activity>
+        <activity android:name="com.pedrosoares.cotacaoapp.presentation.view.activity.CotacaoActivity"/>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.pedrosoares.cotacaoapp.presentation.fragment;
+package com.pedrosoares.cotacaoapp.presentation.view.fragment;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -26,7 +26,7 @@ import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 import com.pedrosoares.cotacaoapp.model.util.RecyclerItemClickListener;
 import com.pedrosoares.cotacaoapp.presentation.CoinsPresentationContract;
-import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoAdapter;
+import com.pedrosoares.cotacaoapp.presentation.view.adapter.CotacaoAdapter;
 import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
 
 import java.text.DateFormat;
@@ -89,7 +89,6 @@ public class CotacaoListFragment extends BaseFragment<CoinsPresentationContract.
         ButterKnife.bind(this, getActivity());
         presenter.fetchCoins();
         getFullDate();
-
     }
 
     @Override
@@ -106,13 +105,9 @@ public class CotacaoListFragment extends BaseFragment<CoinsPresentationContract.
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
 
             cotacaoAdapter = new CotacaoAdapter(getContext(),coinsDomainList);
-//            cotacaoAdapter.addTo(coinsDomainList);
-
             rvListCotacao.setLayoutManager(layoutManager);
+            rvListCotacao.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
             rvListCotacao.setAdapter(cotacaoAdapter);
-
-            rvListCotacao.addItemDecoration(
-                    new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
             showSuccessScreen();
 
@@ -147,7 +142,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsPresentationContract.
         constraintError.setVisibility(View.GONE);
         llSuccess.setVisibility(View.GONE);
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Enviando dados... aguarde");
+        progressDialog.setMessage("Carregando dados... aguarde");
         progressDialog.setIndeterminate(false);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
@@ -198,6 +193,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsPresentationContract.
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 AlertCambioFragment fragment = new AlertCambioFragment();
+                ft.addToBackStack(null);
                 ft.replace(R.id.content_frame, fragment);
                 ft.commit();
             }

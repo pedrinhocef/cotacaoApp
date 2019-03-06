@@ -11,11 +11,7 @@ public interface CoinsPresentationContract  {
         void error();
     }
 
-    interface Activity {
-        void populateCoins();
-        void loading();
-        void error();
-    }
+    interface Activity {}
 
     interface CoinsPresenter extends BaseContract.Presenter {
         void fetchCoins();

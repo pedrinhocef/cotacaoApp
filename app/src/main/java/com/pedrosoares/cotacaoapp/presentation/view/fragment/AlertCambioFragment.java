@@ -1,12 +1,15 @@
-package com.pedrosoares.cotacaoapp.presentation.fragment;
+package com.pedrosoares.cotacaoapp.presentation.view.fragment;
 
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
@@ -39,9 +42,7 @@ public class AlertCambioFragment extends BaseFragment<CoinsPresentationContract.
     }
 
     @Override
-    public void populateCoins(CoinsDomain coinsDomain) {
-
-    }
+    public void populateCoins(CoinsDomain coinsDomain) { }
 
     @Override
     public void loading() {
@@ -53,5 +54,15 @@ public class AlertCambioFragment extends BaseFragment<CoinsPresentationContract.
 
     }
 
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        if (getActivity() != null && getFragmentManager() != null) {
+            getActivity().getFragmentManager().popBackStack();
+        }
+
+    }
 
 }

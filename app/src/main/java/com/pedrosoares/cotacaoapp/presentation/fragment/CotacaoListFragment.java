@@ -19,7 +19,11 @@ import android.widget.TextView;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
+import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
+import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
+import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
+import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 import com.pedrosoares.cotacaoapp.model.util.RecyclerItemClickListener;
 import com.pedrosoares.cotacaoapp.presentation.CoinsPresentationContract;
 import com.pedrosoares.cotacaoapp.presentation.adapter.CotacaoAdapter;
@@ -57,7 +61,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsPresentationContract.
     //endregion
 
     CotacaoAdapter cotacaoAdapter;
-    List<CoinsDomain> coinsDomainList = new ArrayList<>();
+    List<Object> coinsDomainList = new ArrayList<>();
     private int month;
     ProgressDialog progressDialog;
 
@@ -96,15 +100,13 @@ public class CotacaoListFragment extends BaseFragment<CoinsPresentationContract.
     @Override
     public void populateCoins(CoinsDomain coinsDomain) {
 
-        showSuccessScreen();
-
-        coinsDomainList.add(coinsDomain);
+        addCoinsToArray(coinsDomain);
 
         if (getContext() != null) {
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
 
             cotacaoAdapter = new CotacaoAdapter(getContext(),coinsDomainList);
-            cotacaoAdapter.addTo(coinsDomainList);
+//            cotacaoAdapter.addTo(coinsDomainList);
 
             rvListCotacao.setLayoutManager(layoutManager);
             rvListCotacao.setAdapter(cotacaoAdapter);
@@ -112,9 +114,23 @@ public class CotacaoListFragment extends BaseFragment<CoinsPresentationContract.
             rvListCotacao.addItemDecoration(
                     new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
+            showSuccessScreen();
+
             listOnClick();
         }
 
+    }
+
+    private void addCoinsToArray(CoinsDomain coinsDomain) {
+        BTCDomain btc = coinsDomain.getBTC();
+        USDDomain usd = coinsDomain.getUSD();
+        LTCDomain ltc = coinsDomain.getLTC();
+        EURDomain eur = coinsDomain.getEUR();
+
+        coinsDomainList.add(0,btc);
+        coinsDomainList.add(1,usd);
+        coinsDomainList.add(2,ltc);
+        coinsDomainList.add(3,eur);
     }
 
     private void showSuccessScreen() {

@@ -12,12 +12,10 @@ import android.widget.Toast;
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
-import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -30,25 +28,13 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
     private static final int EURO_COIN = 1;
     private static final int BITCOIN = 2;
     private static final int LITECOIN = 3;
-    private List<Comparable> data;
-    private List<CoinsDomain> coinsDomainList;
+    private List<Object> coinsDomainList;
 
-    public CotacaoAdapter(Context context, List<CoinsDomain> coinsDomainList){
+    public CotacaoAdapter(Context context, List<Object> coinsDomainList){
         this.context = context;
         this.coinsDomainList = coinsDomainList;
         //this.listener = listener;
     }
-
-    public void addTo(List coinsDomain) {
-        if (data == null) {
-            data = new ArrayList<>();
-        }
-        data.clear();
-        data.addAll(coinsDomain);
-        notifyDataSetChanged();
-    }
-
-
 
     @NonNull
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -77,27 +63,27 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-       Comparable coinsDomain = data.get(position);
-       holder.bind(coinsDomain);
+        Object coinsDomain = coinsDomainList.get(position);
+        holder.bind(coinsDomain);
     }
 
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return coinsDomainList.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        Comparable element = data.get(position);
+        Object element = coinsDomainList.get(position);
 
-        if (((CoinsDomain) element).getBTC() instanceof BTCDomain) {
+        if (element instanceof BTCDomain) {
             return BITCOIN;
-        } else if (((CoinsDomain) element).getEUR() instanceof EURDomain) {
+        } else if (element instanceof EURDomain) {
             return EURO_COIN;
-        } else if (((CoinsDomain) element).getUSD() instanceof USDDomain) {
+        } else if (element instanceof USDDomain) {
             return USD_COIN;
-        } else if (((CoinsDomain) element).getLTC() instanceof LTCDomain) {
+        } else if (element instanceof LTCDomain) {
             return LITECOIN;
         } else
             Toast.makeText(context, "Erro ao carregar lista de moedas", Toast.LENGTH_SHORT).show();
@@ -108,7 +94,7 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
 /////////////////////////////////////////////////////////////////
 
 
- public static class DolarViewHolder extends BaseViewHolder<CoinsDomain>{
+ public static class DolarViewHolder extends BaseViewHolder<USDDomain>{
 
      @Bind(R.id.tv_coin_name)
      TextView tvCoinName;
@@ -121,13 +107,13 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      }
 
      @Override
-     public void bind(CoinsDomain coinsDomain) {
-         tvCoinName.setText(coinsDomain.getUSD().getName());
-         tvCoinValue.setText(coinsDomain.getUSD().getBid());
+     public void bind(USDDomain coinsDomain) {
+         tvCoinName.setText(coinsDomain.getName());
+         tvCoinValue.setText(coinsDomain.getBid());
      }
  }
 
- public static class EuroViewHolder extends BaseViewHolder<CoinsDomain> {
+ public static class EuroViewHolder extends BaseViewHolder<EURDomain> {
 
      @Bind(R.id.tv_coin_name)
      TextView tvCoinName;
@@ -140,14 +126,14 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      }
 
      @Override
-     public void bind(CoinsDomain coinsDomain) {
-         tvCoinName.setText(coinsDomain.getEUR().getName());
-         tvCoinValue.setText(coinsDomain.getEUR().getBid());
+     public void bind(EURDomain coinsDomain) {
+         tvCoinName.setText(coinsDomain.getName());
+         tvCoinValue.setText(coinsDomain.getBid());
      }
 
  }
 
- public static class BitCoinViewHolder extends BaseViewHolder<CoinsDomain> {
+ public static class BitCoinViewHolder extends BaseViewHolder<BTCDomain> {
 
      @Bind(R.id.tv_coin_name)
      TextView tvCoinName;
@@ -161,13 +147,13 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      }
 
      @Override
-     public void bind(CoinsDomain coinsDomain) {
-         tvCoinName.setText(coinsDomain.getBTC().getName());
-         tvCoinValue.setText(coinsDomain.getBTC().getBid());
+     public void bind(BTCDomain coinsDomain) {
+         tvCoinName.setText(coinsDomain.getName());
+         tvCoinValue.setText(coinsDomain.getBid());
      }
  }
 
- public static class LiteCoinViewHolder extends BaseViewHolder<CoinsDomain> {
+ public static class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
 
      @Bind(R.id.tv_coin_name)
      TextView tvCoinName;
@@ -180,9 +166,9 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
      }
 
      @Override
-     public void bind(CoinsDomain coinsDomain) {
-         tvCoinName.setText(coinsDomain.getLTC().getName());
-         tvCoinValue.setText(coinsDomain.getLTC().getBid());
+     public void bind(LTCDomain coinsDomain) {
+         tvCoinName.setText(coinsDomain.getName());
+         tvCoinValue.setText(coinsDomain.getBid());
      }
  }
 

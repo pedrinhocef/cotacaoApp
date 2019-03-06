@@ -1,6 +1,6 @@
 package com.pedrosoares.cotacaoapp.model.domain;
 
-public class CoinsDomain implements Comparable<CoinsDomain>{
+public class CoinsDomain {
 	private AUDDomain aUD;
 	private BTCDomain bTC;
 	private CHFDomain cHF;
@@ -99,13 +99,5 @@ public class CoinsDomain implements Comparable<CoinsDomain>{
 
 	public LTCDomain getLTC(){
 		return lTC;
-	}
-
-	@Override
-	public int compareTo(CoinsDomain coins) {
-		if (bTC.getName().equals(coins.bTC.getName())) {
-			return bTC.getCode().compareTo(coins.getBTC().getCode());
-		}
-		return -1;
 	}
 }

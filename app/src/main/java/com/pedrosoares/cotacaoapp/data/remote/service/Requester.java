@@ -29,5 +29,4 @@ public class Requester {
         }
         return retrofit;
     }
-
 }

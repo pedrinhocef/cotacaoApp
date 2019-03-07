@@ -1,7 +1,8 @@
 package com.pedrosoares.cotacaoapp.presentation.view.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,14 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pedrosoares.cotacaoapp.R;
+import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
-import com.pedrosoares.cotacaoapp.presentation.CoinsPresentationContract;
-import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
+import com.pedrosoares.cotacaoapp.presentation.CoinsContract;
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.CotacaoAdapter;
+import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CotacaoListFragment extends Fragment implements CoinsPresentationContract.CoinsListView {
+public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPresenter> implements CoinsContract.CoinsListView {
 
     //region BINDS
     @Bind(R.id.rv_list_cotacao)
@@ -48,14 +50,18 @@ public class CotacaoListFragment extends Fragment implements CoinsPresentationCo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cotacao_list, container, false);
-        ButterKnife.bind(this, view);
+        return inflater.inflate(R.layout.fragment_cotacao_list, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, getActivity());
         initUi();
-        return view;
     }
 
     private void initUi(){
-        createPresenter().fetchCoins();
+        presenter.fetchCoins();
         coinsDomainList = new ArrayList<>();
         cotacaoAdapter = new CotacaoAdapter(getActivity(), coinsDomainList);
         rvListCotacao.setAdapter(cotacaoAdapter);
@@ -66,7 +72,7 @@ public class CotacaoListFragment extends Fragment implements CoinsPresentationCo
     }
 
     @Override
-    public CoinsPresentationContract.CoinsListPresenter createPresenter() {
+    public CoinsContract.CoinsListPresenter createPresenter() {
         return new CoinsPresenter(this);
     }
 
@@ -76,7 +82,7 @@ public class CotacaoListFragment extends Fragment implements CoinsPresentationCo
         cotacaoAdapter.notifyDataSetChanged();
     }
 
-    private void addCoinsToArray(@NonNull CoinsDomain coinsDomain) {
+    private void addCoinsToArray(CoinsDomain coinsDomain) {
         BTCDomain btc = coinsDomain.getBTC();
         USDDomain usd = coinsDomain.getUSD();
         LTCDomain ltc = coinsDomain.getLTC();
@@ -140,6 +146,6 @@ public class CotacaoListFragment extends Fragment implements CoinsPresentationCo
 
     @OnClick(R.id.image_refresh)
     void onClickReload(){
-        createPresenter().fetchCoins();
+        presenter.fetchCoins();
     }
 }

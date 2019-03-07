@@ -33,11 +33,11 @@ public class EuroViewHolder extends BaseViewHolder<EURDomain> {
     }
 
     @Override
-    public void bind(EURDomain type) {
-        tvCoinName.setText(type.getName());
-        tvCoinValue.setText("R$ "+formatoValor.format(Float.valueOf(type.getBid())));
-        tvLowPrice.setText("R$"+formatoValor.format(Float.valueOf(type.getLow())));
-        tvHighPrice.setText("R$"+formatoValor.format(Float.valueOf(type.getHigh())));
+    public void bind(EURDomain eurDomain) {
+        tvCoinName.setText(eurDomain.getName());
+        tvCoinValue.setText("R$ "+formatoValor.format(Float.valueOf(eurDomain.getBid())));
+        tvLowPrice.setText("R$"+formatoValor.format(Float.valueOf(eurDomain.getLow())));
+        tvHighPrice.setText("R$"+formatoValor.format(Float.valueOf(eurDomain.getHigh())));
     }
 
 }

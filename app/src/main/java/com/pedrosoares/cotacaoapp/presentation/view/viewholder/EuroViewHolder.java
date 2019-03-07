@@ -18,6 +18,12 @@ public class EuroViewHolder extends BaseViewHolder<EURDomain> {
     @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
+    @Bind(R.id.tv_high)
+    TextView tvHighPrice;
+
+    @Bind(R.id.tv_low)
+    TextView tvLowPrice;
+
     public EuroViewHolder(@NonNull View itemView) {
         super(itemView);
     }
@@ -26,6 +32,8 @@ public class EuroViewHolder extends BaseViewHolder<EURDomain> {
     public void bind(EURDomain eurDomain) {
         tvCoinName.setText(eurDomain.getName());
         tvCoinValue.setText(eurDomain.getBid());
+        tvLowPrice.setText(eurDomain.getLow());
+        tvHighPrice.setText(eurDomain.getHigh());
     }
 
 }

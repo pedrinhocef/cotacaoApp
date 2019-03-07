@@ -18,6 +18,12 @@ public class BitCoinViewHolder extends BaseViewHolder<BTCDomain> {
     @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
+    @Bind(R.id.tv_high)
+    TextView tvHighPrice;
+
+    @Bind(R.id.tv_low)
+    TextView tvLowPrice;
+
 
     public BitCoinViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -27,5 +33,7 @@ public class BitCoinViewHolder extends BaseViewHolder<BTCDomain> {
     public void bind(BTCDomain btcDomain) {
         tvCoinName.setText(btcDomain.getName());
         tvCoinValue.setText(btcDomain.getBid());
+        tvHighPrice.setText(btcDomain.getHigh());
+        tvLowPrice.setText(btcDomain.getLow());
     }
 }

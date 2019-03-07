@@ -87,7 +87,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:src="@drawable/icn_low_price"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_coin_value"
             card_view:layout_constraintEnd_toEndOf="@+id/tv_coin_value" />
 

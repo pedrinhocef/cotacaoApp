@@ -18,6 +18,12 @@ public class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
     @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
+    @Bind(R.id.tv_high)
+    TextView tvHighPrice;
+
+    @Bind(R.id.tv_low)
+    TextView tvLowPrice;
+
     public LiteCoinViewHolder(@NonNull View itemView) {
         super(itemView);
     }
@@ -26,6 +32,8 @@ public class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
     public void bind(LTCDomain ltcDomain) {
         tvCoinName.setText(ltcDomain.getName());
         tvCoinValue.setText(ltcDomain.getBid());
+        tvLowPrice.setText(ltcDomain.getLow());
+        tvHighPrice.setText(ltcDomain.getHigh());
     }
 }
 

@@ -18,6 +18,12 @@ public class DolarViewHolder extends BaseViewHolder<USDDomain> {
     @Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
+    @Bind(R.id.tv_high)
+    TextView tvHighPrice;
+
+    @Bind(R.id.tv_low)
+    TextView tvLowPrice;
+
     public DolarViewHolder(@NonNull View itemView) {
         super(itemView);
     }
@@ -26,5 +32,7 @@ public class DolarViewHolder extends BaseViewHolder<USDDomain> {
     public void bind(USDDomain usdDomain) {
         tvCoinName.setText(usdDomain.getName());
         tvCoinValue.setText(usdDomain.getBid());
+        tvLowPrice.setText(usdDomain.getLow());
+        tvHighPrice.setText(usdDomain.getHigh());
     }
 }

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.pedrosoares.cotacaoapp.model.util.ConfigGeral;
 import com.pedrosoares.cotacaoapp.presentation.view.fragment.CotacaoListFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

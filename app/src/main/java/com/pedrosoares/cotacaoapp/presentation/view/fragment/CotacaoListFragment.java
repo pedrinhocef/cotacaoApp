@@ -102,10 +102,10 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
         LTCDomain ltc = coinsDomain.getLTC();
         EURDomain eur = coinsDomain.getEUR();
 
-        coinsDomainList.add(0,btc);
-        coinsDomainList.add(1,usd);
-        coinsDomainList.add(2,ltc);
-        coinsDomainList.add(3,eur);
+        coinsDomainList.add(0,usd);
+        coinsDomainList.add(1,eur);
+        coinsDomainList.add(2,btc);
+        coinsDomainList.add(3,ltc);
     }
 
     @Override

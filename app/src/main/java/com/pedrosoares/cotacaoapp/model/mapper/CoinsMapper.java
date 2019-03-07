@@ -31,8 +31,9 @@ public class CoinsMapper {
         USDDomain usdDomain = new USDDomain();
 
         usdDomain.setName(usdEntity.getName());
-        usdDomain.setAsk(usdEntity.getAsk());
         usdDomain.setBid(usdEntity.getBid());
+        usdDomain.setLow(usdEntity.getLow());
+        usdDomain.setHigh(usdEntity.getHigh());
 
         return usdDomain;
     }
@@ -41,8 +42,9 @@ public class CoinsMapper {
         EURDomain eurDomain = new EURDomain();
 
         eurDomain.setName(eurEntity.getName());
-        eurDomain.setAsk(eurEntity.getAsk());
         eurDomain.setBid(eurEntity.getBid());
+        eurDomain.setLow(eurEntity.getLow());
+        eurDomain.setHigh(eurEntity.getHigh());
 
         return eurDomain;
     }
@@ -51,8 +53,9 @@ public class CoinsMapper {
         BTCDomain btcDomain = new BTCDomain();
 
         btcDomain.setName(btcEntity.getName());
-        btcDomain.setAsk(btcEntity.getAsk());
         btcDomain.setBid(btcEntity.getBid());
+        btcDomain.setLow(btcEntity.getLow());
+        btcDomain.setHigh(btcEntity.getHigh());
 
         return btcDomain;
     }
@@ -61,8 +64,9 @@ public class CoinsMapper {
         LTCDomain ltcDomain = new LTCDomain();
 
         ltcDomain.setName(ltcEntity.getName());
-        ltcDomain.setAsk(ltcEntity.getAsk());
         ltcDomain.setBid(ltcEntity.getBid());
+        ltcDomain.setLow(ltcEntity.getLow());
+        ltcDomain.setHigh(ltcEntity.getHigh());
 
         return ltcDomain;
     }

@@ -7,10 +7,13 @@ import android.widget.TextView;
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
+import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
+
+import java.text.DecimalFormat;
 
 import butterknife.Bind;
 
-public class DolarViewHolder extends BaseViewHolder<USDDomain> {
+public class DolarViewHolder extends BaseViewHolder<USDTDomain> {
 
     @Bind(R.id.tv_coin_name)
      TextView tvCoinName;
@@ -24,15 +27,17 @@ public class DolarViewHolder extends BaseViewHolder<USDDomain> {
     @Bind(R.id.tv_low)
     TextView tvLowPrice;
 
+    private DecimalFormat formatoValor = new DecimalFormat("###,###,###,###,##0.00");
+
     public DolarViewHolder(@NonNull View itemView) {
         super(itemView);
     }
 
     @Override
-    public void bind(USDDomain usdDomain) {
-        tvCoinName.setText(usdDomain.getName());
-        tvCoinValue.setText(usdDomain.getBid());
-        tvLowPrice.setText(usdDomain.getLow());
-        tvHighPrice.setText(usdDomain.getHigh());
+    public void bind(USDTDomain type) {
+        tvCoinName.setText(type.getName());
+        tvCoinValue.setText("R$ "+formatoValor.format(Float.valueOf(type.getBid())));
+        tvLowPrice.setText("R$"+formatoValor.format(Float.valueOf(type.getLow())));
+        tvHighPrice.setText("R$"+formatoValor.format(Float.valueOf(type.getHigh())));
     }
 }

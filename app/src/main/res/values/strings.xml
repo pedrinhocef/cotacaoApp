@@ -5,5 +5,7 @@
 
     <string name="touch_to_refresh_load_failed">Falha ao atualizar as informações.</string>
     <string name="card_load_failed_touch">Toque para atualizar.</string>
+    <string name="usd_name">USD</string>
+    <string name="off_alert">alerta desligado</string>
 
 </resources>

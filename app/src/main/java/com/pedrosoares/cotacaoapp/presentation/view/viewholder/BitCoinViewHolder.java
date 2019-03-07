@@ -8,6 +8,8 @@ import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 
+import java.text.DecimalFormat;
+
 import butterknife.Bind;
 
 public class BitCoinViewHolder extends BaseViewHolder<BTCDomain> {
@@ -24,16 +26,17 @@ public class BitCoinViewHolder extends BaseViewHolder<BTCDomain> {
     @Bind(R.id.tv_low)
     TextView tvLowPrice;
 
+    private DecimalFormat formatoValor = new DecimalFormat("###,###,###,###,##0.00");
 
     public BitCoinViewHolder(@NonNull View itemView) {
         super(itemView);
     }
 
     @Override
-    public void bind(BTCDomain btcDomain) {
-        tvCoinName.setText(btcDomain.getName());
-        tvCoinValue.setText(btcDomain.getBid());
-        tvHighPrice.setText(btcDomain.getHigh());
-        tvLowPrice.setText(btcDomain.getLow());
+    public void bind(BTCDomain type) {
+        tvCoinName.setText(type.getName());
+        tvCoinValue.setText("R$ "+formatoValor.format(Float.valueOf(type.getBid())));
+        tvHighPrice.setText("R$"+formatoValor.format(Float.valueOf(type.getHigh())));
+        tvLowPrice.setText("R$"+formatoValor.format(Float.valueOf(type.getLow())));
     }
 }

@@ -7,13 +7,13 @@ import com.pedrosoares.cotacaoapp.data.entity.CoinsResponse;
 import com.pedrosoares.cotacaoapp.data.entity.EUR;
 import com.pedrosoares.cotacaoapp.data.entity.GBP;
 import com.pedrosoares.cotacaoapp.data.entity.LTC;
-import com.pedrosoares.cotacaoapp.data.entity.USD;
+import com.pedrosoares.cotacaoapp.data.entity.USDT;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
-import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
+import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
 
 public class CoinsMapper {
 
@@ -21,7 +21,7 @@ public class CoinsMapper {
 
         CoinsDomain coinsResponseDomain = new CoinsDomain();
         if (coinsResponse != null){
-           coinsResponseDomain.setUSD(transformObjectEntityToDomain(coinsResponse.getUSD()));
+           coinsResponseDomain.setUSDT(transformObjectEntityToDomain(coinsResponse.getUSDT()));
            coinsResponseDomain.setEUR(transformObjectEntityToDomain(coinsResponse.getEUR()));
            coinsResponseDomain.setBTC(transformObjectEntityToDomain(coinsResponse.getBTC()));
            coinsResponseDomain.setLTC(transformObjectEntityToDomain(coinsResponse.getLTC()));
@@ -32,15 +32,15 @@ public class CoinsMapper {
         return coinsResponseDomain;
     }
 
-    private static USDDomain transformObjectEntityToDomain(@NonNull USD usdEntity) {
-        USDDomain usdDomain = new USDDomain();
+    private static USDTDomain transformObjectEntityToDomain(@NonNull USDT usdEntity) {
+        USDTDomain usdtDomain = new USDTDomain();
 
-        usdDomain.setName(usdEntity.getName());
-        usdDomain.setBid(usdEntity.getBid());
-        usdDomain.setLow(usdEntity.getLow());
-        usdDomain.setHigh(usdEntity.getHigh());
+        usdtDomain.setName(usdEntity.getName());
+        usdtDomain.setBid(usdEntity.getBid());
+        usdtDomain.setLow(usdEntity.getLow());
+        usdtDomain.setHigh(usdEntity.getHigh());
 
-        return usdDomain;
+        return usdtDomain;
     }
 
     private static EURDomain transformObjectEntityToDomain(@NonNull EUR eurEntity) {

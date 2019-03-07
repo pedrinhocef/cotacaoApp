@@ -8,6 +8,8 @@ import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 
+import java.text.DecimalFormat;
+
 import butterknife.Bind;
 
 public class LibraViewHolder extends BaseViewHolder<GBPDomain> {
@@ -24,6 +26,8 @@ public class LibraViewHolder extends BaseViewHolder<GBPDomain> {
     @Bind(R.id.tv_low)
     TextView tvLowPrice;
 
+    private DecimalFormat formatoValor = new DecimalFormat("###,###,###,###,##0.00");
+
     public LibraViewHolder(@NonNull View itemView) {
         super(itemView);
     }
@@ -31,9 +35,9 @@ public class LibraViewHolder extends BaseViewHolder<GBPDomain> {
     @Override
     public void bind(GBPDomain type) {
         tvCoinName.setText(type.getName());
-        tvCoinValue.setText(type.getBid());
-        tvLowPrice.setText(type.getLow());
-        tvHighPrice.setText(type.getHigh());
+        tvCoinValue.setText("R$ "+formatoValor.format(Float.valueOf(type.getBid())));
+        tvLowPrice.setText("R$"+formatoValor.format(Float.valueOf(type.getLow())));
+        tvHighPrice.setText("R$"+formatoValor.format(Float.valueOf(type.getHigh())));
     }
 }
 

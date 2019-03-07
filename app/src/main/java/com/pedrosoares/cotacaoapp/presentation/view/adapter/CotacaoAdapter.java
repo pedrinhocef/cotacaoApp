@@ -15,6 +15,7 @@ import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
+import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.BitCoinViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.DolarViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.EuroViewHolder;
@@ -26,7 +27,7 @@ import java.util.List;
 public class CotacaoAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
     private Context context;
-    private static final int USD_COIN = 0;
+    private static final int USDT_COIN = 0;
     private static final int EURO_COIN = 1;
     private static final int BITCOIN = 2;
     private static final int LITECOIN = 3;
@@ -44,7 +45,7 @@ public class CotacaoAdapter extends RecyclerView.Adapter<BaseViewHolder>{
         View view = LayoutInflater.from(context).inflate(R.layout.item_cotacao, parent, false);
 
         switch(viewType){
-            case USD_COIN: {
+            case USDT_COIN: {
                 return new DolarViewHolder(view);
             }
             case EURO_COIN: {
@@ -86,8 +87,8 @@ public class CotacaoAdapter extends RecyclerView.Adapter<BaseViewHolder>{
             return BITCOIN;
         } else if (element instanceof EURDomain) {
             return EURO_COIN;
-        } else if (element instanceof USDDomain) {
-            return USD_COIN;
+        } else if (element instanceof USDTDomain) {
+            return USDT_COIN;
         } else if (element instanceof LTCDomain) {
             return LITECOIN;
         } else if(element instanceof GBPDomain) {

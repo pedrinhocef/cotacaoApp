@@ -1,5 +1,7 @@
 package com.pedrosoares.cotacaoapp.core.base;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,9 +37,24 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fra
         }
     }
 
-    public static void setFragment(int id, Fragment fragment, FragmentActivity fragmentActivity) {
+    public static void setFragment(int id, Fragment fragment, @NonNull FragmentActivity fragmentActivity) {
         FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(id, fragment).commit();
+    }
+
+    public boolean isConnected(){
+        boolean connected;
+
+        if (getContext() != null) {
+            ConnectivityManager connectivityManager = (ConnectivityManager)
+                    getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            connected = connectivityManager.getActiveNetworkInfo() != null
+                    && connectivityManager.getActiveNetworkInfo().isConnected();
+
+            return connected;
+        }
+        return false;
     }
 }

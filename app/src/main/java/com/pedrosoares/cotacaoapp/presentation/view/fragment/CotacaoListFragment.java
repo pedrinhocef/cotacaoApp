@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
@@ -51,6 +52,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_cotacao_list, container, false);
+
     }
 
     @Override
@@ -58,6 +60,18 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, getActivity());
         initUi();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isConnected()) {
+            //success
+            Toast.makeText(getContext(), "Conectado", Toast.LENGTH_SHORT).show();
+        } else {
+            //semConexão
+            Toast.makeText(getContext(), "Sem Conexão", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initUi(){
@@ -82,7 +96,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
         cotacaoAdapter.notifyDataSetChanged();
     }
 
-    private void addCoinsToArray(CoinsDomain coinsDomain) {
+    private void addCoinsToArray(@NonNull CoinsDomain coinsDomain) {
         BTCDomain btc = coinsDomain.getBTC();
         USDDomain usd = coinsDomain.getUSD();
         LTCDomain ltc = coinsDomain.getLTC();

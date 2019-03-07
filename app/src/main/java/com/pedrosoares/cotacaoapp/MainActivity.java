@@ -13,11 +13,8 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (isConected()) {
-            setFragment(R.id.frame_main_activity, new CotacaoListFragment(), this);
-        } else {
-            Toast.makeText(this, "Sem Conexão de Dados :(", Toast.LENGTH_SHORT).show();
-            //setFragment(R.id.frame_main_activity, new TratarConexao(), this);
-        }
+
+        setFragment(R.id.frame_main_activity, new CotacaoListFragment(), this);
+
     }
 }

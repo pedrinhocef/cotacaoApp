@@ -15,8 +15,8 @@ import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 import com.pedrosoares.cotacaoapp.presentation.CoinsPresentationContract;
-import com.pedrosoares.cotacaoapp.presentation.view.adapter.CotacaoAdapter;
 import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
+import com.pedrosoares.cotacaoapp.presentation.view.adapter.CotacaoAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +76,7 @@ public class CotacaoListFragment extends Fragment implements CoinsPresentationCo
         cotacaoAdapter.notifyDataSetChanged();
     }
 
-    private void addCoinsToArray(CoinsDomain coinsDomain) {
+    private void addCoinsToArray(@NonNull CoinsDomain coinsDomain) {
         BTCDomain btc = coinsDomain.getBTC();
         USDDomain usd = coinsDomain.getUSD();
         LTCDomain ltc = coinsDomain.getLTC();

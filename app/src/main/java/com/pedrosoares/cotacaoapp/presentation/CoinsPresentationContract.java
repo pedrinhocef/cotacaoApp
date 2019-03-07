@@ -1,19 +1,24 @@
 package com.pedrosoares.cotacaoapp.presentation;
 
-import com.pedrosoares.cotacaoapp.core.base.BaseContract;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 
-public interface CoinsPresentationContract  {
+import io.reactivex.Observable;
 
-    interface Fragment {
+public interface CoinsPresentationContract {
+
+    interface CoinsListView {
+        CoinsPresentationContract.CoinsListPresenter createPresenter();
         void populateCoins(CoinsDomain coinsDomain);
+        void success();
         void loading();
         void error();
     }
 
-    interface Activity {}
-
-    interface CoinsPresenter extends BaseContract.Presenter {
+    interface CoinsListPresenter {
         void fetchCoins();
+    }
+
+    interface UseCase{
+        Observable<CoinsDomain> getCoins();
     }
 }

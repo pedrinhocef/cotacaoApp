@@ -6,8 +6,6 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 public interface Api {
-
     @GET("all")
     Observable<CoinsResponse> getAllCoins();
-
 }

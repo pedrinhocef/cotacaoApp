@@ -8,27 +8,26 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Requester {
 
-    private final Retrofit retrofit;
+    private static String URL = "https://economia.awesomeapi.com.br/";
+    private static Retrofit retrofit = null;
 
-    public Requester() {
+    public static Retrofit getService() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder client = new OkHttpClient.Builder();
         client.addInterceptor(interceptor);
-        String URL = "https://economia.awesomeapi.com.br/";
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                //.addConverterFactory(GsonConverterFactory.create(buildGson()))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(client.build())
-                .build();
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .client(client.build())
+                    .build();
+        }
+        return retrofit;
     }
 
-    public Api getCoins() {
-        return retrofit.create(Api.class);
-    }
 }

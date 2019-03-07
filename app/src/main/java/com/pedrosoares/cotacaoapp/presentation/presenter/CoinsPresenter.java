@@ -1,8 +1,7 @@
 package com.pedrosoares.cotacaoapp.presentation.presenter;
 
-import android.content.Context;
-
-import com.pedrosoares.cotacaoapp.core.base.BasePresenter;
+import com.pedrosoares.cotacaoapp.model.util.DisposableManager;
+import com.pedrosoares.cotacaoapp.model.CoinsModelContract;
 import com.pedrosoares.cotacaoapp.model.usecase.CoinsUseCase;
 import com.pedrosoares.cotacaoapp.presentation.CoinsPresentationContract;
 
@@ -10,16 +9,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class CoinsPresenter extends BasePresenter implements CoinsPresentationContract.CoinsPresenter {
+public class CoinsPresenter implements CoinsPresentationContract.CoinsListPresenter {
 
-    private Context context;
-    private CoinsPresentationContract.Fragment view;
-    private CoinsUseCase useCase;
+    private CoinsPresentationContract.CoinsListView view;
+    private CoinsModelContract.CoinsUseCase useCase;
 
-    public CoinsPresenter(Context context, CoinsPresentationContract.Fragment view) {
-        this.context = context;
+    public CoinsPresenter(CoinsPresentationContract.CoinsListView view) {
         this.view = view;
-        useCase = new CoinsUseCase(context);
+        useCase = new CoinsUseCase();
     }
 
     @Override
@@ -31,10 +28,11 @@ public class CoinsPresenter extends BasePresenter implements CoinsPresentationCo
                 .subscribe(it -> {
                             if (it != null) {
                                 view.populateCoins(it);
+                                view.success();
                             }
                         },
                         error -> view.error());
-        compositeDisposable.add(disposable);
+        DisposableManager.add(disposable);
     }
 
 }

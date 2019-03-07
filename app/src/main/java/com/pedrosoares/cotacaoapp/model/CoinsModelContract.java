@@ -6,7 +6,7 @@ import io.reactivex.Observable;
 
 public interface CoinsModelContract {
 
-    interface UseCase{
+    interface CoinsUseCase{
         Observable<CoinsDomain> getCoins();
     }
 }

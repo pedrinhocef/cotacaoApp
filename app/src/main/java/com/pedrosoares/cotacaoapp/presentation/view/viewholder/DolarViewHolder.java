@@ -6,11 +6,11 @@ import android.widget.TextView;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
-import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
+import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 
 import butterknife.Bind;
 
-public class DolarViewHolder extends BaseViewHolder<USDTDomain> {
+public class DolarViewHolder extends BaseViewHolder<USDDomain> {
 
     @Bind(R.id.tv_coin_name)
      TextView tvCoinName;
@@ -23,7 +23,7 @@ public class DolarViewHolder extends BaseViewHolder<USDTDomain> {
     }
 
     @Override
-    public void bind(USDTDomain usdDomain) {
+    public void bind(USDDomain usdDomain) {
         tvCoinName.setText(usdDomain.getName());
         tvCoinValue.setText(usdDomain.getBid());
     }

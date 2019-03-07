@@ -17,7 +17,7 @@ import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
-import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
+import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 import com.pedrosoares.cotacaoapp.presentation.CoinsContract;
 import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.CotacaoAdapter;
@@ -99,7 +99,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
 
     private void addCoinsToArray(@NonNull CoinsDomain coinsDomain) {
         BTCDomain btc = coinsDomain.getBTC();
-        USDTDomain usd = coinsDomain.getUSDT();
+        USDDomain usd = coinsDomain.getUSD();
         LTCDomain ltc = coinsDomain.getLTC();
         EURDomain eur = coinsDomain.getEUR();
         GBPDomain gbp = coinsDomain.getGBP();

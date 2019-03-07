@@ -14,7 +14,7 @@ import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
-import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
+import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.BitCoinViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.DolarViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.EuroViewHolder;
@@ -86,7 +86,7 @@ public class CotacaoAdapter extends RecyclerView.Adapter<BaseViewHolder>{
             return BITCOIN;
         } else if (element instanceof EURDomain) {
             return EURO_COIN;
-        } else if (element instanceof USDTDomain) {
+        } else if (element instanceof USDDomain) {
             return USD_COIN;
         } else if (element instanceof LTCDomain) {
             return LITECOIN;

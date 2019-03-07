@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pedrosoares.cotacaoapp.R;
@@ -15,7 +14,7 @@ import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
-import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
+import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.BitCoinViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.DolarViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.EuroViewHolder;
@@ -23,8 +22,6 @@ import com.pedrosoares.cotacaoapp.presentation.view.viewholder.LibraViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.LiteCoinViewHolder;
 
 import java.util.List;
-
-import butterknife.Bind;
 
 public class CotacaoAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
@@ -89,7 +86,7 @@ public class CotacaoAdapter extends RecyclerView.Adapter<BaseViewHolder>{
             return BITCOIN;
         } else if (element instanceof EURDomain) {
             return EURO_COIN;
-        } else if (element instanceof USDDomain) {
+        } else if (element instanceof USDTDomain) {
             return USD_COIN;
         } else if (element instanceof LTCDomain) {
             return LITECOIN;

@@ -1,13 +1,17 @@
 package com.pedrosoares.cotacaoapp.model.mapper;
 
+import android.support.annotation.NonNull;
+
 import com.pedrosoares.cotacaoapp.data.entity.BTC;
 import com.pedrosoares.cotacaoapp.data.entity.CoinsResponse;
 import com.pedrosoares.cotacaoapp.data.entity.EUR;
+import com.pedrosoares.cotacaoapp.data.entity.GBP;
 import com.pedrosoares.cotacaoapp.data.entity.LTC;
 import com.pedrosoares.cotacaoapp.data.entity.USD;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
+import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 
@@ -21,13 +25,14 @@ public class CoinsMapper {
            coinsResponseDomain.setEUR(transformObjectEntityToDomain(coinsResponse.getEUR()));
            coinsResponseDomain.setBTC(transformObjectEntityToDomain(coinsResponse.getBTC()));
            coinsResponseDomain.setLTC(transformObjectEntityToDomain(coinsResponse.getLTC()));
+           coinsResponseDomain.setGBP(transformObjectEntityToDomain(coinsResponse.getGBP()));
         }
 
 
         return coinsResponseDomain;
     }
 
-    private static USDDomain transformObjectEntityToDomain(USD usdEntity) {
+    private static USDDomain transformObjectEntityToDomain(@NonNull USD usdEntity) {
         USDDomain usdDomain = new USDDomain();
 
         usdDomain.setName(usdEntity.getName());
@@ -38,7 +43,7 @@ public class CoinsMapper {
         return usdDomain;
     }
 
-    private static EURDomain transformObjectEntityToDomain(EUR eurEntity) {
+    private static EURDomain transformObjectEntityToDomain(@NonNull EUR eurEntity) {
         EURDomain eurDomain = new EURDomain();
 
         eurDomain.setName(eurEntity.getName());
@@ -49,7 +54,7 @@ public class CoinsMapper {
         return eurDomain;
     }
 
-    private static BTCDomain transformObjectEntityToDomain(BTC btcEntity) {
+    private static BTCDomain transformObjectEntityToDomain(@NonNull BTC btcEntity) {
         BTCDomain btcDomain = new BTCDomain();
 
         btcDomain.setName(btcEntity.getName());
@@ -60,7 +65,7 @@ public class CoinsMapper {
         return btcDomain;
     }
 
-    private static LTCDomain transformObjectEntityToDomain(LTC ltcEntity) {
+    private static LTCDomain transformObjectEntityToDomain(@NonNull LTC ltcEntity) {
         LTCDomain ltcDomain = new LTCDomain();
 
         ltcDomain.setName(ltcEntity.getName());
@@ -69,5 +74,16 @@ public class CoinsMapper {
         ltcDomain.setHigh(ltcEntity.getHigh());
 
         return ltcDomain;
+    }
+
+    private static GBPDomain transformObjectEntityToDomain(GBP gbpEntity) {
+        GBPDomain gbpDomain = new GBPDomain();
+
+        gbpDomain.setName(gbpEntity.getName());
+        gbpDomain.setBid(gbpEntity.getBid());
+        gbpDomain.setLow(gbpEntity.getLow());
+        gbpDomain.setHigh(gbpEntity.getHigh());
+
+        return gbpDomain;
     }
 }

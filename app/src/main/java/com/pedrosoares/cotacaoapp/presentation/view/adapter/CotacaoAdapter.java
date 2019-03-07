@@ -13,24 +13,27 @@ import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
+import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.BitCoinViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.DolarViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.EuroViewHolder;
+import com.pedrosoares.cotacaoapp.presentation.view.viewholder.LibraViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.LiteCoinViewHolder;
 
 import java.util.List;
 
 import butterknife.Bind;
 
-public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
+public class CotacaoAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
     private Context context;
     private static final int USD_COIN = 0;
     private static final int EURO_COIN = 1;
     private static final int BITCOIN = 2;
     private static final int LITECOIN = 3;
+    private static final int GBP = 4;
     private List<Object> coinsDomainList;
 
     public CotacaoAdapter(Context context, List<Object> coinsDomainList){
@@ -55,6 +58,9 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
             }
             case LITECOIN: {
                 return new LiteCoinViewHolder(view);
+            }
+            case GBP: {
+                return new LibraViewHolder(view);
             }
             default:{
                 throw new IllegalArgumentException("Invalid view type");
@@ -87,7 +93,10 @@ public class CotacaoAdapter  extends RecyclerView.Adapter<BaseViewHolder>{
             return USD_COIN;
         } else if (element instanceof LTCDomain) {
             return LITECOIN;
-        } else
+        } else if(element instanceof GBPDomain) {
+            return GBP;
+        }
+        else
             Toast.makeText(context, "Erro ao carregar lista de moedas", Toast.LENGTH_SHORT).show();
 
         return 0;

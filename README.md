@@ -1,5 +1,5 @@
 # App de cotação de Moedas
-App de cotação de moedas Dólar, Euro, BTC e LTC 
+App de cotação de moedas Dólar, Euro, Libra Esterlina, BTC e LTC
 # Tecnologias utilizadas
 - MVP
 - DDD

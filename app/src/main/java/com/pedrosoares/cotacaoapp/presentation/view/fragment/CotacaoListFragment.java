@@ -15,6 +15,7 @@ import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
+import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 import com.pedrosoares.cotacaoapp.presentation.CoinsContract;
@@ -49,7 +50,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
     private int month;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_cotacao_list, container, false);
 
@@ -101,11 +102,13 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
         USDDomain usd = coinsDomain.getUSD();
         LTCDomain ltc = coinsDomain.getLTC();
         EURDomain eur = coinsDomain.getEUR();
+        GBPDomain gbp = coinsDomain.getGBP();
 
         coinsDomainList.add(0,usd);
         coinsDomainList.add(1,eur);
-        coinsDomainList.add(2,btc);
-        coinsDomainList.add(3,ltc);
+        coinsDomainList.add(2,gbp);
+        coinsDomainList.add(3,btc);
+        coinsDomainList.add(4,ltc);
     }
 
     @Override

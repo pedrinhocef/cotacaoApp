@@ -20,8 +20,8 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
     public abstract void bind(T type);
 
     protected void formatValue(Context context,TextView tv, String value){
-        DecimalFormat formatoValor = new DecimalFormat("###,###,###,###,##0.00");
-        String a  = context.getString(R.string.real_symbol)+formatoValor.format(Float.valueOf(value));
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
+        String a  = context.getString(R.string.real_symbol).concat(decimalFormat.format(Float.valueOf(value)));
         tv.setText(a);
     }
 }

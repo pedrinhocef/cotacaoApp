@@ -8,6 +8,8 @@
     <string name="usd_name">USD</string>
     <string name="off_alert">alerta desligado</string>
     <string name="real_symbol">R$</string>
-    <string name="argentineCoin">Peso ARG</string>
+    <string name="argentine_coin">Peso ARG</string>
+    <string name="libra_esterlina">Libra</string>
+    <string name="dolar_americano">Dólar USA</string>
 
 </resources>

@@ -96,15 +96,13 @@ public class ExchangeRateAdapter extends RecyclerView.Adapter<BaseViewHolder>{
             return USD_COIN;
         } else if (element instanceof LTCDomain) {
             return LITECOIN;
-        } else if(element instanceof GBPDomain) {
+        } else if (element instanceof GBPDomain) {
             return GBP;
-        }else if(element instanceof ARSDomain) {
+        } else if (element instanceof ARSDomain) {
             return ARS;
         }
-        else
-            Toast.makeText(context, "Erro ao carregar lista de moedas", Toast.LENGTH_SHORT).show();
 
-        return 0;
+        return position;
     }
 
 

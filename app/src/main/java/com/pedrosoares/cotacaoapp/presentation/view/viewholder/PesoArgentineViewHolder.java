@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.ARSDomain;
-import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 
 import butterknife.Bind;
 
@@ -34,11 +33,11 @@ public class PesoArgentineViewHolder extends BaseViewHolder<ARSDomain> {
     }
 
     @Override
-    public void bind(ARSDomain type) {
-        tvCoinName.setText(context.getString(R.string.argentineCoin));
-        formatValue(context,tvCoinValue,type.getBid());
-        formatValue(context,tvLowPrice,type.getLow());
-        formatValue(context,tvHighPrice,type.getHigh());
+    public void bind(ARSDomain arsDomain) {
+        tvCoinName.setText(arsDomain.getName());
+        formatValue(context,tvCoinValue,arsDomain.getBid());
+        formatValue(context,tvLowPrice,arsDomain.getLow());
+        formatValue(context,tvHighPrice,arsDomain.getHigh());
     }
 }
 

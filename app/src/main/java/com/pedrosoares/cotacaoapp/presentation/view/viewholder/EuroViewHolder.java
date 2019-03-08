@@ -1,5 +1,6 @@
 package com.pedrosoares.cotacaoapp.presentation.view.viewholder;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
@@ -26,17 +27,21 @@ public class EuroViewHolder extends BaseViewHolder<EURDomain> {
     @Bind(R.id.tv_low)
     TextView tvLowPrice;
 
+    private Context context;
+
 
     public EuroViewHolder(@NonNull View itemView) {
         super(itemView);
+        context = itemView.getContext();
     }
 
     @Override
     public void bind(EURDomain type) {
+
         tvCoinName.setText(type.getName());
-        formatValue(tvCoinValue,type.getBid());
-        formatValue(tvLowPrice,type.getLow());
-        formatValue(tvHighPrice,type.getHigh());
+        formatValue(context,tvCoinValue,type.getBid());
+        formatValue(context,tvLowPrice,type.getLow());
+        formatValue(context,tvHighPrice,type.getHigh());
     }
 
 }

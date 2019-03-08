@@ -7,5 +7,6 @@
     <string name="card_load_failed_touch">Toque para atualizar.</string>
     <string name="usd_name">USD</string>
     <string name="off_alert">alerta desligado</string>
+    <string name="real_symbol">R$</string>
 
 </resources>

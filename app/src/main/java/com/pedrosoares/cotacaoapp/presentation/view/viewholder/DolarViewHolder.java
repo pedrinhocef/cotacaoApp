@@ -1,5 +1,6 @@
 package com.pedrosoares.cotacaoapp.presentation.view.viewholder;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
@@ -27,16 +28,19 @@ public class DolarViewHolder extends BaseViewHolder<USDTDomain> {
     @Bind(R.id.tv_low)
     TextView tvLowPrice;
 
+    private Context context;
+
 
     public DolarViewHolder(@NonNull View itemView) {
         super(itemView);
+        context = itemView.getContext();
     }
 
     @Override
     public void bind(USDTDomain type) {
         tvCoinName.setText(type.getName());
-        formatValue(tvCoinValue,type.getBid());
-        formatValue(tvLowPrice,type.getLow());
-        formatValue(tvHighPrice,type.getHigh());
+        formatValue(context,tvCoinValue,type.getBid());
+        formatValue(context,tvLowPrice,type.getLow());
+        formatValue(context,tvHighPrice,type.getHigh());
     }
 }

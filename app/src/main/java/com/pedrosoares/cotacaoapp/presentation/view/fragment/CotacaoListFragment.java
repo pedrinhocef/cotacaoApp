@@ -3,6 +3,7 @@ package com.pedrosoares.cotacaoapp.presentation.view.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,11 +13,13 @@ import android.widget.Toast;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
+import com.pedrosoares.cotacaoapp.model.domain.ARSDomain;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
+import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
 import com.pedrosoares.cotacaoapp.presentation.CoinsContract;
 import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
@@ -81,9 +84,10 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
         cotacaoAdapter = new CotacaoAdapter(getActivity(), coinsDomainList);
         rvListCotacao.setAdapter(cotacaoAdapter);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(getContext(), 2);
         rvListCotacao.setHasFixedSize(true);
-        rvListCotacao.setLayoutManager(layoutManager);
+        rvListCotacao.setLayoutManager(mGridLayoutManager);
     }
 
     @Override
@@ -98,8 +102,9 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
     }
 
     private void addCoinsToArray(@NonNull CoinsDomain coinsDomain) {
+        ARSDomain ars = coinsDomain.getARS();
         BTCDomain btc = coinsDomain.getBTC();
-        USDTDomain usd = coinsDomain.getUSDT();
+        USDDomain usd = coinsDomain.getUSD();
         LTCDomain ltc = coinsDomain.getLTC();
         EURDomain eur = coinsDomain.getEUR();
         GBPDomain gbp = coinsDomain.getGBP();
@@ -107,8 +112,9 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
         coinsDomainList.add(0,usd);
         coinsDomainList.add(1,eur);
         coinsDomainList.add(2,gbp);
-        coinsDomainList.add(3,btc);
-        coinsDomainList.add(4,ltc);
+        coinsDomainList.add(3,ars);
+        coinsDomainList.add(4,btc);
+        coinsDomainList.add(5,ltc);
     }
 
     @Override

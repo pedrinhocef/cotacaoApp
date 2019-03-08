@@ -1,7 +1,6 @@
 package com.pedrosoares.cotacaoapp;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.pedrosoares.cotacaoapp.core.base.BaseActivity;
 import com.pedrosoares.cotacaoapp.presentation.view.fragment.CotacaoListFragment;

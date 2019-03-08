@@ -26,19 +26,16 @@ public class BitCoinViewHolder extends BaseViewHolder<BTCDomain> {
     @Bind(R.id.tv_low)
     TextView tvLowPrice;
 
-    // TODO: 07/03/19 jogar metodo para uma classe de Utils reaproveitar código
-    private DecimalFormat formatoValor = new DecimalFormat("###,###,###,###,##0.00");
 
     public BitCoinViewHolder(@NonNull View itemView) {
         super(itemView);
     }
 
     @Override
-    public void bind(BTCDomain btcDomain) {
-        // TODO: 07/03/19 reutilizar com String
-        tvCoinName.setText(btcDomain.getName());
-        tvCoinValue.setText("R$ "+formatoValor.format(Float.valueOf(btcDomain.getBid())));
-        tvHighPrice.setText("R$"+formatoValor.format(Float.valueOf(btcDomain.getHigh())));
-        tvLowPrice.setText("R$"+formatoValor.format(Float.valueOf(btcDomain.getLow())));
+    public void bind(BTCDomain type) {
+        tvCoinName.setText(type.getName());
+        formatValue(tvCoinValue,type.getBid());
+        formatValue(tvLowPrice,type.getLow());
+        formatValue(tvHighPrice,type.getHigh());
     }
 }

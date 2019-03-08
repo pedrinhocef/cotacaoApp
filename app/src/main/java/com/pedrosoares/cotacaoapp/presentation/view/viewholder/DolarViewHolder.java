@@ -27,7 +27,6 @@ public class DolarViewHolder extends BaseViewHolder<USDTDomain> {
     @Bind(R.id.tv_low)
     TextView tvLowPrice;
 
-    private DecimalFormat formatoValor = new DecimalFormat("###,###,###,###,##0.00");
 
     public DolarViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -36,8 +35,8 @@ public class DolarViewHolder extends BaseViewHolder<USDTDomain> {
     @Override
     public void bind(USDTDomain type) {
         tvCoinName.setText(type.getName());
-        tvCoinValue.setText("R$ "+formatoValor.format(Float.valueOf(type.getBid())));
-        tvLowPrice.setText("R$"+formatoValor.format(Float.valueOf(type.getLow())));
-        tvHighPrice.setText("R$"+formatoValor.format(Float.valueOf(type.getHigh())));
+        formatValue(tvCoinValue,type.getBid());
+        formatValue(tvLowPrice,type.getLow());
+        formatValue(tvHighPrice,type.getHigh());
     }
 }

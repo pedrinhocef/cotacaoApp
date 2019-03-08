@@ -26,18 +26,17 @@ public class EuroViewHolder extends BaseViewHolder<EURDomain> {
     @Bind(R.id.tv_low)
     TextView tvLowPrice;
 
-    private DecimalFormat formatoValor = new DecimalFormat("###,###,###,###,##0.00");
 
     public EuroViewHolder(@NonNull View itemView) {
         super(itemView);
     }
 
     @Override
-    public void bind(EURDomain eurDomain) {
-        tvCoinName.setText(eurDomain.getName());
-        tvCoinValue.setText("R$ "+formatoValor.format(Float.valueOf(eurDomain.getBid())));
-        tvLowPrice.setText("R$"+formatoValor.format(Float.valueOf(eurDomain.getLow())));
-        tvHighPrice.setText("R$"+formatoValor.format(Float.valueOf(eurDomain.getHigh())));
+    public void bind(EURDomain type) {
+        tvCoinName.setText(type.getName());
+        formatValue(tvCoinValue,type.getBid());
+        formatValue(tvLowPrice,type.getLow());
+        formatValue(tvHighPrice,type.getHigh());
     }
 
 }

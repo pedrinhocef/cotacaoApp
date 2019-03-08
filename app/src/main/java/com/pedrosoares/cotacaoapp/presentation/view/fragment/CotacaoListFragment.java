@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +19,9 @@ import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
-import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
 import com.pedrosoares.cotacaoapp.presentation.CoinsContract;
 import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
-import com.pedrosoares.cotacaoapp.presentation.view.adapter.CotacaoAdapter;
+import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +46,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
     View includeLayoutLoading;
     //endregion
 
-    private CotacaoAdapter cotacaoAdapter;
+    private ExchangeRateAdapter cotacaoAdapter;
     private List<Object> coinsDomainList;
     private int month;
 
@@ -81,7 +79,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
     private void initUi(){
         presenter.fetchCoins();
         coinsDomainList = new ArrayList<>();
-        cotacaoAdapter = new CotacaoAdapter(getActivity(), coinsDomainList);
+        cotacaoAdapter = new ExchangeRateAdapter(getActivity(), coinsDomainList);
         rvListCotacao.setAdapter(cotacaoAdapter);
 
         //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -109,6 +107,10 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
         EURDomain eur = coinsDomain.getEUR();
         GBPDomain gbp = coinsDomain.getGBP();
 
+        defineCardsPosition(ars, btc, usd, ltc, eur, gbp);
+    }
+
+    private void defineCardsPosition(ARSDomain ars, BTCDomain btc, USDDomain usd, LTCDomain ltc, EURDomain eur, GBPDomain gbp) {
         coinsDomainList.add(0,usd);
         coinsDomainList.add(1,eur);
         coinsDomainList.add(2,gbp);

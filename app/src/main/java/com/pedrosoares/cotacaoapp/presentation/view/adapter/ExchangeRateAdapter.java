@@ -21,11 +21,11 @@ import com.pedrosoares.cotacaoapp.presentation.view.viewholder.DolarViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.EuroViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.LibraViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.LiteCoinViewHolder;
-import com.pedrosoares.cotacaoapp.presentation.view.viewholder.PesoArgentinoViewHolder;
+import com.pedrosoares.cotacaoapp.presentation.view.viewholder.PesoArgentineViewHolder;
 
 import java.util.List;
 
-public class CotacaoAdapter extends RecyclerView.Adapter<BaseViewHolder>{
+public class ExchangeRateAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
     private Context context;
     private static final int USD_COIN = 0;
@@ -36,7 +36,7 @@ public class CotacaoAdapter extends RecyclerView.Adapter<BaseViewHolder>{
     private static final int ARS = 5;
     private List<Object> coinsDomainList;
 
-    public CotacaoAdapter(Context context, List<Object> coinsDomainList){
+    public ExchangeRateAdapter(Context context, List<Object> coinsDomainList){
         this.context = context;
         this.coinsDomainList = coinsDomainList;
     }
@@ -63,7 +63,7 @@ public class CotacaoAdapter extends RecyclerView.Adapter<BaseViewHolder>{
                 return new LibraViewHolder(view);
             }
             case ARS: {
-                return new PesoArgentinoViewHolder(view);
+                return new PesoArgentineViewHolder(view);
             }
             default:{
                 throw new IllegalArgumentException("Invalid view type");

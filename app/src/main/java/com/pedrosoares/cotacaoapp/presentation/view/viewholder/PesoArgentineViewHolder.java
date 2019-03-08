@@ -12,7 +12,7 @@ import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 
 import butterknife.Bind;
 
-public class PesoArgentinoViewHolder extends BaseViewHolder<ARSDomain> {
+public class PesoArgentineViewHolder extends BaseViewHolder<ARSDomain> {
 
     @Bind(R.id.tv_coin_name)
      TextView tvCoinName;
@@ -28,14 +28,14 @@ public class PesoArgentinoViewHolder extends BaseViewHolder<ARSDomain> {
 
     private Context context;
 
-    public PesoArgentinoViewHolder(@NonNull View itemView) {
+    public PesoArgentineViewHolder(@NonNull View itemView) {
         super(itemView);
         context = itemView.getContext();
     }
 
     @Override
     public void bind(ARSDomain type) {
-        tvCoinName.setText(type.getName());
+        tvCoinName.setText(context.getString(R.string.argentineCoin));
         formatValue(context,tvCoinValue,type.getBid());
         formatValue(context,tvLowPrice,type.getLow());
         formatValue(context,tvHighPrice,type.getHigh());

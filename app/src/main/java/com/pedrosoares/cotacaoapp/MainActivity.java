@@ -6,7 +6,7 @@ import com.pedrosoares.cotacaoapp.core.base.BaseActivity;
 import com.pedrosoares.cotacaoapp.presentation.view.fragment.CotacaoListFragment;
 
 import static com.pedrosoares.cotacaoapp.core.base.BaseFragment.setFragment;
-//
+
 public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

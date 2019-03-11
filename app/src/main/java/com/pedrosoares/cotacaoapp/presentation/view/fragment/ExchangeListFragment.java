@@ -1,6 +1,8 @@
 package com.pedrosoares.cotacaoapp.presentation.view.fragment;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
+import com.pedrosoares.cotacaoapp.data.preferences.ManagerPreferences;
 import com.pedrosoares.cotacaoapp.model.domain.ARSDomain;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
@@ -60,6 +63,11 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     private List<Object> coinsDomainList;
     RecyclerView.LayoutManager layoutManager;
     int iconChoosed;
+    SharedPreferences preferences;
+    String layoutChoosen;
+    ManagerPreferences managerPreferences = new ManagerPreferences();
+    public static final String LINEAR_LAYOUT_MANAGER = "LINEAR";
+    public static final String GRID_LAYOUT_MANAGER = "GRID";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -81,12 +89,15 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
         if (isConnected()) {
             //success
-            if (getView()!= null)
-                Snackbar.make(getView(),"Conectado",1000).show();
-        } else {
-            //semConexão
-            if (getView()!=null)
-                Snackbar.make(getView(),"Sem Conexão",1000).show();
+            if (getView() != null) {
+                Snackbar.make(getView(), "Conectado", 1000).show();
+                saveUserPreferences();
+
+            } else {
+                //semConexão
+                if (getView() != null)
+                    Snackbar.make(getView(), "Sem Conexão", 1000).show();
+            }
         }
     }
 
@@ -100,7 +111,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         imageViewTwo.setTag(R.drawable.icn_linear_recycler_manager);
         iconChoosed = getDrawableId(imageViewOne);
 
-        onClickLayoutTwo();
+        layoutChoosen = ManagerPreferences.getLayoutManagerRecycler(getContext());
+        saveUserPreferences();
     }
 
     @Override
@@ -170,6 +182,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         imageViewOne.setVisibility(View.GONE);
         imageViewTwo.setVisibility(View.VISIBLE);
         layoutManager = new GridLayoutManager(getContext(), 2);
+        layoutChoosen = GRID_LAYOUT_MANAGER;
+        ManagerPreferences.setGridLayoutManager(getContext(),layoutChoosen);
         rvListCotacao.setLayoutManager(layoutManager);
         rvListCotacao.setHasFixedSize(false);
     }
@@ -180,12 +194,30 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         imageViewOne.setVisibility(View.VISIBLE);
         imageViewTwo.setVisibility(View.GONE);
         layoutManager = new LinearLayoutManager(getContext());
+        layoutChoosen = LINEAR_LAYOUT_MANAGER;
+        ManagerPreferences.setLinearLayoutManager(getContext(),layoutChoosen);
         rvListCotacao.setLayoutManager(layoutManager);
         rvListCotacao.setHasFixedSize(true);
+
     }
 
     private int getDrawableId(ImageView iv) {
         return (Integer) iv.getTag();
     }
+
+    private void saveUserPreferences(){
+        if (getContext() != null ) {
+            if (layoutChoosen.equals(GRID_LAYOUT_MANAGER)){
+                onClickLayoutOne();
+            }else{
+                onClickLayoutTwo();
+            }
+
+        }
+    }
+
+
+
+
 
 }

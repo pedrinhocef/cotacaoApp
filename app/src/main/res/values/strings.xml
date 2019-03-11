@@ -11,5 +11,6 @@
     <string name="argentine_coin">Peso ARG</string>
     <string name="libra_esterlina">Libra</string>
     <string name="dolar_americano">Dólar USA</string>
+    <string name="exchange_title">COTAÇÃO DE MOEDAS</string>
 
 </resources>

@@ -1,0 +1,43 @@
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    tools:ignore="MissingPrefix"
+    android:minHeight="?attr/actionBarSize"
+    android:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/exchange_title"
+        fontPath="fonts/TIMSans-Bold.ttf"
+        android:textAllCaps="true"
+        android:textColor="@color/color_white"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/iv_recycler_layout_grid"
+        android:padding="10dp"
+        android:src="@drawable/ic_recycler_grid"
+        android:onClick="changeLayoutManager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"/>
+
+    <ImageView
+        android:id="@+id/iv_recycler_layout_linear"
+        android:visibility="gone"
+        android:src="@drawable/ic_recycler_linear"
+        android:padding="10dp"
+        android:onClick="changeLayoutManager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"/>
+
+</android.support.v7.widget.Toolbar>

@@ -1,14 +1,19 @@
 package com.pedrosoares.cotacaoapp.presentation.view.fragment;
 
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
@@ -30,17 +35,23 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPresenter> implements CoinsContract.CoinsListView {
+public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPresenter> implements CoinsContract.CoinsListView {
 
     //region BINDS
     @Bind(R.id.rv_list_cotacao)
     RecyclerView rvListCotacao;
 
-    //@Bind(R.id.tv_date_hour)
-    //TextView tvDateAndHour;
-
     @Bind(R.id.fragment_error)
     View includeLayoutError;
+
+    @Bind(R.id.toolbar_exchange)
+    Toolbar includeToolbarExchange;
+
+    @Bind(R.id.iv_recycler_layout_grid)
+    ImageView imageViewOne;
+
+    @Bind(R.id.iv_recycler_layout_linear)
+    ImageView imageViewTwo;
 
     @Bind(R.id.fragment_loading)
     View includeLayoutLoading;
@@ -48,12 +59,13 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
 
     private ExchangeRateAdapter cotacaoAdapter;
     private List<Object> coinsDomainList;
-    private int month;
+    RecyclerView.LayoutManager layoutManager;
+    int iconChoosed;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_cotacao_list, container, false);
+        return inflater.inflate(R.layout.fragment_exchange_list, container, false);
 
     }
 
@@ -67,14 +79,15 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
     @Override
     public void onResume() {
         super.onResume();
+
         if (isConnected()) {
             //success
             if (getView()!= null)
-            Snackbar.make(getView(),"Conectado",1000).show();
+                Snackbar.make(getView(),"Conectado",1000).show();
         } else {
             //semConexão
             if (getView()!=null)
-            Snackbar.make(getView(),"Sem Conexão",1000).show();
+                Snackbar.make(getView(),"Sem Conexão",1000).show();
         }
     }
 
@@ -84,10 +97,11 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
         cotacaoAdapter = new ExchangeRateAdapter(getActivity(), coinsDomainList);
         rvListCotacao.setAdapter(cotacaoAdapter);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-//        GridLayoutManager mGridLayoutManager = new GridLayoutManager(getContext(), 2);
-        rvListCotacao.setHasFixedSize(true);
-        rvListCotacao.setLayoutManager(layoutManager);
+        imageViewOne.setTag(R.drawable.ic_recycler_grid);
+        imageViewTwo.setTag(R.drawable.ic_recycler_linear);
+        iconChoosed = getDrawableId(imageViewOne);
+
+        onClickLayoutTwo();
     }
 
     @Override
@@ -126,6 +140,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
         rvListCotacao.setVisibility(View.VISIBLE);
         includeLayoutLoading.setVisibility(View.GONE);
         includeLayoutError.setVisibility(View.GONE);
+        includeToolbarExchange.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -133,6 +148,7 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
         includeLayoutLoading.setVisibility(View.VISIBLE);
         includeLayoutError.setVisibility(View.GONE);
         rvListCotacao.setVisibility(View.GONE);
+        includeToolbarExchange.setVisibility(View.GONE);
     }
 
     @Override
@@ -140,39 +156,37 @@ public class CotacaoListFragment extends BaseFragment<CoinsContract.CoinsListPre
         includeLayoutError.setVisibility(View.VISIBLE);
         includeLayoutLoading.setVisibility(View.GONE);
         rvListCotacao.setVisibility(View.GONE);
+        includeToolbarExchange.setVisibility(View.GONE);
     }
 
-    /*public void getFullDate(){
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        month = calendar.get(Calendar.MONTH) + 1;
-        Date date = calendar.getTime();
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-        String formattedDate = dateFormat.format(date);
-        //tvDateAndHour.setText("Atualizado em "+ day+" de "+monthName(month)+", às "+formattedDate);
-    } */
-
-   /* private String monthName(int monthNumber) {
-        switch (monthNumber){
-            case 1: return "janeiro";
-            case 2: return "fevereiro";
-            case 3: return  "março";
-            case 4: return "abril";
-            case 5: return "maio";
-            case 6: return "junho";
-            case 7: return "julho";
-            case 8: return "agosto";
-            case 9: return "setembro";
-            case 10: return "outubro";
-            case 11: return "novembro";
-            case 12: return "dezembro";
-
-            default: return "Mês inválido";
-        }
-    } */
 
     @OnClick(R.id.image_refresh)
     void onClickReload(){
         presenter.fetchCoins();
     }
+
+    @OnClick(R.id.iv_recycler_layout_grid)
+    void onClickLayoutOne(){
+        iconChoosed = getDrawableId(imageViewTwo);
+        imageViewOne.setVisibility(View.GONE);
+        imageViewTwo.setVisibility(View.VISIBLE);
+        layoutManager = new GridLayoutManager(getContext(), 2);
+        rvListCotacao.setLayoutManager(layoutManager);
+        rvListCotacao.setHasFixedSize(false);
+    }
+
+    @OnClick(R.id.iv_recycler_layout_linear)
+    void onClickLayoutTwo(){
+        iconChoosed = getDrawableId(imageViewOne);
+        imageViewOne.setVisibility(View.VISIBLE);
+        imageViewTwo.setVisibility(View.GONE);
+        layoutManager = new LinearLayoutManager(getContext());
+        rvListCotacao.setLayoutManager(layoutManager);
+        rvListCotacao.setHasFixedSize(true);
+    }
+
+    private int getDrawableId(ImageView iv) {
+        return (Integer) iv.getTag();
+    }
+
 }

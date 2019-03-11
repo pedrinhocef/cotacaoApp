@@ -13,5 +13,6 @@
     <color name="colorSilver">#F2F3F4</color>
     <color name="colorDarkGreyBlue">#2A3E52</color>
     <color name="colorCoolGray">#E8EAED</color>
+    <color name="color_white">#FFF</color>
 
 </resources>

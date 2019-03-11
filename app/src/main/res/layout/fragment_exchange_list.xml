@@ -17,15 +17,26 @@
         layout="@layout/fragment_loading"
         android:visibility="gone" />
 
+    <include
+        android:id="@+id/toolbar_exchange"
+        layout="@layout/toolbar_exchange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible" />
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_list_cotacao"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:visibility="visible"
+        tools:listitem="@layout/item_cotacao"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar_exchange" />
 
 
 </android.support.constraint.ConstraintLayout>

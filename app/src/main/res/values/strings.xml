@@ -9,8 +9,8 @@
     <string name="off_alert">alerta desligado</string>
     <string name="real_symbol">R$</string>
     <string name="argentine_coin">Peso ARG</string>
-    <string name="libra_esterlina">Libra</string>
-    <string name="dolar_americano">Dólar USA</string>
+    <string name="libra_coin">Libra</string>
+    <string name="dolar_coin">Dólar</string>
     <string name="exchange_title">COTAÇÃO DE MOEDAS</string>
 
 </resources>

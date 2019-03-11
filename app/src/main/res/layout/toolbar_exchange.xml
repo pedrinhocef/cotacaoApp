@@ -10,34 +10,43 @@
     android:minHeight="?attr/actionBarSize"
     android:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-    <TextView
-        android:id="@+id/toolbar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/exchange_title"
-        fontPath="fonts/TIMSans-Bold.ttf"
-        android:textAllCaps="true"
-        android:textColor="@color/color_white"
-        android:textSize="15sp"
-        android:textStyle="bold"/>
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exchange_title"
+            fontPath="fonts/TIMSans-Bold.ttf"
+            android:layout_alignParentStart="true"
+            android:textAllCaps="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/color_white"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
 
-    <ImageView
-        android:id="@+id/iv_recycler_layout_grid"
-        android:padding="10dp"
-        android:src="@drawable/ic_recycler_grid"
-        android:onClick="changeLayoutManager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"/>
+        <ImageView
+            android:id="@+id/iv_recycler_layout_grid"
+            android:padding="10dp"
+            android:src="@drawable/icn_grid_recycler_manager"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"/>
 
-    <ImageView
-        android:id="@+id/iv_recycler_layout_linear"
-        android:visibility="gone"
-        android:src="@drawable/ic_recycler_linear"
-        android:padding="10dp"
-        android:onClick="changeLayoutManager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"/>
+        <ImageView
+            android:id="@+id/iv_recycler_layout_linear"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/icn_linear_recycler_manager"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"/>
+    </RelativeLayout>
 
 </android.support.v7.widget.Toolbar>

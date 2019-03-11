@@ -96,8 +96,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         cotacaoAdapter = new ExchangeRateAdapter(getActivity(), coinsDomainList);
         rvListCotacao.setAdapter(cotacaoAdapter);
 
-        imageViewOne.setTag(R.drawable.ic_recycler_grid);
-        imageViewTwo.setTag(R.drawable.ic_recycler_linear);
+        imageViewOne.setTag(R.drawable.icn_grid_recycler_manager);
+        imageViewTwo.setTag(R.drawable.icn_linear_recycler_manager);
         iconChoosed = getDrawableId(imageViewOne);
 
         onClickLayoutTwo();

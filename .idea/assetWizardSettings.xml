@@ -29,6 +29,17 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="clipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/snap/android-studio/71/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_dehaze_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="image">
                                         <value>
                                           <PersistentState>
@@ -44,11 +55,10 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="imageAsset" value="$USER_HOME$/Downloads/alto.png" />
-                                      <entry key="outputName" value="icn_high_price" />
+                                      <entry key="outputName" value="icn_linear_recycler_manager" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="94ff2f" />
+                                      <entry key="themeColor" value="666666" />
                                     </map>
                                   </option>
                                 </PersistentState>

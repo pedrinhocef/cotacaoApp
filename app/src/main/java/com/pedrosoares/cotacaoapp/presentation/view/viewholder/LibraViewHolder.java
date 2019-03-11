@@ -37,7 +37,7 @@ public class LibraViewHolder extends BaseViewHolder<GBPDomain> {
 
     @Override
     public void bind(GBPDomain gbpDomain) {
-        tvCoinName.setText(gbpDomain.getName());
+        tvCoinName.setText(context.getString(R.string.libra_coin));
         formatValue(context,tvCoinValue,gbpDomain.getBid());
         formatValue(context,tvLowPrice,gbpDomain.getLow());
         formatValue(context,tvHighPrice,gbpDomain.getHigh());

@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
@@ -44,7 +43,7 @@ public class ExchangeRateAdapter extends RecyclerView.Adapter<BaseViewHolder>{
     @NonNull
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        View view = LayoutInflater.from(context).inflate(R.layout.item_cotacao, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_exchange, parent, false);
 
         switch(viewType){
             case USD_COIN: {

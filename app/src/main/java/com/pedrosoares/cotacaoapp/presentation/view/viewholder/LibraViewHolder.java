@@ -9,8 +9,6 @@ import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 
-import java.text.DecimalFormat;
-
 import butterknife.Bind;
 
 public class LibraViewHolder extends BaseViewHolder<GBPDomain> {
@@ -38,9 +36,9 @@ public class LibraViewHolder extends BaseViewHolder<GBPDomain> {
     @Override
     public void bind(GBPDomain gbpDomain) {
         tvCoinName.setText(context.getString(R.string.libra_coin));
-        formatValue(context,tvCoinValue,gbpDomain.getBid());
-        formatValue(context,tvLowPrice,gbpDomain.getLow());
-        formatValue(context,tvHighPrice,gbpDomain.getHigh());
+        formatValue(tvCoinValue,gbpDomain.getBid());
+        formatValue(tvLowPrice,gbpDomain.getLow());
+        formatValue(tvHighPrice,gbpDomain.getHigh());
     }
 }
 

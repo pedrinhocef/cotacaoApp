@@ -1,12 +1,8 @@
 package com.pedrosoares.cotacaoapp.core.base;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-
-
-import com.pedrosoares.cotacaoapp.R;
 
 import java.text.DecimalFormat;
 
@@ -19,9 +15,23 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
     }
     public abstract void bind(T type);
 
-    protected void formatValue(Context context,TextView tv, String value){
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
-        String a  = context.getString(R.string.real_symbol).concat(" ").concat(decimalFormat.format(Float.valueOf(value)));
+    protected void formatValue(TextView tv, String value){
+        String a  = getValueWithBRL(value);
         tv.setText(a);
+    }
+
+    private static String getValueWithBRL(String value) {
+        if (value != null) {
+            DecimalFormat df = new DecimalFormat("#0.000");
+            value = df.format(Double.valueOf(value.replace(",", ".")));
+
+            if (value.contains("-")) {
+                return value.trim().replace("-", "- R$ ");
+            } else {
+                return "R$ " + value.trim();
+            }
+        }
+
+        return "";
     }
 }

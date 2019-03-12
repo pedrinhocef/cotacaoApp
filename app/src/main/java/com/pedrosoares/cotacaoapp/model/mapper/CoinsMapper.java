@@ -38,10 +38,12 @@ public class CoinsMapper {
     private static USDDomain transformObjectEntityToDomain(@NonNull USD usdEntity) {
         USDDomain usdDomain = new USDDomain();
 
+
         usdDomain.setName(usdEntity.getName());
         usdDomain.setBid(usdEntity.getBid());
         usdDomain.setLow(usdEntity.getLow());
         usdDomain.setHigh(usdEntity.getHigh());
+
 
         return usdDomain;
     }
@@ -49,10 +51,12 @@ public class CoinsMapper {
     private static EURDomain transformObjectEntityToDomain(@NonNull EUR eurEntity) {
         EURDomain eurDomain = new EURDomain();
 
+
         eurDomain.setName(eurEntity.getName());
         eurDomain.setBid(eurEntity.getBid());
         eurDomain.setLow(eurEntity.getLow());
         eurDomain.setHigh(eurEntity.getHigh());
+
 
         return eurDomain;
     }
@@ -60,10 +64,12 @@ public class CoinsMapper {
     private static BTCDomain transformObjectEntityToDomain(@NonNull BTC btcEntity) {
         BTCDomain btcDomain = new BTCDomain();
 
+
         btcDomain.setName(btcEntity.getName());
         btcDomain.setBid(btcEntity.getBid());
         btcDomain.setLow(btcEntity.getLow());
         btcDomain.setHigh(btcEntity.getHigh());
+
 
         return btcDomain;
     }
@@ -77,15 +83,18 @@ public class CoinsMapper {
         ltcDomain.setHigh(ltcEntity.getHigh());
 
         return ltcDomain;
+
     }
 
     private static GBPDomain transformObjectEntityToDomain(GBP gbpEntity) {
         GBPDomain gbpDomain = new GBPDomain();
 
+
         gbpDomain.setName(gbpEntity.getName());
         gbpDomain.setBid(gbpEntity.getBid());
         gbpDomain.setLow(gbpEntity.getLow());
         gbpDomain.setHigh(gbpEntity.getHigh());
+
 
         return gbpDomain;
     }
@@ -93,10 +102,12 @@ public class CoinsMapper {
     private static ARSDomain transformObjectEntityToDomain(ARS arsEntity) {
         ARSDomain arsDomain = new ARSDomain();
 
+
         arsDomain.setName(arsEntity.getName());
         arsDomain.setBid(arsEntity.getBid());
         arsDomain.setLow(arsEntity.getLow());
         arsDomain.setHigh(arsEntity.getHigh());
+
 
         return arsDomain;
     }

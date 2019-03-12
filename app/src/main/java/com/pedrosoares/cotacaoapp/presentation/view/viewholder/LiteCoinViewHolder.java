@@ -9,8 +9,6 @@ import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 
-import java.text.DecimalFormat;
-
 import butterknife.Bind;
 
 public class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
@@ -37,9 +35,9 @@ public class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
     @Override
     public void bind(LTCDomain type) {
         tvCoinName.setText(type.getName());
-        formatValue(context,tvCoinValue,type.getBid());
-        formatValue(context,tvLowPrice,type.getLow());
-        formatValue(context,tvHighPrice,type.getHigh());
+        formatValue(tvCoinValue,type.getBid());
+        formatValue(tvLowPrice,type.getLow());
+        formatValue(tvHighPrice,type.getHigh());
     }
 }
 

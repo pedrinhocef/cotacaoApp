@@ -2,6 +2,7 @@ package com.pedrosoares.cotacaoapp.data.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 
 public class ManagerPreferences {
 
@@ -10,7 +11,7 @@ public class ManagerPreferences {
     private static String LAYOUT_MANAGER = "LAYOUT_MANAGER";
     private static final String USER = "USER";
 
-    private static SharedPreferences getSharedPreferences(Context context) {
+    private static SharedPreferences getSharedPreferences(@NonNull Context context) {
         return context.getSharedPreferences(USER, Context.MODE_PRIVATE);
     }
 

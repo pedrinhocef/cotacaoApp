@@ -9,8 +9,6 @@ import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 
-import java.text.DecimalFormat;
-
 import butterknife.Bind;
 
 public class EuroViewHolder extends BaseViewHolder<EURDomain> {
@@ -38,9 +36,9 @@ public class EuroViewHolder extends BaseViewHolder<EURDomain> {
     @Override
     public void bind(EURDomain type) {
         tvCoinName.setText(type.getName());
-        formatValue(context,tvCoinValue,type.getBid());
-        formatValue(context,tvLowPrice,type.getLow());
-        formatValue(context,tvHighPrice,type.getHigh());
+        formatValue(tvCoinValue,type.getBid());
+        formatValue(tvLowPrice,type.getLow());
+        formatValue(tvHighPrice,type.getHigh());
     }
 
 }

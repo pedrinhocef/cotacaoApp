@@ -1,6 +1,9 @@
 package com.pedrosoares.cotacaoapp.model.domain;
 
+import android.text.TextUtils;
+
 public class BTCDomain {
+
 	private String varBid;
 	private String high;
 	private String pctChange;
@@ -99,5 +102,25 @@ public class BTCDomain {
 
 	public String getTimestamp(){
 		return timestamp;
+	}
+
+	private boolean isValidBid() {
+		return !TextUtils.isEmpty(bid);
+	}
+
+	private boolean isValidName() {
+		return !TextUtils.isEmpty(name);
+	}
+
+	private boolean isValidLow() {
+		return !TextUtils.isEmpty(low);
+	}
+
+	private boolean isValidHigh() {
+		return !TextUtils.isEmpty(high);
+	}
+
+	public boolean isValidDomain() {
+		return isValidBid() && isValidName() && isValidLow() && isValidHigh();
 	}
 }

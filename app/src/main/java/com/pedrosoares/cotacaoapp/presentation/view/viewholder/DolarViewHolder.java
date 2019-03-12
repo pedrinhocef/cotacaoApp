@@ -8,9 +8,6 @@ import android.widget.TextView;
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
-import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
-
-import java.text.DecimalFormat;
 
 import butterknife.Bind;
 
@@ -39,8 +36,8 @@ public class DolarViewHolder extends BaseViewHolder<USDDomain> {
     @Override
     public void bind(USDDomain usdDomain) {
         tvCoinName.setText(context.getString(R.string.dolar_coin));
-        formatValue(context,tvCoinValue,usdDomain.getBid());
-        formatValue(context,tvLowPrice,usdDomain.getLow());
-        formatValue(context,tvHighPrice,usdDomain.getHigh());
+        formatValue(tvCoinValue,usdDomain.getBid());
+        formatValue(tvLowPrice,usdDomain.getLow());
+        formatValue(tvHighPrice,usdDomain.getHigh());
     }
 }

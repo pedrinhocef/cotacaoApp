@@ -23,15 +23,9 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
     private static String getValueWithBRL(String value) {
         if (value != null) {
             DecimalFormat df = new DecimalFormat("#0.000");
-            value = df.format(Double.valueOf(value.replace(",", ".")));
-
-            if (value.contains("-")) {
-                return value.trim().replace("-", "- R$ ");
-            } else {
-                return "R$ " + value.trim();
+            value = df.format(Double.valueOf(value));
+            return "R$ " + value.trim();
             }
-        }
-
         return "";
     }
 }

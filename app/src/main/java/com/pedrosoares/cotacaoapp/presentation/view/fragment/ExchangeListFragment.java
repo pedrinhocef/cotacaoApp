@@ -86,19 +86,16 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     @Override
     public void onResume() {
         super.onResume();
-
         if (isConnected()) {
-            //success
             if (getView() != null) {
                 Snackbar.make(getView(), "Conectado", 1000).show();
                 saveUserPreferences();
-
-            } else {
-                //semConexão
-                if (getView() != null)
-                    Snackbar.make(getView(), "Sem Conexão", 1000).show();
             }
+        } else {
+            if (getView() != null)
+                Snackbar.make(getView(), "Sem Conexão", 1000).show();
         }
+
     }
 
     private void initUi(){
@@ -137,7 +134,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         defineCardsPosition(ars, btc, usd, ltc, eur, gbp);
     }
 
-    private void defineCardsPosition(ARSDomain ars, BTCDomain btc, USDDomain usd, LTCDomain ltc, EURDomain eur, GBPDomain gbp) {
+    private void defineCardsPosition(@NonNull ARSDomain ars,@NonNull BTCDomain btc,@NonNull USDDomain usd,@NonNull LTCDomain ltc,@NonNull EURDomain eur,@NonNull GBPDomain gbp) {
         coinsDomainList.add(0,usd);
         coinsDomainList.add(1,eur);
         coinsDomainList.add(2,gbp);

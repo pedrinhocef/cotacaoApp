@@ -11,6 +11,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     //region BINDS
     @Bind(R.id.rv_list_exchange)
-    RecyclerView rvListCotacao;
+    RecyclerView rvListExchange;
 
     @Bind(R.id.fragment_error)
     View includeLayoutError;
@@ -59,15 +60,14 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     View includeLayoutLoading;
     //endregion
 
-    private ExchangeRateAdapter cotacaoAdapter;
+    private ExchangeRateAdapter exchangeRateAdapter;
     private List<Object> coinsDomainList;
     RecyclerView.LayoutManager layoutManager;
     int iconChoosed;
-    SharedPreferences preferences;
     String layoutChoosen;
-    ManagerPreferences managerPreferences = new ManagerPreferences();
     public static final String LINEAR_LAYOUT_MANAGER = "LINEAR";
     public static final String GRID_LAYOUT_MANAGER = "GRID";
+    private static String LAYOUT_MANAGER = "LAYOUT_MANAGER";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -101,15 +101,21 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     private void initUi(){
         presenter.fetchCoins();
         coinsDomainList = new ArrayList<>();
-        cotacaoAdapter = new ExchangeRateAdapter(getActivity(), coinsDomainList);
-        rvListCotacao.setAdapter(cotacaoAdapter);
+        exchangeRateAdapter = new ExchangeRateAdapter(getActivity(), coinsDomainList);
+        rvListExchange.setAdapter(exchangeRateAdapter);
 
-        imageViewOne.setTag(R.drawable.icn_grid_recycler_manager);
-        imageViewTwo.setTag(R.drawable.icn_linear_recycler_manager);
+        imageViewOne.setTag(R.drawable.icn_grid_manager);
+        imageViewTwo.setTag(R.drawable.icn_linear_manager);
         iconChoosed = getDrawableId(imageViewOne);
 
-        layoutChoosen = ManagerPreferences.getLayoutManagerRecycler(getContext());
-        saveUserPreferences();
+        if (layoutChoosen == null){
+            layoutChoosen = LINEAR_LAYOUT_MANAGER;
+        }
+        if (getContext() != null) {
+            layoutChoosen = ManagerPreferences.getLayoutManagerRecycler(getContext(), layoutChoosen);
+            Log.i(LAYOUT_MANAGER,layoutChoosen);
+            saveUserPreferences();
+        }
     }
 
     @Override
@@ -120,7 +126,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     @Override
     public void populateCoins(CoinsDomain coinsDomain) {
         addCoinsToArray(coinsDomain);
-        cotacaoAdapter.notifyDataSetChanged();
+        exchangeRateAdapter.notifyDataSetChanged();
     }
 
     private void addCoinsToArray(@NonNull CoinsDomain coinsDomain) {
@@ -145,7 +151,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Override
     public void success() {
-        rvListCotacao.setVisibility(View.VISIBLE);
+        rvListExchange.setVisibility(View.VISIBLE);
         includeLayoutLoading.setVisibility(View.GONE);
         includeLayoutError.setVisibility(View.GONE);
         includeToolbarExchange.setVisibility(View.VISIBLE);
@@ -155,7 +161,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     public void loading() {
         includeLayoutLoading.setVisibility(View.VISIBLE);
         includeLayoutError.setVisibility(View.GONE);
-        rvListCotacao.setVisibility(View.GONE);
+        rvListExchange.setVisibility(View.GONE);
         includeToolbarExchange.setVisibility(View.GONE);
     }
 
@@ -163,7 +169,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     public void error() {
         includeLayoutError.setVisibility(View.VISIBLE);
         includeLayoutLoading.setVisibility(View.GONE);
-        rvListCotacao.setVisibility(View.GONE);
+        rvListExchange.setVisibility(View.GONE);
         includeToolbarExchange.setVisibility(View.GONE);
     }
 
@@ -181,8 +187,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         layoutManager = new GridLayoutManager(getContext(), 2);
         layoutChoosen = GRID_LAYOUT_MANAGER;
         ManagerPreferences.setGridLayoutManager(getContext(),layoutChoosen);
-        rvListCotacao.setLayoutManager(layoutManager);
-        rvListCotacao.setHasFixedSize(false);
+        rvListExchange.setLayoutManager(layoutManager);
+        rvListExchange.setHasFixedSize(false);
     }
 
     @OnClick(R.id.iv_recycler_layout_linear)
@@ -193,8 +199,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         layoutManager = new LinearLayoutManager(getContext());
         layoutChoosen = LINEAR_LAYOUT_MANAGER;
         ManagerPreferences.setLinearLayoutManager(getContext(),layoutChoosen);
-        rvListCotacao.setLayoutManager(layoutManager);
-        rvListCotacao.setHasFixedSize(true);
+        rvListExchange.setLayoutManager(layoutManager);
+        rvListExchange.setHasFixedSize(true);
 
     }
 
@@ -203,18 +209,12 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     }
 
     private void saveUserPreferences(){
-        if (getContext() != null ) {
-            if (layoutChoosen.equals(GRID_LAYOUT_MANAGER)){
-                onClickLayoutOne();
-            }else{
-                onClickLayoutTwo();
-            }
-
+        if (layoutChoosen.equals(GRID_LAYOUT_MANAGER)){
+            onClickLayoutOne();
+        }else{
+            onClickLayoutTwo();
         }
     }
-
-
-
 
 
 }

@@ -6,8 +6,6 @@ import android.support.annotation.NonNull;
 
 public class ManagerPreferences {
 
-    private static final String LINEAR_LAYOUT_MANAGER = "LINEAR";
-    private static final String GRID_LAYOUT_MANAGER = "GRID";
     private static String LAYOUT_MANAGER = "LAYOUT_MANAGER";
     private static final String USER = "USER";
 
@@ -15,17 +13,20 @@ public class ManagerPreferences {
         return context.getSharedPreferences(USER, Context.MODE_PRIVATE);
     }
 
-    public static String getLayoutManagerRecycler(Context context){
-        LAYOUT_MANAGER = LAYOUT_MANAGER != null ? GRID_LAYOUT_MANAGER : LINEAR_LAYOUT_MANAGER;
-        return getSharedPreferences(context).getString(LAYOUT_MANAGER, "");
+    public static String getLayoutManagerRecycler(Context context,String layoutManager){
+        return getSharedPreferences(context).getString(LAYOUT_MANAGER, layoutManager);
     }
 
     public static void setLinearLayoutManager(Context context, String layoutManager){
-        getSharedPreferences(context).edit().putString(LINEAR_LAYOUT_MANAGER, layoutManager).apply();
+        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.putString(LAYOUT_MANAGER, layoutManager);
+        editor.commit();
     }
 
     public static void setGridLayoutManager(Context context,String layoutManager){
-        getSharedPreferences(context).edit().putString(GRID_LAYOUT_MANAGER, layoutManager).apply();
+        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.putString(LAYOUT_MANAGER, layoutManager);
+        editor.commit();
     }
 
 

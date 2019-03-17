@@ -20,13 +20,13 @@ public class ManagerPreferences {
     public static void setLinearLayoutManager(Context context, String layoutManager){
         SharedPreferences.Editor editor = getSharedPreferences(context).edit();
         editor.putString(LAYOUT_MANAGER, layoutManager);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setGridLayoutManager(Context context,String layoutManager){
         SharedPreferences.Editor editor = getSharedPreferences(context).edit();
         editor.putString(LAYOUT_MANAGER, layoutManager);
-        editor.commit();
+        editor.apply();
     }
 
 

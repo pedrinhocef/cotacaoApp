@@ -12,5 +12,7 @@
     <string name="libra_coin">Libra</string>
     <string name="dolar_coin">Dólar</string>
     <string name="exchange_title">COTAÇÃO DE MOEDAS</string>
+    <string name="last_update">Última atualização: </string>
+    <string name="image_background">Background imagem de uma cedula</string>
 
 </resources>

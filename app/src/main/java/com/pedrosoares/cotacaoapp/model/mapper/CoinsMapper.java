@@ -43,6 +43,7 @@ public class CoinsMapper {
         usdDomain.setBid(usdEntity.getBid());
         usdDomain.setLow(usdEntity.getLow());
         usdDomain.setHigh(usdEntity.getHigh());
+        usdDomain.setTimestamp(usdEntity.getTimestamp());
 
 
         return usdDomain;

@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
@@ -58,6 +59,9 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Bind(R.id.fragment_loading)
     View includeLayoutLoading;
+
+    @Bind(R.id.tv_last_update)
+    TextView lastUpdate;
     //endregion
 
     private ExchangeRateAdapter exchangeRateAdapter;
@@ -126,6 +130,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     @Override
     public void populateCoins(CoinsDomain coinsDomain) {
         addCoinsToArray(coinsDomain);
+        // TODO: 17/03/19 falta converter a data de timestamp para a nossa
+        lastUpdate.setText(getString(R.string.last_update).concat(coinsDomain.getUSD().getTimestamp()));
         exchangeRateAdapter.notifyDataSetChanged();
     }
 

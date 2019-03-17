@@ -8,12 +8,11 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_last_update"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_red_light"
         android:padding="5dp"
-        android:text="Última atualização: DATA AQUI"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         android:textStyle="bold"
@@ -28,10 +27,11 @@
         android:background="#78000000"
         android:scaleType="centerCrop"
         android:visibility="visible"
+        android:contentDescription="@string/image_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_last_update" />
 
     <include
         android:id="@+id/fragment_error"
@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/tv_last_update"
         tools:listitem="@layout/item_exchange" />
 
 

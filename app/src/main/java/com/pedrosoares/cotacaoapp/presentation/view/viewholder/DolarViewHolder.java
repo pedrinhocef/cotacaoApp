@@ -36,8 +36,8 @@ public class DolarViewHolder extends BaseViewHolder<USDDomain> {
     @Override
     public void bind(USDDomain usdDomain) {
         tvCoinName.setText(context.getString(R.string.dolar_coin));
-        formatValue(tvCoinValue,usdDomain.getBid());
-        formatValue(tvLowPrice,usdDomain.getLow());
-        formatValue(tvHighPrice,usdDomain.getHigh());
+        formatValue(tvCoinValue,usdDomain.getBid(),NF_NDEC);
+        formatValue(tvLowPrice,usdDomain.getLow(),NF_NDEC);
+        formatValue(tvHighPrice,usdDomain.getHigh(),NF_NDEC);
     }
 }

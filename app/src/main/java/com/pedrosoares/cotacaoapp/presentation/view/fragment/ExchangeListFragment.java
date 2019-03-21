@@ -66,14 +66,15 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     TextView lastUpdate;
     //endregion
 
+    private static final String LINEAR_LAYOUT_MANAGER = "LINEAR";
+    private static final String GRID_LAYOUT_MANAGER = "GRID";
+    private static final String LAYOUT_MANAGER = "LAYOUT_MANAGER";
+
     private ExchangeRateAdapter exchangeRateAdapter;
     private List<Object> coinsDomainList;
     RecyclerView.LayoutManager layoutManager;
     int iconChoosed;
     String layoutChoosen;
-    public static final String LINEAR_LAYOUT_MANAGER = "LINEAR";
-    public static final String GRID_LAYOUT_MANAGER = "GRID";
-    private static String LAYOUT_MANAGER = "LAYOUT_MANAGER";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

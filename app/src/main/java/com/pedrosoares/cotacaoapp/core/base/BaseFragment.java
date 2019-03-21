@@ -12,7 +12,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fragment implements BaseContract.View<P> {
 
@@ -107,9 +110,15 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fra
         long timeStampLong = Long.parseLong(timestamp)*1000;
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(timeStampLong);
+
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         int date = cal.get(Calendar.DATE);
-        return date+" de "+monthName(month)+" de "+year;
+
+        Date dateFull = cal. getTime();
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        String formattedDate = dateFormat.format(dateFull);
+
+        return date+" de "+monthName(month)+" de "+year+" às "+formattedDate;
     }
 }

@@ -12,6 +12,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 
+import java.util.Calendar;
+
 public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fragment implements BaseContract.View<P> {
 
     protected P presenter;
@@ -79,5 +81,35 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fra
             return connected;
         }
         return false;
+    }
+
+    public String monthName(int monthNumber) {
+        monthNumber++;
+        switch (monthNumber){
+            case 1: return "janeiro";
+            case 2: return "fevereiro";
+            case 3: return  "março";
+            case 4: return "abril";
+            case 5: return "maio";
+            case 6: return "junho";
+            case 7: return "julho";
+            case 8: return "agosto";
+            case 9: return "setembro";
+            case 10: return "outubro";
+            case 11: return "novembro";
+            case 12: return "dezembro";
+
+            default: return "Mês inválido";
+        }
+    }
+
+    public String convertTimeStampToDate(String timestamp){
+        long timeStampLong = Long.parseLong(timestamp)*1000;
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(timeStampLong);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int date = cal.get(Calendar.DATE);
+        return date+" de "+monthName(month)+" de "+year;
     }
 }

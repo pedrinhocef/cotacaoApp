@@ -30,7 +30,11 @@ import com.pedrosoares.cotacaoapp.presentation.CoinsContract;
 import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateAdapter;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
@@ -128,8 +132,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     @Override
     public void populateCoins(CoinsDomain coinsDomain) {
         addCoinsToArray(coinsDomain);
-        // TODO: 17/03/19 falta converter a data de timestamp para a nossa
-        lastUpdate.setText(getString(R.string.last_update).concat(coinsDomain.getUSD().getTimestamp()));
+        lastUpdate.setText(getString(R.string.last_update).concat(" "+convertTimeStampToDate(coinsDomain.getUSD().getTimestamp())));
         exchangeRateAdapter.notifyDataSetChanged();
     }
 

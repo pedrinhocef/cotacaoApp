@@ -1,10 +1,13 @@
 package com.pedrosoares.cotacaoapp.presentation.view.fragment;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -64,6 +67,9 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Bind(R.id.tv_last_update)
     TextView lastUpdate;
+
+    @Bind(R.id.swipe_referesh)
+    SwipeRefreshLayout swipeRefresh;
     //endregion
 
     private static final String LINEAR_LAYOUT_MANAGER = "LINEAR";
@@ -88,6 +94,11 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, getActivity());
         initUi();
+
+        swipeRefresh.setOnRefreshListener(() ->  {
+            swipeRefresh.setColorSchemeResources(android.R.color.holo_green_dark);
+            presenter.fetchCoins();
+        });
     }
 
     @Override
@@ -104,6 +115,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         }
 
     }
+
+
 
     private void initUi(){
         presenter.fetchCoins();
@@ -132,6 +145,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Override
     public void populateCoins(CoinsDomain coinsDomain) {
+        swipeRefresh.setRefreshing(false);
+        if (getContext() != null) swipeRefresh.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background));
         addCoinsToArray(coinsDomain);
         lastUpdate.setText(getString(R.string.last_update).concat(" "+convertTimeStampToDate(coinsDomain.getUSD().getTimestamp())));
         exchangeRateAdapter.notifyDataSetChanged();
@@ -167,6 +182,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Override
     public void loading() {
+        swipeRefresh.setRefreshing(false);
         includeLayoutLoading.setVisibility(View.VISIBLE);
         includeLayoutError.setVisibility(View.GONE);
         rvListExchange.setVisibility(View.GONE);
@@ -175,6 +191,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Override
     public void error() {
+        lastUpdate.setText("");
+        if (getActivity() != null) swipeRefresh.setBackgroundColor(getActivity().getResources().getColor(R.color.color_white));
         includeLayoutError.setVisibility(View.VISIBLE);
         includeLayoutLoading.setVisibility(View.GONE);
         rvListExchange.setVisibility(View.GONE);

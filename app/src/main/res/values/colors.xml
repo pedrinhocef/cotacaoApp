@@ -5,15 +5,16 @@
     <color name="colorAccent">#D81B60</color>
 
 
-
-    <color name="greenWeek">#8CC75D</color>
-    <color name="greenWeek2">#9ACE62</color>
     <color name="greenStrong">#509A99</color>
-
     <color name="colorSilver">#F2F3F4</color>
     <color name="colorDarkGreyBlue">#2A3E52</color>
     <color name="colorCoolGray">#E8EAED</color>
     <color name="color_white">#FFF</color>
     <color name="colorGrey40">#5ED5D3D3</color>
+
+    <color name="pink">#FF4081</color>
+    <color name="indigo">#3F51B5</color>
+    <color name="lime">#CDDC39</color>
+    <color name="grey_strong">#78000000</color>
 
 </resources>

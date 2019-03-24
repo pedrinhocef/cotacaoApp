@@ -1,67 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/swipe_referesh"
     android:background="@drawable/background"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_last_update"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_light"
-        android:padding="5dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/background_light"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/fragment_loading"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_exchange" />
-
-    <ImageView
-        android:id="@+id/image_perfil_capa_efeito"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#78000000"
-        android:scaleType="centerCrop"
-        android:visibility="visible"
-        android:contentDescription="@string/image_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_last_update" />
-
-    <include
-        android:id="@+id/fragment_error"
-        layout="@layout/fragment_error"
-        android:visibility="gone" />
-
-    <include
-        android:id="@+id/fragment_loading"
-        layout="@layout/fragment_loading"
-        android:visibility="gone" />
-
-    <include
-        android:id="@+id/toolbar_exchange"
-        layout="@layout/toolbar_exchange"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list_exchange"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_last_update"
-        tools:listitem="@layout/item_exchange" />
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_last_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_light"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/fragment_loading"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_exchange" />
+        <ImageView
+            android:id="@+id/image_perfil_capa_efeito"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/grey_strong"
+            android:scaleType="centerCrop"
+            android:visibility="visible"
+            android:contentDescription="@string/image_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_last_update" />
+
+        <include
+            android:id="@+id/fragment_error"
+            layout="@layout/fragment_error"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/fragment_loading"
+            layout="@layout/fragment_loading"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/toolbar_exchange"
+            layout="@layout/toolbar_exchange"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list_exchange"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_last_update"
+            tools:listitem="@layout/item_exchange" />
+
+    </android.support.constraint.ConstraintLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

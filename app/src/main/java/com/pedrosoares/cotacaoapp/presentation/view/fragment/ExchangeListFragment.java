@@ -44,7 +44,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPresenter> implements CoinsContract.CoinsListView {
+public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPresenter> implements CoinsContract.CoinsListView{
 
     //region BINDS
     @Bind(R.id.rv_list_exchange)
@@ -94,11 +94,6 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, getActivity());
         initUi();
-
-        swipeRefresh.setOnRefreshListener(() ->  {
-            swipeRefresh.setColorSchemeResources(android.R.color.holo_green_dark);
-            presenter.fetchCoins();
-        });
     }
 
     @Override
@@ -113,6 +108,12 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
             if (getView() != null)
                 Snackbar.make(getView(), "Sem Conexão", 1000).show();
         }
+
+        swipeRefresh.setOnRefreshListener(() ->  {
+            swipeRefresh.setColorSchemeResources(android.R.color.holo_green_dark);
+            initUi();
+            swipeRefresh.setRefreshing(false);
+        });
 
     }
 
@@ -145,7 +146,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Override
     public void populateCoins(CoinsDomain coinsDomain) {
-        swipeRefresh.setRefreshing(false);
+        //swipeRefresh.setRefreshing(false);
         if (getContext() != null) swipeRefresh.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background));
         addCoinsToArray(coinsDomain);
         lastUpdate.setText(getString(R.string.last_update).concat(" "+convertTimeStampToDate(coinsDomain.getUSD().getTimestamp())));
@@ -182,7 +183,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Override
     public void loading() {
-        swipeRefresh.setRefreshing(false);
+        //swipeRefresh.setRefreshing(false);
         includeLayoutLoading.setVisibility(View.VISIBLE);
         includeLayoutError.setVisibility(View.GONE);
         rvListExchange.setVisibility(View.GONE);
@@ -241,6 +242,5 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
             onClickLayoutTwo();
         }
     }
-
 
 }

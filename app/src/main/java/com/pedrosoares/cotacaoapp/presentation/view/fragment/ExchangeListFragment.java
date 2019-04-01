@@ -146,7 +146,6 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Override
     public void populateCoins(CoinsDomain coinsDomain) {
-        //swipeRefresh.setRefreshing(false);
         if (getContext() != null) swipeRefresh.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background));
         addCoinsToArray(coinsDomain);
         lastUpdate.setText(getString(R.string.last_update).concat(" "+convertTimeStampToDate(coinsDomain.getUSD().getTimestamp())));
@@ -183,7 +182,6 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Override
     public void loading() {
-        //swipeRefresh.setRefreshing(false);
         includeLayoutLoading.setVisibility(View.VISIBLE);
         includeLayoutError.setVisibility(View.GONE);
         rvListExchange.setVisibility(View.GONE);

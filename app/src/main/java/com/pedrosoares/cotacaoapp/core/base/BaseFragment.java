@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 
+import java.security.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -110,20 +111,22 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fra
     }
 
     public String convertTimeStampToDate(String timestamp){
+
         long timeStampLong = Long.parseLong(timestamp);
-
+        Calendar calendar = Calendar.getInstance();
         Calendar cal = Calendar.getInstance(new Locale("pt", "BR"));
-        //cal.setTimeInMillis(timeStampLong);
+        cal.setTimeInMillis(timeStampLong * 1000L);
 
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int date = cal.get(Calendar.DAY_OF_MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int date = calendar.get(Calendar.DAY_OF_MONTH);
 
-        Date dateFull = cal.getTime();
+        Date dateFull = calendar.getTime();
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String formattedDate = dateFormat.format(dateFull);
 
         return date+" de "+monthName(month)+" de "+year+" às "+formattedDate;
-
     }
+
 }

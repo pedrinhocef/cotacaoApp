@@ -174,6 +174,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Override
     public void success() {
+        lastUpdate.setVisibility(View.VISIBLE);
         rvListExchange.setVisibility(View.VISIBLE);
         includeLayoutLoading.setVisibility(View.GONE);
         includeLayoutError.setVisibility(View.GONE);

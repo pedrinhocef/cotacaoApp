@@ -23,14 +23,14 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
     public abstract void bind(T type);
 
     protected void formatValue(TextView tv, String value, String pattern){
-        String a  = getValueWithBRL(value, pattern);
+        String a = getValueWithBRL(value, pattern);
         tv.setText(a);
     }
 
     private static String getValueWithBRL(String value, String pattern) {
         if (value != null) {
             DecimalFormat df = new DecimalFormat(pattern);
-            value = df.format(Double.valueOf(value));
+            value = df.format(Double.valueOf(value.replace(",", "")));
             return "R$ " + value.trim();
             }
         return "";

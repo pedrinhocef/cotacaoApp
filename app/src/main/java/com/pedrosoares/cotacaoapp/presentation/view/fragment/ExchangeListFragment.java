@@ -1,7 +1,6 @@
 package com.pedrosoares.cotacaoapp.presentation.view.fragment;
 
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -33,11 +32,7 @@ import com.pedrosoares.cotacaoapp.presentation.CoinsContract;
 import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateAdapter;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
@@ -70,7 +65,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Bind(R.id.swipe_referesh)
     SwipeRefreshLayout swipeRefresh;
-    //endregion
+    //endregionm
 
     private static final String LINEAR_LAYOUT_MANAGER = "LINEAR";
     private static final String GRID_LAYOUT_MANAGER = "GRID";

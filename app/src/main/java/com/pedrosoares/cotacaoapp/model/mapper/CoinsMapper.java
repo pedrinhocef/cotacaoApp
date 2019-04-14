@@ -43,7 +43,6 @@ public class CoinsMapper {
         usdDomain.setBid(usdEntity.getBid());
         usdDomain.setLow(usdEntity.getLow());
         usdDomain.setHigh(usdEntity.getHigh());
-        usdDomain.setTimestamp(usdEntity.getTimestamp());
 
 
         return usdDomain;
@@ -70,6 +69,7 @@ public class CoinsMapper {
         btcDomain.setBid(btcEntity.getBid());
         btcDomain.setLow(btcEntity.getLow());
         btcDomain.setHigh(btcEntity.getHigh());
+        btcDomain.setTimestamp(btcEntity.getTimestamp());
 
 
         return btcDomain;

@@ -35,9 +35,9 @@ public class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
     @Override
     public void bind(LTCDomain type) {
         tvCoinName.setText(type.getName());
-        formatValue(tvCoinValue,type.getBid(),NF_BR2D);
-        formatValue(tvLowPrice,type.getLow(),NF_BR2D);
-        formatValue(tvHighPrice,type.getHigh(),NF_BR2D);
+        formatValue(tvCoinValue,type.getBid());
+        formatValue(tvLowPrice,type.getLow());
+        formatValue(tvHighPrice,type.getHigh());
     }
 }
 

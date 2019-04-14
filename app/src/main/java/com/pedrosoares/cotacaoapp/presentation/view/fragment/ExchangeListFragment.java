@@ -117,7 +117,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     private void initUi(){
         presenter.fetchCoins();
         coinsDomainList = new ArrayList<>();
-        exchangeRateAdapter = new ExchangeRateAdapter(getActivity(), coinsDomainList);
+        exchangeRateAdapter = new ExchangeRateAdapter(getContext(), coinsDomainList);
         rvListExchange.setAdapter(exchangeRateAdapter);
 
         imageViewOne.setTag(R.drawable.icn_grid_manager);
@@ -143,7 +143,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     public void populateCoins(CoinsDomain coinsDomain) {
         if (getContext() != null) swipeRefresh.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background));
         addCoinsToArray(coinsDomain);
-        lastUpdate.setText(getString(R.string.last_update).concat(" "+convertTimeStampToDate(coinsDomain.getUSD().getTimestamp())));
+        lastUpdate.setText(getString(R.string.last_update).concat(" "+convertTimeStampToDate(coinsDomain.getBTC().getTimestamp())));
         exchangeRateAdapter.notifyDataSetChanged();
     }
 

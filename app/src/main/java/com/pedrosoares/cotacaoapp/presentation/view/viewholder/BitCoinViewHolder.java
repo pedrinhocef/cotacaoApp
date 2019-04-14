@@ -36,9 +36,9 @@ public class BitCoinViewHolder extends BaseViewHolder<BTCDomain> {
     @Override
     public void bind(BTCDomain btcDomain) {
         tvCoinName.setText(btcDomain.getName());
-        formatValue(tvCoinValue, btcDomain.getBid(),NF_BR2D);
-        formatValue(tvLowPrice, btcDomain.getLow(),NF_BR2D);
-        formatValue(tvHighPrice, btcDomain.getHigh(),NF_BR2D);
+        formatValue(tvCoinValue, btcDomain.getBid());
+        formatValue(tvLowPrice, btcDomain.getLow());
+        formatValue(tvHighPrice, btcDomain.getHigh());
 
     }
 }

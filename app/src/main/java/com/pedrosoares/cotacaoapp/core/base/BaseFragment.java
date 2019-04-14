@@ -123,7 +123,6 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fra
 
         Date dateFull = calendar.getTime();
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String formattedDate = dateFormat.format(dateFull);
 
         return date+" de "+monthName(month)+" de "+year+" às "+formattedDate;

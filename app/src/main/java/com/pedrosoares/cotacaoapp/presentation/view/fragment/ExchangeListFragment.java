@@ -63,7 +63,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     @Bind(R.id.tv_last_update)
     TextView lastUpdate;
 
-    @Bind(R.id.swipe_referesh)
+    @Bind(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
     //endregionm
 
@@ -143,7 +143,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     public void populateCoins(CoinsDomain coinsDomain) {
         if (getContext() != null) swipeRefresh.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background));
         addCoinsToArray(coinsDomain);
-        lastUpdate.setText(getString(R.string.last_update).concat(" "+convertTimeStampToDate(coinsDomain.getBTC().getTimestamp())));
+        lastUpdate.setText(getString(R.string.last_update).concat(" "+coinsDomain.getBTC().getCreateDate()));
         exchangeRateAdapter.notifyDataSetChanged();
     }
 

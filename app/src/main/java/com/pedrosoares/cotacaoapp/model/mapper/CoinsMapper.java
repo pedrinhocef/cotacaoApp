@@ -69,7 +69,7 @@ public class CoinsMapper {
         btcDomain.setBid(btcEntity.getBid());
         btcDomain.setLow(btcEntity.getLow());
         btcDomain.setHigh(btcEntity.getHigh());
-        btcDomain.setTimestamp(btcEntity.getTimestamp());
+        btcDomain.setCreateDate(btcEntity.getCreateDate());
 
 
         return btcDomain;

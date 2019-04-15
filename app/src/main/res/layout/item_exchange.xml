@@ -59,9 +59,9 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_coin_value"
@@ -70,9 +70,8 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -83,18 +82,18 @@
 
                 <TextView
                     android:id="@+id/tv_high"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:text="R$ 10.000,00"
                     android:textColor="@android:color/background_light"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -105,9 +104,10 @@
 
                 <TextView
                     android:id="@+id/tv_low"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:text="R$ 10.000,00"
                     android:textColor="@android:color/background_light"
                     android:textStyle="bold" />
             </LinearLayout>

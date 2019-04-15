@@ -18,7 +18,7 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
     public abstract void bind(T type);
 
     protected void formatValue(TextView tv, String value){
-        tv.setText("R$" + value);
+        tv.setText("R$ " + value);
     }
 
 }

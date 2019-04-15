@@ -4,11 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-
 import butterknife.ButterKnife;
 
 public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
@@ -23,7 +18,7 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
     public abstract void bind(T type);
 
     protected void formatValue(TextView tv, String value){
-        tv.setText(value);
+        tv.setText("R$" + value);
     }
 
 }

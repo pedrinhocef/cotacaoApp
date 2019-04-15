@@ -7,12 +7,12 @@
     <string name="card_load_failed_touch">Toque para atualizar.</string>
     <string name="usd_name">USD</string>
     <string name="off_alert">alerta desligado</string>
-    <string name="real_symbol">R$</string>
     <string name="argentine_coin">Peso ARG</string>
     <string name="libra_coin">Libra</string>
     <string name="dolar_coin">Dólar</string>
     <string name="exchange_title">COTAÇÃO DE MOEDAS</string>
     <string name="last_update">Última atualização: </string>
     <string name="image_background">Background imagem de uma cedula</string>
+    <string name="real_symbol">R$</string>
 
 </resources>

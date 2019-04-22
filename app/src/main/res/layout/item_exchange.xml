@@ -67,7 +67,7 @@
                 android:id="@+id/tv_high"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="1dp"
                 android:text="R$ 10.000,00"
                 android:textColor="@android:color/background_light"
                 android:textStyle="bold" />
@@ -82,7 +82,7 @@
                 android:id="@+id/tv_low"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="1dp"
                 android:text="R$ 10.000,00"
                 android:textColor="@android:color/background_light"
                 android:textStyle="bold" />

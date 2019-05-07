@@ -61,13 +61,14 @@
                 android:id="@+id/iv_high"
                 android:layout_width="12dp"
                 android:layout_height="12dp"
+                android:layout_marginEnd="2dp"
                 card_view:srcCompat="@drawable/icn_high_price" />
 
             <TextView
                 android:id="@+id/tv_high"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="1dp"
+                android:layout_marginEnd="12dp"
                 android:text="R$ 10.000,00"
                 android:textColor="@android:color/background_light"
                 android:textStyle="bold" />
@@ -76,6 +77,7 @@
                 android:id="@+id/iv_low"
                 android:layout_width="12dp"
                 android:layout_height="12dp"
+                android:layout_marginEnd="2dp"
                 app:srcCompat="@drawable/icn_low_price" />
 
             <TextView

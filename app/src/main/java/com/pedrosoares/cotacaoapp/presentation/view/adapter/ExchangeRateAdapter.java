@@ -15,6 +15,7 @@ import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
+import com.pedrosoares.cotacaoapp.presentation.CoinsContract;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.BitCoinViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.DolarViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.EuroViewHolder;
@@ -34,16 +35,22 @@ public class ExchangeRateAdapter extends RecyclerView.Adapter<BaseViewHolder>{
     private static final int GBP = 4;
     private static final int ARS = 5;
     private List<Object> coinsDomainList;
+    private CoinsContract.ListenerLayout listenerLayout;
 
-    public ExchangeRateAdapter(Context context, List<Object> coinsDomainList){
+    public ExchangeRateAdapter(Context context, List<Object> coinsDomainList, CoinsContract.ListenerLayout listenerLayout){
+        this.listenerLayout = listenerLayout;
         this.context = context;
         this.coinsDomainList = coinsDomainList;
     }
 
     @NonNull
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        View view = LayoutInflater.from(context).inflate(R.layout.item_exchange, parent, false);
+        View view;
+        if (listenerLayout.verifyLayout()) {
+            view = LayoutInflater.from(context).inflate(R.layout.layout_item_exchange_grid, parent, false);
+        } else {
+            view = LayoutInflater.from(context).inflate(R.layout.layout_item_exchange_linear, parent, false);
+        }
 
         switch(viewType){
             case USD_COIN: {

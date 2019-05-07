@@ -39,7 +39,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPresenter> implements CoinsContract.CoinsListView{
+public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPresenter> implements CoinsContract.CoinsListView {
 
     //region BINDS
     @Bind(R.id.rv_list_exchange)
@@ -112,12 +112,10 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     }
 
-
-
     private void initUi(){
         presenter.fetchCoins();
         coinsDomainList = new ArrayList<>();
-        exchangeRateAdapter = new ExchangeRateAdapter(getContext(), coinsDomainList);
+        exchangeRateAdapter = new ExchangeRateAdapter(getContext(), coinsDomainList, listenerLayout());
         rvListExchange.setAdapter(exchangeRateAdapter);
 
         imageViewOne.setTag(R.drawable.icn_grid_manager);
@@ -211,6 +209,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         ManagerPreferences.setGridLayoutManager(getContext(),layoutChoosen);
         rvListExchange.setLayoutManager(layoutManager);
         rvListExchange.setHasFixedSize(false);
+        rvListExchange.setAdapter(exchangeRateAdapter);
     }
 
     @OnClick(R.id.iv_recycler_layout_linear)
@@ -223,14 +222,18 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         ManagerPreferences.setLinearLayoutManager(getContext(),layoutChoosen);
         rvListExchange.setLayoutManager(layoutManager);
         rvListExchange.setHasFixedSize(true);
+        rvListExchange.setAdapter(exchangeRateAdapter);
+    }
 
+    public CoinsContract.ListenerLayout listenerLayout(){
+        return () -> layoutChoosen.equals(GRID_LAYOUT_MANAGER);
     }
 
     private int getDrawableId(ImageView iv) {
         return (Integer) iv.getTag();
     }
 
-    private void saveUserPreferences(){
+    public void saveUserPreferences(){
         if (layoutChoosen.equals(GRID_LAYOUT_MANAGER)){
             onClickLayoutOne();
         }else{

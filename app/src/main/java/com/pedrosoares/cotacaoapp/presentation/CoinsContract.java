@@ -15,4 +15,8 @@ public interface CoinsContract {
     interface CoinsListPresenter extends BaseContract.Presenter {
         void fetchCoins();
     }
+
+    interface ListenerLayout{
+        boolean verifyLayout();
+    }
 }

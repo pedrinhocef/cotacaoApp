@@ -1,5 +1,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -32,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/card_load_failed_touch"
-        android:textColor="@color/colorCoolGray"
+        android:textColor="@color/colorDarkGreyBlue"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/text_title"
         app:layout_constraintStart_toStartOf="@+id/text_title"

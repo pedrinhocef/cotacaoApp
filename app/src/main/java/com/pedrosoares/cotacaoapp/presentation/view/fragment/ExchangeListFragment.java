@@ -180,7 +180,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         includeLayoutLoading.setVisibility(View.VISIBLE);
         includeLayoutError.setVisibility(View.GONE);
         rvListExchange.setVisibility(View.GONE);
-        includeToolbarExchange.setVisibility(View.GONE);
+        includeToolbarExchange.setVisibility(View.VISIBLE);
     }
 
     @Override

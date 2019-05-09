@@ -16,4 +16,8 @@ public class MainActivity extends BaseActivity {
         setFragment(R.id.frame_main_activity, new ExchangeListFragment(), this);
 
     }
+
+    @Override
+    public void onBackPressed(){}
+
 }

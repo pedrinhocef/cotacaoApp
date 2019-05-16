@@ -18,6 +18,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
 import com.pedrosoares.cotacaoapp.data.preferences.ManagerPreferences;
@@ -67,6 +70,9 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     SwipeRefreshLayout swipeRefresh;
     //endregionm
 
+    @Bind(R.id.ad_view)
+    AdView adView;
+
     private static final String LINEAR_LAYOUT_MANAGER = "LINEAR";
     private static final String GRID_LAYOUT_MANAGER = "GRID";
     private static final String LAYOUT_MANAGER = "LAYOUT_MANAGER";
@@ -88,6 +94,12 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, getActivity());
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+
+
         initUi();
     }
 

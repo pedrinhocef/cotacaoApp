@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-5636473178706347/2078220152"/>
+            ads:adUnitId="@string/id_banner"/>
 
     </android.support.constraint.ConstraintLayout>
 

@@ -68,10 +68,10 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Bind(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
-    //endregionm
 
     @Bind(R.id.ad_view)
     AdView adView;
+    //endregionm
 
     private static final String LINEAR_LAYOUT_MANAGER = "LINEAR";
     private static final String GRID_LAYOUT_MANAGER = "GRID";
@@ -97,8 +97,6 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
-
-
 
         initUi();
     }

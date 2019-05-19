@@ -15,4 +15,9 @@
     <string name="image_background">Background imagem de uma cedula</string>
     <string name="real_symbol">R$</string>
 
+    <string name="id_app">ca-app-pub-5636473178706347~6209036855</string>
+    <string name="id_banner">ca-app-pub-5636473178706347/2078220152</string>
+
+
+
 </resources>

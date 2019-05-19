@@ -14,7 +14,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MobileAds.initialize(this, "ca-app-pub-5636473178706347~6209036855");
+        MobileAds.initialize(this, getString(R.string.id_app));
 
 
         setFragment(R.id.frame_main_activity, new ExchangeListFragment(), this);

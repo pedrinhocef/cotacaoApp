@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
@@ -35,7 +34,9 @@ import com.pedrosoares.cotacaoapp.presentation.CoinsContract;
 import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
@@ -151,7 +152,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     public void populateCoins(CoinsDomain coinsDomain) {
         if (getContext() != null) swipeRefresh.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background));
         addCoinsToArray(coinsDomain);
-        lastUpdate.setText(getString(R.string.last_update).concat(" "+coinsDomain.getBTC().getCreateDate()));
+        lastUpdate.setText(getString(R.string.last_update).concat(" "+ changeDateFormat(coinsDomain.getBTC().getCreateDate())));
         exchangeRateAdapter.notifyDataSetChanged();
     }
 
@@ -164,6 +165,20 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         GBPDomain gbp = coinsDomain.getGBP();
 
         defineCardsPosition(ars, btc, usd, ltc, eur, gbp);
+    }
+
+    private String changeDateFormat(String date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat targetFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date d = null;
+        String dateFormatted;
+        try{
+            d = simpleDateFormat.parse(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        dateFormatted = targetFormat.format(d);
+        return dateFormatted.replace("-","/");
     }
 
     private void defineCardsPosition(@NonNull ARSDomain ars,@NonNull BTCDomain btc,@NonNull USDDomain usd,@NonNull LTCDomain ltc,@NonNull EURDomain eur,@NonNull GBPDomain gbp) {

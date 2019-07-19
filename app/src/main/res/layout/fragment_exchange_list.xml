@@ -22,7 +22,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/fragment_loading"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_exchange" />
+            app:layout_constraintTop_toTopOf="parent"/>
         <ImageView
             android:id="@+id/image_perfil_capa_efeito"
             android:layout_width="0dp"
@@ -46,13 +46,7 @@
             layout="@layout/fragment_loading"
             android:visibility="gone" />
 
-        <include
-            android:id="@+id/toolbar_exchange"
-            layout="@layout/toolbar_exchange"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_list_exchange"

@@ -52,14 +52,11 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     @Bind(R.id.fragment_error)
     View includeLayoutError;
 
-    @Bind(R.id.toolbar_exchange)
-    Toolbar includeToolbarExchange;
-
-    @Bind(R.id.iv_recycler_layout_grid)
-    ImageView imageViewOne;
-
-    @Bind(R.id.iv_recycler_layout_linear)
-    ImageView imageViewTwo;
+//    @Bind(R.id.iv_recycler_layout_grid)
+//    ImageView imageViewOne;
+//
+//    @Bind(R.id.iv_recycler_layout_linear)
+//    ImageView imageViewTwo;
 
     @Bind(R.id.fragment_loading)
     View includeLayoutLoading;
@@ -72,7 +69,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Bind(R.id.ad_view)
     AdView adView;
-    //endregionm
+    //endregion
 
     private static final String LINEAR_LAYOUT_MANAGER = "LINEAR";
     private static final String GRID_LAYOUT_MANAGER = "GRID";
@@ -108,7 +105,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         if (isConnected()) {
             if (getView() != null) {
                 Snackbar.make(getView(), "Conectado", 1000).show();
-                saveUserPreferences();
+                //saveUserPreferences();
             }
         } else {
             if (getView() != null)
@@ -129,9 +126,16 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         exchangeRateAdapter = new ExchangeRateAdapter(getContext(), coinsDomainList, listenerLayout());
         rvListExchange.setAdapter(exchangeRateAdapter);
 
-        imageViewOne.setTag(R.drawable.icn_grid_manager);
-        imageViewTwo.setTag(R.drawable.icn_linear_manager);
-        iconChoosed = getDrawableId(imageViewOne);
+//        imageViewOne.setTag(R.drawable.icn_grid_manager);
+//        imageViewTwo.setTag(R.drawable.icn_linear_manager);
+//        iconChoosed = getDrawableId(imageViewOne);
+
+        layoutManager = new LinearLayoutManager(getContext());
+        layoutChoosen = LINEAR_LAYOUT_MANAGER;
+        //ManagerPreferences.setLinearLayoutManager(getContext(),layoutChoosen);
+        rvListExchange.setLayoutManager(layoutManager);
+        rvListExchange.setHasFixedSize(true);
+        rvListExchange.setAdapter(exchangeRateAdapter);
 
         if (layoutChoosen == null){
             layoutChoosen = LINEAR_LAYOUT_MANAGER;
@@ -139,7 +143,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         if (getContext() != null) {
             layoutChoosen = ManagerPreferences.getLayoutManagerRecycler(getContext(), layoutChoosen);
             Log.i(LAYOUT_MANAGER,layoutChoosen);
-            saveUserPreferences();
+            //saveUserPreferences();
         }
     }
 
@@ -196,7 +200,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         rvListExchange.setVisibility(View.VISIBLE);
         includeLayoutLoading.setVisibility(View.GONE);
         includeLayoutError.setVisibility(View.GONE);
-        includeToolbarExchange.setVisibility(View.VISIBLE);
+        //includeToolbarExchange.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -205,7 +209,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         includeLayoutLoading.setVisibility(View.VISIBLE);
         includeLayoutError.setVisibility(View.GONE);
         rvListExchange.setVisibility(View.GONE);
-        includeToolbarExchange.setVisibility(View.VISIBLE);
+        //includeToolbarExchange.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -215,7 +219,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         includeLayoutError.setVisibility(View.VISIBLE);
         includeLayoutLoading.setVisibility(View.GONE);
         rvListExchange.setVisibility(View.GONE);
-        includeToolbarExchange.setVisibility(View.GONE);
+        //includeToolbarExchange.setVisibility(View.GONE);
     }
 
 
@@ -224,31 +228,32 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         presenter.fetchCoins();
     }
 
-    @OnClick(R.id.iv_recycler_layout_grid)
-    void onClickLayoutOne(){
-        iconChoosed = getDrawableId(imageViewTwo);
-        imageViewOne.setVisibility(View.GONE);
-        imageViewTwo.setVisibility(View.VISIBLE);
-        layoutManager = new GridLayoutManager(getContext(), 2);
-        layoutChoosen = GRID_LAYOUT_MANAGER;
-        ManagerPreferences.setGridLayoutManager(getContext(),layoutChoosen);
-        rvListExchange.setLayoutManager(layoutManager);
-        rvListExchange.setHasFixedSize(false);
-        rvListExchange.setAdapter(exchangeRateAdapter);
-    }
-
-    @OnClick(R.id.iv_recycler_layout_linear)
-    void onClickLayoutTwo(){
-        iconChoosed = getDrawableId(imageViewOne);
-        imageViewOne.setVisibility(View.VISIBLE);
-        imageViewTwo.setVisibility(View.GONE);
-        layoutManager = new LinearLayoutManager(getContext());
-        layoutChoosen = LINEAR_LAYOUT_MANAGER;
-        ManagerPreferences.setLinearLayoutManager(getContext(),layoutChoosen);
-        rvListExchange.setLayoutManager(layoutManager);
-        rvListExchange.setHasFixedSize(true);
-        rvListExchange.setAdapter(exchangeRateAdapter);
-    }
+//
+//    @OnClick(R.id.iv_recycler_layout_grid)
+//    void onClickLayoutOne(){
+//        iconChoosed = getDrawableId(imageViewTwo);
+//        imageViewOne.setVisibility(View.GONE);
+//        imageViewTwo.setVisibility(View.VISIBLE);
+//        layoutManager = new GridLayoutManager(getContext(), 2);
+//        layoutChoosen = GRID_LAYOUT_MANAGER;
+//        ManagerPreferences.setGridLayoutManager(getContext(),layoutChoosen);
+//        rvListExchange.setLayoutManager(layoutManager);
+//        rvListExchange.setHasFixedSize(false);
+//        rvListExchange.setAdapter(exchangeRateAdapter);
+//    }
+//
+//    @OnClick(R.id.iv_recycler_layout_linear)
+//    void onClickLayoutTwo(){
+//        iconChoosed = getDrawableId(imageViewOne);
+//        imageViewOne.setVisibility(View.VISIBLE);
+//        imageViewTwo.setVisibility(View.GONE);
+//        layoutManager = new LinearLayoutManager(getContext());
+//        layoutChoosen = LINEAR_LAYOUT_MANAGER;
+//        ManagerPreferences.setLinearLayoutManager(getContext(),layoutChoosen);
+//        rvListExchange.setLayoutManager(layoutManager);
+//        rvListExchange.setHasFixedSize(true);
+//        rvListExchange.setAdapter(exchangeRateAdapter);
+//    }
 
     public CoinsContract.ListenerLayout listenerLayout(){
         return () -> layoutChoosen.equals(GRID_LAYOUT_MANAGER);
@@ -258,12 +263,12 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         return (Integer) iv.getTag();
     }
 
-    public void saveUserPreferences(){
-        if (layoutChoosen.equals(GRID_LAYOUT_MANAGER)){
-            onClickLayoutOne();
-        }else{
-            onClickLayoutTwo();
-        }
-    }
+//    public void saveUserPreferences(){
+//        if (layoutChoosen.equals(GRID_LAYOUT_MANAGER)){
+//            onClickLayoutOne();
+//        }else{
+//            onClickLayoutTwo();
+//        }
+//    }
 
 }

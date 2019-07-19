@@ -28,29 +28,29 @@
             android:textSize="15sp"
             android:textStyle="bold"/>
 
-        <ImageView
-            android:id="@+id/iv_recycler_layout_grid"
-            android:padding="10dp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/icn_grid_manager"
-            android:layout_marginEnd="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_recycler_layout_grid"-->
+            <!--android:padding="10dp"-->
+            <!--android:visibility="visible"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--android:src="@drawable/icn_grid_manager"-->
+            <!--android:layout_marginEnd="15dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
 
-        <ImageView
-            android:id="@+id/iv_recycler_layout_linear"
-            android:visibility="gone"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/icn_linear_manager"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_recycler_layout_linear"-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_marginEnd="15dp"-->
+            <!--android:src="@drawable/icn_linear_manager"-->
+            <!--android:padding="10dp"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.Toolbar>

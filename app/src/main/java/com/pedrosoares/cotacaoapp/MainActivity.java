@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
         bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
 
 
-        setFragment(R.id.frame_main_activity, new ExchangeListFragment(), this);
+        //setFragment(R.id.frame_main_activity, new ExchangeListFragment(), this);
 
     }
 

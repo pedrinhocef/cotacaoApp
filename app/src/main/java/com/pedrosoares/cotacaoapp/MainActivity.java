@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.android.vending.billing.IInAppBillingService;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.pedrosoares.cotacaoapp.core.base.BaseActivity;
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.TabAdapter;
@@ -24,16 +26,26 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar_exchange)
-    Toolbar includeToolbarExchange;
+//    @Bind(R.id.toolbar_exchange)
+//    Toolbar includeToolbarExchange;
+
+//    @Bind(R.id.tabLayout)
+//    TabLayout tabLayout;
+//
+//    @Bind(R.id.viewPager)
+//    ViewPager viewPager;
+
+//    @Bind(R.id.ad_view)
+    AdView adView;
+
 
     private TabAdapter adapter;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
 
     ServiceConnection mServiceConn;
     IInAppBillingService mService;
     String Product_ID = "product_button_click";
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +72,10 @@ public class MainActivity extends BaseActivity {
         serviceIntent.setPackage("com.android.vending");
         bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
 
+        adView = findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
 
 
         //setFragment(R.id.frame_main_activity, new ExchangeListFragment(), this);
@@ -70,7 +86,9 @@ public class MainActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
 
-        //includeToolbarExchange.setVisibility(View.VISIBLE);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+
         adapter = new TabAdapter(getSupportFragmentManager());
         adapter.addFragment(new ExchangeListFragment(),"LISTA DE MOEDAS");
         adapter.addFragment(new DetailFragment(),"DETALHES");
@@ -78,6 +96,8 @@ public class MainActivity extends BaseActivity {
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+
     }
 
     @Override

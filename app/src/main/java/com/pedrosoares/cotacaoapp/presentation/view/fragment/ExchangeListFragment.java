@@ -46,11 +46,11 @@ import butterknife.OnClick;
 public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPresenter> implements CoinsContract.CoinsListView {
 
     //region BINDS
-    @Bind(R.id.rv_list_exchange)
-    RecyclerView rvListExchange;
+//    @Bind(R.id.rv_list_exchange)
+//    RecyclerView rvListExchange;
 
-    @Bind(R.id.fragment_error)
-    View includeLayoutError;
+//    @Bind(R.id.fragment_error)
+//    View includeLayoutError;
 
 //    @Bind(R.id.iv_recycler_layout_grid)
 //    ImageView imageViewOne;
@@ -58,17 +58,15 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 //    @Bind(R.id.iv_recycler_layout_linear)
 //    ImageView imageViewTwo;
 
-    @Bind(R.id.fragment_loading)
-    View includeLayoutLoading;
+//    @Bind(R.id.fragment_loading)
+//    View includeLayoutLoading;
 
-    @Bind(R.id.tv_last_update)
-    TextView lastUpdate;
+//    @Bind(R.id.tv_last_update)
+//    TextView lastUpdate;
 
-    @Bind(R.id.swipe_refresh)
-    SwipeRefreshLayout swipeRefresh;
+//    @Bind(R.id.swipe_refresh)
+//    SwipeRefreshLayout swipeRefresh;
 
-    @Bind(R.id.ad_view)
-    AdView adView;
     //endregion
 
     private static final String LINEAR_LAYOUT_MANAGER = "LINEAR";
@@ -81,20 +79,25 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     int iconChoosed;
     String layoutChoosen;
 
+    TextView lastUpdate;
+    RecyclerView rvListExchange;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_exchange_list, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_exchange_list, container, false);
+        lastUpdate = view.findViewById(R.id.tv_last_update);
+        rvListExchange = view.findViewById(R.id.rv_list_exchange);
+        return view;
 
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, getActivity());
 
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        ButterKnife.bind(this, getActivity());
 
         initUi();
     }
@@ -112,19 +115,20 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
                 Snackbar.make(getView(), "Sem Conexão", 1000).show();
         }
 
-        swipeRefresh.setOnRefreshListener(() ->  {
-            swipeRefresh.setColorSchemeResources(android.R.color.holo_green_dark);
-            initUi();
-            swipeRefresh.setRefreshing(false);
-        });
+//        swipeRefresh.setOnRefreshListener(() ->  {
+//            swipeRefresh.setColorSchemeResources(android.R.color.holo_green_dark);
+//            initUi();
+//            swipeRefresh.setRefreshing(false);
+//        });
 
     }
 
     private void initUi(){
+
         presenter.fetchCoins();
         coinsDomainList = new ArrayList<>();
         exchangeRateAdapter = new ExchangeRateAdapter(getContext(), coinsDomainList, listenerLayout());
-        rvListExchange.setAdapter(exchangeRateAdapter);
+        //rvListExchange.setAdapter(exchangeRateAdapter);
 
 //        imageViewOne.setTag(R.drawable.icn_grid_manager);
 //        imageViewTwo.setTag(R.drawable.icn_linear_manager);
@@ -132,7 +136,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
         layoutManager = new LinearLayoutManager(getContext());
         layoutChoosen = LINEAR_LAYOUT_MANAGER;
-        //ManagerPreferences.setLinearLayoutManager(getContext(),layoutChoosen);
+        ManagerPreferences.setLinearLayoutManager(getContext(),layoutChoosen);
         rvListExchange.setLayoutManager(layoutManager);
         rvListExchange.setHasFixedSize(true);
         rvListExchange.setAdapter(exchangeRateAdapter);
@@ -154,7 +158,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     @Override
     public void populateCoins(CoinsDomain coinsDomain) {
-        if (getContext() != null) swipeRefresh.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background));
+        //if (getContext() != null) swipeRefresh.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background));
         addCoinsToArray(coinsDomain);
         lastUpdate.setText(getString(R.string.last_update).concat(" "+ changeDateFormat(coinsDomain.getBTC().getCreateDate())));
         exchangeRateAdapter.notifyDataSetChanged();
@@ -198,16 +202,16 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     public void success() {
         lastUpdate.setVisibility(View.VISIBLE);
         rvListExchange.setVisibility(View.VISIBLE);
-        includeLayoutLoading.setVisibility(View.GONE);
-        includeLayoutError.setVisibility(View.GONE);
+//        includeLayoutLoading.setVisibility(View.GONE);
+//        includeLayoutError.setVisibility(View.GONE);
         //includeToolbarExchange.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void loading() {
         lastUpdate.setVisibility(View.GONE);
-        includeLayoutLoading.setVisibility(View.VISIBLE);
-        includeLayoutError.setVisibility(View.GONE);
+//        includeLayoutLoading.setVisibility(View.VISIBLE);
+//        includeLayoutError.setVisibility(View.GONE);
         rvListExchange.setVisibility(View.GONE);
         //includeToolbarExchange.setVisibility(View.VISIBLE);
     }
@@ -215,18 +219,18 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
     @Override
     public void error() {
         lastUpdate.setText("");
-        if (getActivity() != null) swipeRefresh.setBackgroundColor(getActivity().getResources().getColor(R.color.color_white));
-        includeLayoutError.setVisibility(View.VISIBLE);
-        includeLayoutLoading.setVisibility(View.GONE);
+//        if (getActivity() != null) swipeRefresh.setBackgroundColor(getActivity().getResources().getColor(R.color.color_white));
+//        includeLayoutError.setVisibility(View.VISIBLE);
+//        includeLayoutLoading.setVisibility(View.GONE);
         rvListExchange.setVisibility(View.GONE);
         //includeToolbarExchange.setVisibility(View.GONE);
     }
 
 
-    @OnClick(R.id.image_refresh)
-    void onClickReload(){
-        presenter.fetchCoins();
-    }
+//    @OnClick(R.id.image_refresh)
+//    void onClickReload(){
+//        presenter.fetchCoins();
+//    }
 
 //
 //    @OnClick(R.id.iv_recycler_layout_grid)
@@ -259,9 +263,9 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         return () -> layoutChoosen.equals(GRID_LAYOUT_MANAGER);
     }
 
-    private int getDrawableId(ImageView iv) {
-        return (Integer) iv.getTag();
-    }
+//    private int getDrawableId(ImageView iv) {
+//        return (Integer) iv.getTag();
+//    }
 
 //    public void saveUserPreferences(){
 //        if (layoutChoosen.equals(GRID_LAYOUT_MANAGER)){

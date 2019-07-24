@@ -51,9 +51,34 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_last_update"
+        app:layout_constraintBottom_toTopOf="@+id/ad_view"
         tools:listitem="@layout/layout_item_exchange_linear" />
 
+    <!--<com.google.android.gms.ads.AdView-->
+        <!--xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+        <!--android:id="@+id/ad_view"-->
+        <!--android:layout_marginBottom="12dp"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--ads:layout_constraintStart_toStartOf="parent"-->
+        <!--ads:layout_constraintEnd_toEndOf="parent"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--ads:adSize="BANNER"-->
+        <!--ads:adUnitId="@string/id_banner"/>-->
 
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ad_view"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/id_banner"/>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -37,8 +37,7 @@ public class ExchangeRateAdapter extends RecyclerView.Adapter<BaseViewHolder>{
     private List<Object> coinsDomainList;
     private CoinsContract.ListenerLayout listenerLayout;
 
-    public ExchangeRateAdapter(Context context, List<Object> coinsDomainList, CoinsContract.ListenerLayout listenerLayout){
-        this.listenerLayout = listenerLayout;
+    public ExchangeRateAdapter(Context context, List<Object> coinsDomainList){
         this.context = context;
         this.coinsDomainList = coinsDomainList;
     }
@@ -46,11 +45,11 @@ public class ExchangeRateAdapter extends RecyclerView.Adapter<BaseViewHolder>{
     @NonNull
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        if (listenerLayout.verifyLayout()) {
-            view = LayoutInflater.from(context).inflate(R.layout.layout_item_exchange_grid, parent, false);
-        } else {
-            view = LayoutInflater.from(context).inflate(R.layout.layout_item_exchange_linear, parent, false);
-        }
+//        if (listenerLayout.verifyLayout()) {
+//            view = LayoutInflater.from(context).inflate(R.layout.layout_item_exchange_grid, parent, false);
+//        } else {
+        view = LayoutInflater.from(context).inflate(R.layout.layout_item_exchange_linear, parent, false);
+//        }
 
         switch(viewType){
             case USD_COIN: {

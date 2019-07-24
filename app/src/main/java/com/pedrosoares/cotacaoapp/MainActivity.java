@@ -8,12 +8,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.android.vending.billing.IInAppBillingService;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.pedrosoares.cotacaoapp.core.base.BaseActivity;
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.TabAdapter;
@@ -21,7 +18,6 @@ import com.pedrosoares.cotacaoapp.presentation.view.fragment.DetailFragment;
 import com.pedrosoares.cotacaoapp.presentation.view.fragment.ExchangeListFragment;
 import com.pedrosoares.cotacaoapp.presentation.view.fragment.SettingsFragment;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
@@ -31,12 +27,11 @@ public class MainActivity extends BaseActivity {
 
 //    @Bind(R.id.tabLayout)
 //    TabLayout tabLayout;
-//
+//m
 //    @Bind(R.id.viewPager)
 //    ViewPager viewPager;
 
-//    @Bind(R.id.ad_view)
-    AdView adView;
+    private SwipeRefreshLayout swipeRefresh;
 
 
     private TabAdapter adapter;
@@ -72,9 +67,6 @@ public class MainActivity extends BaseActivity {
         serviceIntent.setPackage("com.android.vending");
         bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
 
-        adView = findViewById(R.id.ad_view);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
 
 
 
@@ -86,17 +78,29 @@ public class MainActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
 
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+        swipeRefresh = findViewById(R.id.swipe_refresh);
 
         adapter = new TabAdapter(getSupportFragmentManager());
         adapter.addFragment(new ExchangeListFragment(),"LISTA DE MOEDAS");
         adapter.addFragment(new DetailFragment(),"DETALHES");
-        adapter.addFragment(new SettingsFragment(),"CONFIGURAÇÕES");
+        adapter.addFragment(new SettingsFragment(),"");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(2).setIcon(R.drawable.icn_grid_manager);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        swipeRefresh.setOnRefreshListener(() ->  {
+            swipeRefresh.setColorSchemeResources(android.R.color.holo_green_dark);
+            //initUi();
+            swipeRefresh.setRefreshing(false);
+        });
 
     }
 

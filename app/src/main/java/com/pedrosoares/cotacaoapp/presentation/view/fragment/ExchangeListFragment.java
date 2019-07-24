@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.pedrosoares.cotacaoapp.MainActivity;
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment;
 import com.pedrosoares.cotacaoapp.data.preferences.ManagerPreferences;
@@ -81,6 +82,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     TextView lastUpdate;
     RecyclerView rvListExchange;
+    private AdView adView;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -89,6 +92,10 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         View view = inflater.inflate(R.layout.fragment_exchange_list, container, false);
         lastUpdate = view.findViewById(R.id.tv_last_update);
         rvListExchange = view.findViewById(R.id.rv_list_exchange);
+        adView = view.findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
         return view;
 
     }
@@ -127,28 +134,32 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
         presenter.fetchCoins();
         coinsDomainList = new ArrayList<>();
-        exchangeRateAdapter = new ExchangeRateAdapter(getContext(), coinsDomainList, listenerLayout());
-        //rvListExchange.setAdapter(exchangeRateAdapter);
+        exchangeRateAdapter = new ExchangeRateAdapter(getActivity(), coinsDomainList);
+        rvListExchange.setAdapter(exchangeRateAdapter);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        rvListExchange.setHasFixedSize(true);
+        rvListExchange.setLayoutManager(layoutManager);
 
 //        imageViewOne.setTag(R.drawable.icn_grid_manager);
 //        imageViewTwo.setTag(R.drawable.icn_linear_manager);
 //        iconChoosed = getDrawableId(imageViewOne);
 
-        layoutManager = new LinearLayoutManager(getContext());
-        layoutChoosen = LINEAR_LAYOUT_MANAGER;
-        ManagerPreferences.setLinearLayoutManager(getContext(),layoutChoosen);
-        rvListExchange.setLayoutManager(layoutManager);
-        rvListExchange.setHasFixedSize(true);
-        rvListExchange.setAdapter(exchangeRateAdapter);
+//        layoutManager = new LinearLayoutManager(getContext());
+//        layoutChoosen = LINEAR_LAYOUT_MANAGER;
+//        ManagerPreferences.setLinearLayoutManager(getContext(),layoutChoosen);
+//        rvListExchange.setLayoutManager(layoutManager);
+//        rvListExchange.setHasFixedSize(true);
+//        rvListExchange.setAdapter(exchangeRateAdapter);
 
-        if (layoutChoosen == null){
-            layoutChoosen = LINEAR_LAYOUT_MANAGER;
-        }
-        if (getContext() != null) {
-            layoutChoosen = ManagerPreferences.getLayoutManagerRecycler(getContext(), layoutChoosen);
-            Log.i(LAYOUT_MANAGER,layoutChoosen);
-            //saveUserPreferences();
-        }
+//        if (layoutChoosen == null){
+//            layoutChoosen = LINEAR_LAYOUT_MANAGER;
+//        }
+//        if (getContext() != null) {
+//            layoutChoosen = ManagerPreferences.getLayoutManagerRecycler(getContext(), layoutChoosen);
+//            Log.i(LAYOUT_MANAGER,layoutChoosen);
+//            //saveUserPreferences();
+//        }
     }
 
     @Override

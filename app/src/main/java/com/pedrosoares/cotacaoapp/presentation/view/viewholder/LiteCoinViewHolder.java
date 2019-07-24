@@ -13,16 +13,16 @@ import butterknife.Bind;
 
 public class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
 
-    @Bind(R.id.tv_coin_name)
+    //@Bind(R.id.tv_coin_name)
      TextView tvCoinName;
 
-    @Bind(R.id.tv_coin_value)
+    //@Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
-    @Bind(R.id.tv_high)
+    //@Bind(R.id.tv_high)
     TextView tvHighPrice;
 
-    @Bind(R.id.tv_low)
+    //@Bind(R.id.tv_low)
     TextView tvLowPrice;
 
     private Context context;
@@ -34,6 +34,11 @@ public class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
 
     @Override
     public void bind(LTCDomain type) {
+        tvCoinName = itemView.findViewById(R.id.tv_coin_name);
+        tvCoinValue = itemView.findViewById(R.id.tv_coin_value);
+        tvHighPrice = itemView.findViewById(R.id.tv_high);
+        tvLowPrice = itemView.findViewById(R.id.tv_low);
+
         tvCoinName.setText(type.getName());
         formatValue(tvCoinValue,type.getBid());
         formatValue(tvLowPrice,type.getLow());

@@ -13,16 +13,16 @@ import butterknife.Bind;
 
 public class PesoArgentineViewHolder extends BaseViewHolder<ARSDomain> {
 
-    @Bind(R.id.tv_coin_name)
+    //@Bind(R.id.tv_coin_name)
      TextView tvCoinName;
 
-    @Bind(R.id.tv_coin_value)
+    //@Bind(R.id.tv_coin_value)
      TextView tvCoinValue;
 
-    @Bind(R.id.tv_high)
+    //@Bind(R.id.tv_high)
     TextView tvHighPrice;
 
-    @Bind(R.id.tv_low)
+    //@Bind(R.id.tv_low)
     TextView tvLowPrice;
 
     private Context context;
@@ -34,6 +34,11 @@ public class PesoArgentineViewHolder extends BaseViewHolder<ARSDomain> {
 
     @Override
     public void bind(ARSDomain arsDomain) {
+        tvCoinName = itemView.findViewById(R.id.tv_coin_name);
+        tvCoinValue = itemView.findViewById(R.id.tv_coin_value);
+        tvHighPrice = itemView.findViewById(R.id.tv_high);
+        tvLowPrice = itemView.findViewById(R.id.tv_low);
+
         tvCoinName.setText(context.getString(R.string.argentine_coin));
         formatValue(tvCoinValue,arsDomain.getBid());
         formatValue(tvLowPrice,arsDomain.getLow());

@@ -1,57 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <include
+        android:id="@+id/fragment_error"
+        layout="@layout/fragment_error"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/fragment_loading"
+        layout="@layout/fragment_loading"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/toolbar_exchange"
+        layout="@layout/toolbar_exchange"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_exchange"
+        android:minHeight="?actionBarSize"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="#fff"
+        app:tabIndicatorHeight="4dp"
+        app:tabBackground="@color/colorPrimary"
+        app:tabMode="fixed"/>
 
-        <include
-            android:id="@+id/fragment_error"
-            layout="@layout/fragment_error"
-            android:visibility="gone" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-        <include
-            android:id="@+id/fragment_loading"
-            layout="@layout/fragment_loading"
-            android:visibility="gone" />
+</android.support.constraint.ConstraintLayout>
 
-        <include
-            android:id="@+id/toolbar_exchange"
-            layout="@layout/toolbar_exchange"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_exchange"
-            android:minHeight="?actionBarSize"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="#fff"
-            app:tabIndicatorHeight="4dp"
-            app:tabBackground="@color/colorPrimary"
-            app:tabMode="fixed"/>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </android.support.constraint.ConstraintLayout>
-
-
-</android.support.v4.widget.SwipeRefreshLayout>

@@ -27,11 +27,11 @@ public class MainActivity extends BaseActivity {
 
 //    @Bind(R.id.tabLayout)
 //    TabLayout tabLayout;
-//m
+//
 //    @Bind(R.id.viewPager)
 //    ViewPager viewPager;
 
-    private SwipeRefreshLayout swipeRefresh;
+
 
 
     private TabAdapter adapter;
@@ -67,9 +67,6 @@ public class MainActivity extends BaseActivity {
         serviceIntent.setPackage("com.android.vending");
         bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
 
-
-
-
         //setFragment(R.id.frame_main_activity, new ExchangeListFragment(), this);
 
     }
@@ -80,7 +77,6 @@ public class MainActivity extends BaseActivity {
 
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
-        swipeRefresh = findViewById(R.id.swipe_refresh);
 
         adapter = new TabAdapter(getSupportFragmentManager());
         adapter.addFragment(new ExchangeListFragment(),"LISTA DE MOEDAS");
@@ -92,17 +88,7 @@ public class MainActivity extends BaseActivity {
         tabLayout.getTabAt(2).setIcon(R.drawable.icn_grid_manager);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-        swipeRefresh.setOnRefreshListener(() ->  {
-            swipeRefresh.setColorSchemeResources(android.R.color.holo_green_dark);
-            //initUi();
-            swipeRefresh.setRefreshing(false);
-        });
-
-    }
 
     @Override
     public void onBackPressed(){

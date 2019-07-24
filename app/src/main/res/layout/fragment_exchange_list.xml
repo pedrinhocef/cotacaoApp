@@ -1,85 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background"
+    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/tv_last_update"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_light"
-        android:padding="5dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/background_light"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/fragment_loading"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <ImageView
-        android:id="@+id/image_perfil_capa_efeito"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/grey_strong"
-        android:scaleType="centerCrop"
-        android:visibility="visible"
-        android:contentDescription="@string/image_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_last_update" />
-
-    <include
-        android:id="@+id/fragment_error"
-        layout="@layout/fragment_error"
-        android:visibility="gone" />
-
-    <include
-        android:id="@+id/fragment_loading"
-        layout="@layout/fragment_loading"
-        android:visibility="gone" />
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list_exchange"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_last_update"
-        app:layout_constraintBottom_toTopOf="@+id/ad_view"
-        tools:listitem="@layout/layout_item_exchange_linear" />
-
-    <!--<com.google.android.gms.ads.AdView-->
-        <!--xmlns:ads="http://schemas.android.com/apk/res-auto"-->
-        <!--android:id="@+id/ad_view"-->
-        <!--android:layout_marginBottom="12dp"-->
-        <!--android:layout_marginTop="12dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--ads:layout_constraintStart_toStartOf="parent"-->
-        <!--ads:layout_constraintEnd_toEndOf="parent"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--ads:adSize="BANNER"-->
-        <!--ads:adUnitId="@string/id_banner"/>-->
-
-
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/ad_view"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintEnd_toEndOf="parent"
+    android:layout_height="wrap_content">
+    <android.support.constraint.ConstraintLayout
+        android:background="@drawable/background"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/id_banner"/>
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_last_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_light"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/fragment_loading"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+            android:id="@+id/image_perfil_capa_efeito"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/grey_strong"
+            android:scaleType="centerCrop"
+            android:visibility="visible"
+            android:contentDescription="@string/image_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_last_update" />
+
+        <include
+            android:id="@+id/fragment_error"
+            layout="@layout/fragment_error"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/fragment_loading"
+            layout="@layout/fragment_loading"
+            android:visibility="gone" />
 
 
-</android.support.constraint.ConstraintLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list_exchange"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_last_update"
+            app:layout_constraintBottom_toTopOf="@+id/ad_view"
+            tools:listitem="@layout/layout_item_exchange_linear" />
+
+        <!--<com.google.android.gms.ads.AdView-->
+            <!--xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+            <!--android:id="@+id/ad_view"-->
+            <!--android:layout_marginBottom="12dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--ads:layout_constraintStart_toStartOf="parent"-->
+            <!--ads:layout_constraintEnd_toEndOf="parent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--ads:adSize="BANNER"-->
+            <!--ads:adUnitId="@string/id_banner"/>-->
+
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ad_view"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            ads:layout_constraintStart_toStartOf="parent"
+            ads:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/id_banner"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
 

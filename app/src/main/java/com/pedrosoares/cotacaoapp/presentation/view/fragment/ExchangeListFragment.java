@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -77,7 +78,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     TextView lastUpdate;
     RecyclerView rvListExchange;
-    AdView adView;
+    Button adView;
 
 
     @Override
@@ -94,8 +95,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         imageRefreshError = view.findViewById(R.id.image_refresh);
 
         adView = view.findViewById(R.id.ad_view);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        adView.loadAd(adRequest);
 
         return view;
 

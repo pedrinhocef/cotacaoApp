@@ -17,7 +17,8 @@
 
     <string name="id_app">ca-app-pub-5636473178706347~6209036855</string>
     <string name="id_banner">ca-app-pub-5636473178706347/2078220152</string>
-
+    <string name="btn_save">Salvar</string>
+    <string name="alert_exchange">Quero ser avisado, quando o cambio chegar em</string>
 
 
 </resources>

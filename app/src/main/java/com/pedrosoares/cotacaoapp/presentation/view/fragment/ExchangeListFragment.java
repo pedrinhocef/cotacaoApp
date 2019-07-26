@@ -78,7 +78,7 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
 
     TextView lastUpdate;
     RecyclerView rvListExchange;
-    Button adView;
+    AdView adView;
 
 
     @Override
@@ -95,8 +95,8 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         imageRefreshError = view.findViewById(R.id.image_refresh);
 
         adView = view.findViewById(R.id.ad_view);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        adView.loadAd(adRequest);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         return view;
 

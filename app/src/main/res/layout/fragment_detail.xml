@@ -31,7 +31,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:textColor="@color/color_white"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -44,7 +44,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:textColor="@color/color_white"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:gravity="center"
@@ -57,7 +57,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:textColor="@color/color_white"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:gravity="center"
@@ -65,20 +65,24 @@
             android:text="@string/alert_exchange" />
 
         <ImageView
+            android:id="@+id/iv_minus"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_currency_exchange"
-            android:layout_marginTop="45dp"
-            android:layout_marginStart="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.12"
+            android:layout_marginTop="35dp"
             android:src="@mipmap/ic_launcher"
             android:layout_width="wrap_content"
             android:layout_height="35dp" />
         <ImageView
+            android:id="@+id/iv_add"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/tv_currency_exchange"
-            android:layout_marginTop="45dp"
-            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.90"
+            android:layout_marginTop="35dp"
             android:src="@mipmap/ic_launcher"
             android:layout_width="wrap_content"
             android:layout_height="35dp" />
@@ -120,7 +124,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/btn_save" />
-    </android.support.constraint.ConstraintLayout>
+        
 
+        
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>

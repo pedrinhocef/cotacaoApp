@@ -4,9 +4,9 @@ import com.pedrosoares.cotacaoapp.model.domain.CurrencyDomain;
 
 import io.reactivex.Observable;
 
-public interface CoinsModelContract {
+public interface CurrencyModelContract {
 
-    interface CoinsUseCase{
+    interface CurrencyUseCase {
         Observable<CurrencyDomain> getCurrency();
     }
 }

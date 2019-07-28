@@ -1,7 +1,7 @@
 package com.pedrosoares.cotacaoapp.presentation.presenter
 
 import com.pedrosoares.cotacaoapp.core.base.BasePresenter
-import com.pedrosoares.cotacaoapp.model.usecase.CoinsUseCase
+import com.pedrosoares.cotacaoapp.model.usecase.CurrencyUseCase
 import com.pedrosoares.cotacaoapp.presentation.CurrencyContract
 
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 
 class CurrencyPresenter(private val view: CurrencyContract.CurrencyListView) : BasePresenter(), CurrencyContract.CurrencyListPresenter {
 
-    private val useCase = CoinsUseCase()
+    private val useCase = CurrencyUseCase()
 
     override fun fetchCurrency() {
         view.loading()

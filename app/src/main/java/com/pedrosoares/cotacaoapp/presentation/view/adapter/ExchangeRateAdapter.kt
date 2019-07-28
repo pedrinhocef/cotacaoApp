@@ -9,7 +9,7 @@ import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder
 import com.pedrosoares.cotacaoapp.model.domain.*
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.*
 
-class ExchangeRateAdapter(val context: Context, val coinsDomainList: List<Any>) : RecyclerView.Adapter<BaseViewHolder<*>>() {
+class ExchangeRateAdapter(val context: Context, val currencyDomainList: List<Any>) : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
 
@@ -29,16 +29,16 @@ class ExchangeRateAdapter(val context: Context, val coinsDomainList: List<Any>) 
 
     @Suppress("UNCHECKED_CAST")
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
-        (holder as BaseViewHolder<Any>).bind(coinsDomainList[position])
+        (holder as BaseViewHolder<Any>).bind(currencyDomainList[position])
     }
 
 
-    override fun getItemCount() = coinsDomainList.size
+    override fun getItemCount() = currencyDomainList.size
 
 
     override fun getItemViewType(position: Int): Int {
 
-        return when (coinsDomainList[position]) {
+        return when (currencyDomainList[position]) {
             is BTCDomain -> BITCOIN
             is EURDomain -> EURO_CURRENCY
             is USDTDomain -> USD_CURRENCY

@@ -4,10 +4,12 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import com.pedrosoares.cotacaoapp.R
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder
 import com.pedrosoares.cotacaoapp.model.domain.*
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.*
+
 
 class ExchangeRateAdapter(val context: Context, val currencyDomainList: List<Any>) : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
@@ -22,7 +24,7 @@ class ExchangeRateAdapter(val context: Context, val currencyDomainList: List<Any
             LITECOIN -> LiteCoinViewHolder(view)
             GBP -> LibraViewHolder(view)
             ARS -> PesoArgentineViewHolder(view)
-            else ->  throw IllegalArgumentException("Invalid view type")
+            else -> throw IllegalArgumentException("Invalid view type")
         }
     }
 

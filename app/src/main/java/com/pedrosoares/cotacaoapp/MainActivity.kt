@@ -10,7 +10,7 @@ import com.android.vending.billing.IInAppBillingService
 import com.google.android.gms.ads.MobileAds
 import com.pedrosoares.cotacaoapp.core.base.BaseActivity
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.TabAdapter
-import com.pedrosoares.cotacaoapp.presentation.view.fragment.DetailFragment
+import com.pedrosoares.cotacaoapp.presentation.view.fragment.ConverterFragment
 import com.pedrosoares.cotacaoapp.presentation.view.fragment.ExchangeListFragment
 import com.pedrosoares.cotacaoapp.presentation.view.fragment.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -50,14 +50,14 @@ class MainActivity : BaseActivity() {
 
         adapter = TabAdapter(supportFragmentManager)
         adapter?.let {
-            it.addFragment(ExchangeListFragment(), "LISTA DE MOEDAS")
-            it.addFragment(DetailFragment(), "DETALHES")
+            it.addFragment(ExchangeListFragment(), "COTAÇÃO")
+            it.addFragment(ConverterFragment(), "CONVERSOR")
             it.addFragment(SettingsFragment(), "")
         }
 
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
-        tabLayout.getTabAt(2)?.setIcon(R.drawable.icn_grid_manager)
+        tabLayout.getTabAt(2)?.setIcon(R.drawable.icn_settings)
     }
 
 

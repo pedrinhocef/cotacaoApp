@@ -9,19 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import com.google.android.gms.ads.AdRequest
 import com.pedrosoares.cotacaoapp.R
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment
-import com.pedrosoares.cotacaoapp.model.domain.ARSDomain
-import com.pedrosoares.cotacaoapp.model.domain.BTCDomain
-import com.pedrosoares.cotacaoapp.model.domain.CurrencyDomain
-import com.pedrosoares.cotacaoapp.model.domain.EURDomain
-import com.pedrosoares.cotacaoapp.model.domain.GBPDomain
-import com.pedrosoares.cotacaoapp.model.domain.LTCDomain
-import com.pedrosoares.cotacaoapp.model.domain.USDDomain
+import com.pedrosoares.cotacaoapp.model.domain.*
 import com.pedrosoares.cotacaoapp.presentation.CurrencyContract
 import com.pedrosoares.cotacaoapp.presentation.presenter.CurrencyPresenter
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateAdapter
+import com.pedrosoares.cotacaoapp.presentation.view.adapter.OnItemClickListener
 
 import java.text.SimpleDateFormat
 import java.util.ArrayList
@@ -33,38 +27,35 @@ import kotlinx.android.synthetic.main.fragment_exchange_list.*
 class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter>(), CurrencyContract.CurrencyListView {
 
 
-    private var exchangeRateAdapter: ExchangeRateAdapter? = null
-    private var currencyDomainList: MutableList<Any>? = null
+    private lateinit var exchangeRateAdapter: ExchangeRateAdapter
+    private lateinit var currencyDomainList: MutableList<Any>
 
+    override fun createPresenter() = CurrencyPresenter(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_exchange_list, container, false)
+        //adView.loadAd(AdRequest.Builder().build())
 
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
-
-        return view
+        return inflater.inflate(R.layout.fragment_exchange_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        imageRefreshError.setOnClickListener { v -> presenter!!.fetchCurrency() }
+
+        imageRefreshError.setOnClickListener { presenter!!.fetchCurrency() }
 
         initUi()
     }
 
     override fun onResume() {
         super.onResume()
+
         if (isConnected) {
-            if (view != null) {
-                Snackbar.make(view!!, "Conectado", 1000).show()
-                //saveUserPreferences();
-            }
+            view.let{ Snackbar.make(view!!, "Conectado", 1000).show() }
+
         } else {
-            if (view != null)
-                Snackbar.make(view!!, "Sem Conexão", 1000).show()
+            view.let{ Snackbar.make(view!!, "Sem Conexão", 1000).show() }
         }
 
 
@@ -80,23 +71,22 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
 
         presenter!!.fetchCurrency()
         currencyDomainList = ArrayList()
-        exchangeRateAdapter = ExchangeRateAdapter(context!!, currencyDomainList!!)
-        rvListExchange.adapter = exchangeRateAdapter
+        exchangeRateAdapter = ExchangeRateAdapter(context!!, currencyDomainList)
 
-        val layoutManager = LinearLayoutManager(activity)
-        rvListExchange.setHasFixedSize(true)
-        rvListExchange.layoutManager = layoutManager
-
-
+        with(rvListExchange){
+            adapter = exchangeRateAdapter
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(activity)
+        }
     }
 
-    override fun createPresenter() = CurrencyPresenter(this)
+
 
     override fun populateCurrency(currencyDomain: CurrencyDomain) {
         if (context != null) swipeRefresh.background = ContextCompat.getDrawable(context!!, R.drawable.background)
         addCurrencyToArray(currencyDomain)
         tvLastUpdate.text = getString(R.string.last_update) + (" " + currencyDomain.btc?.createDate?.let { changeDateFormat(it) })
-        exchangeRateAdapter!!.notifyDataSetChanged()
+        exchangeRateAdapter.notifyDataSetChanged()
     }
 
     private fun addCurrencyToArray(currencyDomain: CurrencyDomain) {
@@ -128,12 +118,14 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
     }
 
     private fun defineCardsPosition(ars: ARSDomain, btc: BTCDomain, usd: USDDomain, ltc: LTCDomain, eur: EURDomain, gbp: GBPDomain) {
-        currencyDomainList!!.add(0, usd)
-        currencyDomainList!!.add(1, eur)
-        currencyDomainList!!.add(2, gbp)
-        currencyDomainList!!.add(3, ars)
-        currencyDomainList!!.add(4, btc)
-        currencyDomainList!!.add(5, ltc)
+        with(currencyDomainList) {
+            add(0, usd)
+            add(1, eur)
+            add(2, gbp)
+            add(3, ars)
+            add(4, btc)
+            add(5, ltc)
+        }
     }
 
     override fun success() {
@@ -141,7 +133,6 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
         rvListExchange.visibility = View.VISIBLE
         includeLayoutLoading.visibility = View.GONE
         includeLayoutError.visibility = View.GONE
-        //includeToolbarExchange.setVisibility(View.VISIBLE);
     }
 
     override fun loading() {

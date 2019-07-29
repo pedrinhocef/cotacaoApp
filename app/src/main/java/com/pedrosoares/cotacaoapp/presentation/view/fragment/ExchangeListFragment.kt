@@ -15,7 +15,6 @@ import com.pedrosoares.cotacaoapp.model.domain.*
 import com.pedrosoares.cotacaoapp.presentation.CurrencyContract
 import com.pedrosoares.cotacaoapp.presentation.presenter.CurrencyPresenter
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateAdapter
-import com.pedrosoares.cotacaoapp.presentation.view.adapter.OnItemClickListener
 
 import java.text.SimpleDateFormat
 import java.util.ArrayList
@@ -25,7 +24,6 @@ import kotlinx.android.synthetic.main.fragment_error.*
 import kotlinx.android.synthetic.main.fragment_exchange_list.*
 
 class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter>(), CurrencyContract.CurrencyListView {
-
 
     private lateinit var exchangeRateAdapter: ExchangeRateAdapter
     private lateinit var currencyDomainList: MutableList<Any>

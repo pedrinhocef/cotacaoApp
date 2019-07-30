@@ -20,11 +20,12 @@
             android:text="@string/exchange_title"
             fontPath="fonts/TIMSans-Bold.ttf"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textAllCaps="true"
             android:textColor="@color/color_white"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
 
         <!--<ImageView-->

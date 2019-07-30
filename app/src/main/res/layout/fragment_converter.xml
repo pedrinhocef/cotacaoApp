@@ -6,11 +6,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.fragment.DetailFragment">
+    tools:context=".presentation.view.fragment.ConverterFragment">
 
     <android.support.constraint.ConstraintLayout
-        android:padding="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="90dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
@@ -36,7 +35,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"
-            tools:text="USD" />
+            android:text="USD" />
         <TextView
             android:id="@+id/tv_full_name"
             android:layout_marginTop="10dp"
@@ -48,44 +47,33 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:gravity="center"
-            tools:text="Dólar Americano com IOF Turismo" />
-        <TextView
-            android:id="@+id/tv_alert_exchange"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_currency_exchange"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textColor="@color/color_white"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:text="@string/alert_exchange" />
+            android:text="Dólar Americano com IOF Turismo" />
+
 
         <ImageView
             android:id="@+id/iv_minus"
+            android:background="@drawable/click_settings"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.12"
-            android:layout_marginTop="35dp"
-            android:src="@mipmap/ic_launcher"
+            app:layout_constraintHorizontal_bias="0.2"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/icn_minus"
             android:layout_width="wrap_content"
-            android:layout_height="35dp" />
+            android:layout_height="wrap_content" />
         <ImageView
             android:id="@+id/iv_add"
+            android:background="@drawable/click_settings"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.90"
-            android:layout_marginTop="35dp"
-            android:src="@mipmap/ic_launcher"
+            app:layout_constraintHorizontal_bias="0.80"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/icn_add"
             android:layout_width="wrap_content"
-            android:layout_height="35dp" />
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tv_currency_exchange"
             app:layout_constraintTop_toTopOf="parent"
@@ -100,7 +88,7 @@
             android:textColor="@android:color/background_light"
             android:textSize="64sp"
             android:textStyle="bold"
-            tools:text="1,45" />
+            android:text="1,45" />
 
         <TextView
             app:layout_constraintTop_toBottomOf="@+id/tv_currency_exchange"
@@ -110,20 +98,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:gravity="center"
             android:textAlignment="center"
-            tools:text="1 USD = 3,453 BRL" />
+            android:text="1 USD = 3,453 BRL" />
 
-        <Button
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/greenStrong"
-            android:textColor="@android:color/background_light"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_save" />
+
         
 
         

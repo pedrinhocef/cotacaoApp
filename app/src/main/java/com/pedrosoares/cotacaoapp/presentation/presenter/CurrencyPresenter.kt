@@ -22,7 +22,7 @@ class CurrencyPresenter(private val view: CurrencyContract.CurrencyListView) : B
                         view.success()
                     }
                 },
-                        { error -> view.error() })
+                        { _ -> view.error() })
         compositeDisposable!!.add(disposable)
     }
 

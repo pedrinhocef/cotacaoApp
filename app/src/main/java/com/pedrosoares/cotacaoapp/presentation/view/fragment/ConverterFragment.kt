@@ -10,11 +10,12 @@ import android.widget.ArrayAdapter
 import com.pedrosoares.cotacaoapp.MainActivity
 import com.pedrosoares.cotacaoapp.R
 import kotlinx.android.synthetic.main.fragment_converter.*
-import kotlinx.android.synthetic.main.fragment_converter.view.*
+import java.text.DecimalFormat
 
 
 class ConverterFragment : Fragment(), AdapterView.OnItemSelectedListener{
 
+    lateinit var valueFormatted: String
     var currencyItemList = arrayOf("Dólar Americano", "Euro", "Peso Argentino","Libra")
     private var valueExchange = 1.00f
 
@@ -25,12 +26,10 @@ class ConverterFragment : Fragment(), AdapterView.OnItemSelectedListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.let {
-            //val currencyName = it.getString("name")
-            //val currencyValues = it.getString("value")
-        }
 
         initViews()
+
+        buttonClick()
     }
 
     private fun initViews() {
@@ -42,44 +41,56 @@ class ConverterFragment : Fragment(), AdapterView.OnItemSelectedListener{
     override fun onNothingSelected(parent: AdapterView<*>?) {}
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when (currencyItemList[position]) {
-            "Dólar Americano" -> tvFullName.text = "Dólar Americano com IOF Turismo"
-            "Euro" -> tvFullName.text = "Euro com IOF Turismo"
-            "Peso Argentino" -> tvFullName.text = "Peso Argentino com IOF Turismo"
-            "Libra" -> tvFullName.text = "Libra com IOF Turismo"
+            "Dólar Americano" -> tvFullName.text = getString(R.string.dolar_text)
+            "Euro" -> tvFullName.text = getString(R.string.euro_text)
+            "Peso Argentino" -> tvFullName.text = getString(R.string.peso_argentine_text)
+            "Libra" -> tvFullName.text = getString(R.string.gbp_text)
         }
     }
 
 
-    override fun onResume() {
-        super.onResume()
+
+    private fun buttonClick() {
+
+        arguments?.let {
+            val currency = it.getSerializable("currency")
+        }
+        val decimalFormat = DecimalFormat("#,###,###,##0.00")
+        //valueExchange.times()
+
+        val stringFormatted = context?.getString(R.string.real_symbol)
+
+
 
         ivMinus.setOnClickListener {
             val value = valueExchange - 0.01f
             valueExchange = value
-            tvCurrencyExchange.text = valueExchange.toString().replace(".",",")
-            when(tvFullName.text.toString()){
-                "Dólar Americano com IOF Turismo"-> {
-                    tvCalculationExchange.text = " $valueExchange USD  = 3,453 BRL"
-                }
-                "Euro com IOF Turismo"->{
-                    tvCalculationExchange.text = " $valueExchange EUR  = 3,453 BRL"
-                }
-                "Peso Argentino com IOF Turismo"->{
-                    tvCalculationExchange.text = " $valueExchange ARS  = 3,453 BRL"
-                }
-                "Libra com IOF Turismo"->{
-                    tvCalculationExchange.text = " $valueExchange GBP  = 3,453 BRL"
-                }
-            }
-
+            valueFormatted = decimalFormat.format(java.lang.Float.valueOf(valueExchange))
+            tvCurrencyExchange.text = valueFormatted.replace(".", ",")
         }
+
         ivAdd.setOnClickListener {
             val value = valueExchange + 0.01f
             valueExchange = value
-            tvCurrencyExchange.text = valueExchange.toString().replace(".",",")
+            valueFormatted = decimalFormat.format(java.lang.Float.valueOf(valueExchange))
+            tvCurrencyExchange.text = valueFormatted.replace(".", ",")
         }
 
 
+        when (tvFullName.text.toString()) {
+            "Dólar Americano com IOF Turismo" -> {
+                tvCalculationExchange.text = " $valueExchange USD  = 3,453 BRL"
+            }
+            "Euro com IOF Turismo" -> {
+                tvCalculationExchange.text = " $valueExchange EUR  = 3,453 BRL"
+            }
+            "Peso Argentino com IOF Turismo" -> {
+                tvCalculationExchange.text = " $valueExchange ARS  = 3,453 BRL"
+            }
+            "Libra com IOF Turismo" -> {
+                tvCalculationExchange.text = " $valueExchange GBP  = 3,453 BRL"
+            }
+        }
     }
 
 

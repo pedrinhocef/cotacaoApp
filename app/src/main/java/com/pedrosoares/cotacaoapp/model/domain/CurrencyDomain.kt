@@ -1,5 +1,7 @@
 package com.pedrosoares.cotacaoapp.model.domain
 
+import java.io.Serializable
+
 data class CurrencyDomain (
     var aud: AUDDomain? = null,
     var btc: BTCDomain? = null,
@@ -12,4 +14,4 @@ data class CurrencyDomain (
     var cad: CADDomain? = null,
     var usdt: USDTDomain? = null,
     var ltc: LTCDomain? = null
-)
+): Serializable

@@ -81,10 +81,14 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
 
 
     override fun populateCurrency(currencyDomain: CurrencyDomain) {
-        if (context != null) swipeRefresh.background = ContextCompat.getDrawable(context!!, R.drawable.background)
+        context?.let { swipeRefresh.background = ContextCompat.getDrawable(context!!, R.drawable.background) }
         addCurrencyToArray(currencyDomain)
-        tvLastUpdate.text = getString(R.string.last_update) + (" " + currencyDomain.btc?.createDate?.let { changeDateFormat(it) })
+        tvLastUpdate.text = "${getString(R.string.last_update)} ${currencyDomain.btc?.createDate?.let {changeDateFormat(it)}}"
         exchangeRateAdapter.notifyDataSetChanged()
+        val converterFragment = ConverterFragment()
+        val bundle = Bundle()
+        bundle.putSerializable("currency",currencyDomain)
+        converterFragment.arguments = bundle
     }
 
     private fun addCurrencyToArray(currencyDomain: CurrencyDomain) {

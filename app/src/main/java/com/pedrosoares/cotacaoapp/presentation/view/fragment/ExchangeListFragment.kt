@@ -87,7 +87,7 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
         exchangeRateAdapter.notifyDataSetChanged()
         val converterFragment = ConverterFragment()
         val bundle = Bundle()
-        bundle.putSerializable("currency",currencyDomain)
+        bundle.putParcelable("currency",currencyDomain)
         converterFragment.arguments = bundle
     }
 

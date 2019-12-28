@@ -26,10 +26,12 @@ import com.pedrosoares.cotacaoapp.data.preferences.ManagerPreferences;
 import com.pedrosoares.cotacaoapp.model.domain.ARSDomain;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain;
+import com.pedrosoares.cotacaoapp.model.domain.ETHDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain;
+import com.pedrosoares.cotacaoapp.model.domain.XRPDomain;
 import com.pedrosoares.cotacaoapp.presentation.CoinsContract;
 import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter;
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateAdapter;
@@ -163,8 +165,10 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         LTCDomain ltc = coinsDomain.getLTC();
         EURDomain eur = coinsDomain.getEUR();
         GBPDomain gbp = coinsDomain.getGBP();
+        XRPDomain xrp = coinsDomain.getXrp();
+        ETHDomain eth = coinsDomain.getEth();
 
-        defineCardsPosition(ars, btc, usd, ltc, eur, gbp);
+        defineCardsPosition(ars, btc, usd, ltc, eur, gbp, xrp, eth);
     }
 
     private String changeDateFormat(String date){
@@ -181,13 +185,15 @@ public class ExchangeListFragment extends BaseFragment<CoinsContract.CoinsListPr
         return dateFormatted.replace("-","/");
     }
 
-    private void defineCardsPosition(@NonNull ARSDomain ars,@NonNull BTCDomain btc,@NonNull USDDomain usd,@NonNull LTCDomain ltc,@NonNull EURDomain eur,@NonNull GBPDomain gbp) {
-        coinsDomainList.add(0,usd);
-        coinsDomainList.add(1,eur);
-        coinsDomainList.add(2,gbp);
-        coinsDomainList.add(3,ars);
-        coinsDomainList.add(4,btc);
-        coinsDomainList.add(5,ltc);
+    private void defineCardsPosition(@NonNull ARSDomain ars, @NonNull BTCDomain btc, @NonNull USDDomain usd, @NonNull LTCDomain ltc, @NonNull EURDomain eur, @NonNull GBPDomain gbp, XRPDomain xrp, ETHDomain eth) {
+        coinsDomainList.add(0, usd);
+        coinsDomainList.add(1, eur);
+        coinsDomainList.add(2, gbp);
+        coinsDomainList.add(3, ars);
+        coinsDomainList.add(4, btc);
+        coinsDomainList.add(5, xrp);
+        coinsDomainList.add(6, eth);
+        coinsDomainList.add(7, ltc);
     }
 
     @Override

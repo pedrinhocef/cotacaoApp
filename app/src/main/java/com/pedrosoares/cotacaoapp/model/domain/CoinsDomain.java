@@ -1,6 +1,7 @@
 package com.pedrosoares.cotacaoapp.model.domain;
 
 public class CoinsDomain {
+
 	private AUDDomain aUD;
 	private BTCDomain bTC;
 	private CHFDomain cHF;
@@ -12,14 +13,8 @@ public class CoinsDomain {
 	private CADDomain cAD;
 	private USDTDomain uSDT;
 	private LTCDomain lTC;
-
-	public void setAUD(AUDDomain aUD){
-		this.aUD = aUD;
-	}
-
-	public AUDDomain getAUD(){
-		return aUD;
-	}
+	private XRPDomain xrp;
+	private ETHDomain eth;
 
 	public void setBTC(BTCDomain bTC){
 		this.bTC = bTC;
@@ -29,28 +24,12 @@ public class CoinsDomain {
 		return bTC;
 	}
 
-	public void setCHF(CHFDomain cHF){
-		this.cHF = cHF;
-	}
-
-	public CHFDomain getCHF(){
-		return cHF;
-	}
-
 	public void setARS(ARSDomain aRS){
 		this.aRS = aRS;
 	}
 
 	public ARSDomain getARS(){
 		return aRS;
-	}
-
-	public void setJPY(JPYDomain jPY){
-		this.jPY = jPY;
-	}
-
-	public JPYDomain getJPY(){
-		return jPY;
 	}
 
 	public void setEUR(EURDomain eUR){
@@ -77,27 +56,27 @@ public class CoinsDomain {
 		return uSD;
 	}
 
-	public void setCAD(CADDomain cAD){
-		this.cAD = cAD;
-	}
-
-	public CADDomain getCAD(){
-		return cAD;
-	}
-
-	public void setUSDT(USDTDomain uSDT){
-		this.uSDT = uSDT;
-	}
-
-	public USDTDomain getUSDT(){
-		return uSDT;
-	}
-
 	public void setLTC(LTCDomain lTC){
 		this.lTC = lTC;
 	}
 
 	public LTCDomain getLTC(){
 		return lTC;
+	}
+
+	public XRPDomain getXrp() {
+		return xrp;
+	}
+
+	public void setXrp(XRPDomain xrp) {
+		this.xrp = xrp;
+	}
+
+	public ETHDomain getEth() {
+		return eth;
+	}
+
+	public void setEth(ETHDomain eth) {
+		this.eth = eth;
 	}
 }

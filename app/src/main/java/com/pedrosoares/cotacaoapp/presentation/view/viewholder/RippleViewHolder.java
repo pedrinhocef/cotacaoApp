@@ -7,17 +7,17 @@ import android.widget.TextView;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
-import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
+import com.pedrosoares.cotacaoapp.model.domain.XRPDomain;
 
 import butterknife.Bind;
 
-public class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
+public class RippleViewHolder extends BaseViewHolder<XRPDomain> {
 
     @Bind(R.id.tv_coin_name)
-     TextView tvCoinName;
+    TextView tvCoinName;
 
     @Bind(R.id.tv_coin_value)
-     TextView tvCoinValue;
+    TextView tvCoinValue;
 
     @Bind(R.id.tv_high)
     TextView tvHighPrice;
@@ -27,19 +27,16 @@ public class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
 
     private Context context;
 
-    public LiteCoinViewHolder(@NonNull View itemView) {
+    public RippleViewHolder(@NonNull View itemView) {
         super(itemView);
         context = itemView.getContext();
     }
 
     @Override
-    public void bind(LTCDomain type) {
-        tvCoinName.setText(type.getName());
-        formatValue(tvCoinValue,type.getAsk());
-        formatValue(tvLowPrice,type.getLow());
-        formatValue(tvHighPrice,type.getHigh());
+    public void bind(XRPDomain xrpDomain) {
+        tvCoinName.setText(context.getString(R.string.ripple_coin));
+        formatValue(tvCoinValue,xrpDomain.getAsk());
+        formatValue(tvLowPrice,xrpDomain.getLow());
+        formatValue(tvHighPrice,xrpDomain.getHigh());
     }
 }
-
-
-

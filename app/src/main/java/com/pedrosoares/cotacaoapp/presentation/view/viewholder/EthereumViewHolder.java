@@ -7,17 +7,17 @@ import android.widget.TextView;
 
 import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
-import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
+import com.pedrosoares.cotacaoapp.model.domain.ETHDomain;
+import com.pedrosoares.cotacaoapp.model.domain.XRPDomain;
 
 import butterknife.Bind;
 
-public class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
-
+public class EthereumViewHolder extends BaseViewHolder<ETHDomain> {
     @Bind(R.id.tv_coin_name)
-     TextView tvCoinName;
+    TextView tvCoinName;
 
     @Bind(R.id.tv_coin_value)
-     TextView tvCoinValue;
+    TextView tvCoinValue;
 
     @Bind(R.id.tv_high)
     TextView tvHighPrice;
@@ -27,19 +27,16 @@ public class LiteCoinViewHolder extends BaseViewHolder<LTCDomain> {
 
     private Context context;
 
-    public LiteCoinViewHolder(@NonNull View itemView) {
+    public EthereumViewHolder(@NonNull View itemView) {
         super(itemView);
         context = itemView.getContext();
     }
 
     @Override
-    public void bind(LTCDomain type) {
-        tvCoinName.setText(type.getName());
-        formatValue(tvCoinValue,type.getAsk());
-        formatValue(tvLowPrice,type.getLow());
-        formatValue(tvHighPrice,type.getHigh());
+    public void bind(ETHDomain ethDomain) {
+        tvCoinName.setText(context.getString(R.string.eth_coin));
+        formatValue(tvCoinValue,ethDomain.getAsk());
+        formatValue(tvLowPrice,ethDomain.getLow());
+        formatValue(tvHighPrice,ethDomain.getHigh());
     }
 }
-
-
-

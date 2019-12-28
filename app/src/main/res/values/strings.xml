@@ -9,6 +9,8 @@
     <string name="off_alert">alerta desligado</string>
     <string name="argentine_coin">Peso ARG</string>
     <string name="libra_coin">Libra</string>
+    <string name="eth_coin">ETH</string>
+    <string name="ripple_coin">XRP</string>
     <string name="dolar_coin">Dólar</string>
     <string name="exchange_title">COTAÇÃO DE MOEDAS</string>
     <string name="last_update">Última atualização: </string>

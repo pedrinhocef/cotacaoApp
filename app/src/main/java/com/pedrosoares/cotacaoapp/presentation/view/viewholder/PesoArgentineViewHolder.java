@@ -35,7 +35,7 @@ public class PesoArgentineViewHolder extends BaseViewHolder<ARSDomain> {
     @Override
     public void bind(ARSDomain arsDomain) {
         tvCoinName.setText(context.getString(R.string.argentine_coin));
-        formatValue(tvCoinValue,arsDomain.getBid());
+        formatValue(tvCoinValue,arsDomain.getAsk());
         formatValue(tvLowPrice,arsDomain.getLow());
         formatValue(tvHighPrice,arsDomain.getHigh());
     }

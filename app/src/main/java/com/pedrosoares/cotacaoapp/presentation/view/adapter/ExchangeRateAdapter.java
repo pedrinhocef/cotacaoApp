@@ -11,17 +11,21 @@ import com.pedrosoares.cotacaoapp.R;
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder;
 import com.pedrosoares.cotacaoapp.model.domain.ARSDomain;
 import com.pedrosoares.cotacaoapp.model.domain.BTCDomain;
+import com.pedrosoares.cotacaoapp.model.domain.ETHDomain;
 import com.pedrosoares.cotacaoapp.model.domain.EURDomain;
 import com.pedrosoares.cotacaoapp.model.domain.GBPDomain;
 import com.pedrosoares.cotacaoapp.model.domain.LTCDomain;
 import com.pedrosoares.cotacaoapp.model.domain.USDTDomain;
+import com.pedrosoares.cotacaoapp.model.domain.XRPDomain;
 import com.pedrosoares.cotacaoapp.presentation.CoinsContract;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.BitCoinViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.DolarViewHolder;
+import com.pedrosoares.cotacaoapp.presentation.view.viewholder.EthereumViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.EuroViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.LibraViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.LiteCoinViewHolder;
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.PesoArgentineViewHolder;
+import com.pedrosoares.cotacaoapp.presentation.view.viewholder.RippleViewHolder;
 
 import java.util.List;
 
@@ -34,6 +38,8 @@ public class ExchangeRateAdapter extends RecyclerView.Adapter<BaseViewHolder>{
     private static final int LITECOIN = 3;
     private static final int GBP = 4;
     private static final int ARS = 5;
+    private static final int XRP = 6;
+    private static final int ETH = 7;
     private List<Object> coinsDomainList;
     private CoinsContract.ListenerLayout listenerLayout;
 
@@ -71,6 +77,12 @@ public class ExchangeRateAdapter extends RecyclerView.Adapter<BaseViewHolder>{
             case ARS: {
                 return new PesoArgentineViewHolder(view);
             }
+            case XRP: {
+                return new RippleViewHolder(view);
+            }
+            case ETH: {
+                return new EthereumViewHolder(view);
+            }
             default:{
                 throw new IllegalArgumentException("Invalid view type");
             }
@@ -106,6 +118,10 @@ public class ExchangeRateAdapter extends RecyclerView.Adapter<BaseViewHolder>{
             return GBP;
         } else if (element instanceof ARSDomain) {
             return ARS;
+        } else if(element instanceof XRPDomain) {
+             return XRP;
+        } else if(element instanceof ETHDomain) {
+            return ETH;
         }
 
         return position;

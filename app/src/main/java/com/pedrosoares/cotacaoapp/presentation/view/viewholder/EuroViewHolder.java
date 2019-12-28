@@ -36,7 +36,7 @@ public class EuroViewHolder extends BaseViewHolder<EURDomain> {
     @Override
     public void bind(EURDomain type) {
         tvCoinName.setText(type.getName());
-        formatValue(tvCoinValue,type.getBid());
+        formatValue(tvCoinValue,type.getAsk());
         formatValue(tvLowPrice,type.getLow());
         formatValue(tvHighPrice,type.getHigh());
     }

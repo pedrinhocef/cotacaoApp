@@ -6,7 +6,7 @@
 
     <ImageView
         android:padding="15dp"
-        android:id="@+id/image_refresh"
+        android:id="@+id/imageRefreshError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,27 +16,27 @@
         app:srcCompat="@drawable/icn_refresh" />
 
     <TextView
-        android:id="@+id/text_title"
+        android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/touch_to_refresh_load_failed"
         android:textColor="@color/colorDarkGreyBlue"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/image_refresh"
-        app:layout_constraintStart_toStartOf="@+id/image_refresh"
-        app:layout_constraintTop_toBottomOf="@+id/image_refresh" />
+        app:layout_constraintEnd_toEndOf="@+id/imageRefreshError"
+        app:layout_constraintStart_toStartOf="@+id/imageRefreshError"
+        app:layout_constraintTop_toBottomOf="@+id/imageRefreshError" />
 
     <TextView
         android:layout_marginTop="10dp"
-        android:id="@+id/text_subtitle"
+        android:id="@+id/textSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/card_load_failed_touch"
         android:textColor="@color/colorDarkGreyBlue"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/text_title"
-        app:layout_constraintStart_toStartOf="@+id/text_title"
-        app:layout_constraintTop_toBottomOf="@+id/text_title" />
+        app:layout_constraintEnd_toEndOf="@+id/textTitle"
+        app:layout_constraintStart_toStartOf="@+id/textTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
 
 </android.support.constraint.ConstraintLayout>

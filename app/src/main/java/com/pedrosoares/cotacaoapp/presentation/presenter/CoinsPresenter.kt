@@ -1,5 +1,6 @@
 package com.pedrosoares.cotacaoapp.presentation.presenter
 
+import android.util.Log
 import com.pedrosoares.cotacaoapp.core.base.BasePresenter
 import com.pedrosoares.cotacaoapp.model.domain.CoinsDomain
 import com.pedrosoares.cotacaoapp.model.usecase.CoinsUseCase
@@ -14,7 +15,7 @@ class CoinsPresenter(val view: CoinsListView) : BasePresenter(), CoinsListPresen
 
     override fun fetchCoins() {
         view.loading()
-        val disposable = useCase.getCoins()
+        val disposable = useCase.coins
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -23,7 +24,10 @@ class CoinsPresenter(val view: CoinsListView) : BasePresenter(), CoinsListPresen
                         view.success()
                     }
                 }
-                ) { view.error() }
+                ) {
+                    view.error()
+                    Log.e("ERRO NO RX", it.message)
+                  }
         compositeDisposable!!.add(disposable)
     }
 

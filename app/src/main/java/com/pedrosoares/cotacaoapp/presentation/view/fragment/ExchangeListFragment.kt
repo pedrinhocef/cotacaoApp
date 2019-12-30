@@ -1,5 +1,6 @@
 package com.pedrosoares.cotacaoapp.presentation.view.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
@@ -33,11 +34,11 @@ class ExchangeListFragment : BaseFragment<CoinsContract.CoinsListPresenter>(), C
 
 
     private var exchangeRateAdapter: ExchangeRateAdapter? = null
-    private var coinsDomainList: MutableList<Any> = ArrayList()
+    private lateinit var coinsDomainList: MutableList<Any>
 
     lateinit var layoutManager: RecyclerView.LayoutManager
     var iconChoosed = 0
-    var layoutChoosen: String? = null
+    lateinit var layoutChoosen: String
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -55,38 +56,33 @@ class ExchangeListFragment : BaseFragment<CoinsContract.CoinsListPresenter>(), C
 
         initUi()
 
-        setGridAsLayoutChoosen()
-
-        setLinearAsLayoutChoosen()
+        imageViewOne.setOnClickListener { setGridAsLayoutChoosen() }
+        imageViewTwo.setOnClickListener { setLinearAsLayoutChoosen() }
 
     }
 
     private fun setLinearAsLayoutChoosen() {
-        imageViewTwo.setOnClickListener {
-            iconChoosed = getDrawableId(imageViewOne)
-            imageViewOne.visibility = View.VISIBLE
-            it.visibility = View.GONE
-            layoutManager = LinearLayoutManager(context)
-            layoutChoosen = LINEAR_LAYOUT_MANAGER
-            setLinearLayoutManager(context!!, layoutChoosen)
-            rvListExchange.layoutManager = layoutManager
-            rvListExchange.setHasFixedSize(true)
-            rvListExchange.adapter = exchangeRateAdapter
-        }
+        iconChoosed = getDrawableId(imageViewOne)
+        imageViewOne.visibility = View.VISIBLE
+        imageViewTwo.visibility = View.GONE
+        layoutManager = LinearLayoutManager(context)
+        layoutChoosen = LINEAR_LAYOUT_MANAGER
+        setLinearLayoutManager(context!!, layoutChoosen)
+        rvListExchange.layoutManager = layoutManager
+        rvListExchange.setHasFixedSize(true)
+        rvListExchange.adapter = exchangeRateAdapter
     }
 
     private fun setGridAsLayoutChoosen() {
-        imageViewOne.setOnClickListener {
-            iconChoosed = getDrawableId(imageViewTwo)
-            it.visibility = View.GONE
-            imageViewTwo.visibility = View.VISIBLE
-            layoutManager = GridLayoutManager(context, 2)
-            layoutChoosen = GRID_LAYOUT_MANAGER
-            setGridLayoutManager(context!!, layoutChoosen)
-            rvListExchange.layoutManager = layoutManager
-            rvListExchange.setHasFixedSize(false)
-            rvListExchange.adapter = exchangeRateAdapter
-        }
+        iconChoosed = getDrawableId(imageViewTwo)
+        imageViewOne.visibility = View.GONE
+        imageViewTwo.visibility = View.VISIBLE
+        layoutManager = GridLayoutManager(context, 2)
+        layoutChoosen = GRID_LAYOUT_MANAGER
+        setGridLayoutManager(context!!, layoutChoosen)
+        rvListExchange.layoutManager = layoutManager
+        rvListExchange.setHasFixedSize(false)
+        rvListExchange.adapter = exchangeRateAdapter
     }
 
     override fun onResume() {
@@ -94,7 +90,7 @@ class ExchangeListFragment : BaseFragment<CoinsContract.CoinsListPresenter>(), C
         if (isConnected) {
             if (view != null) {
                 Snackbar.make(view!!, "Conectado", 1000).show()
-                saveUserPreferences();
+                saveUserPreferences()
             }
         } else {
             if (view != null)
@@ -120,11 +116,9 @@ class ExchangeListFragment : BaseFragment<CoinsContract.CoinsListPresenter>(), C
         imageViewTwo.tag = R.drawable.icn_linear_manager
         iconChoosed = getDrawableId(imageViewOne)
 
-        if (layoutChoosen == null) { layoutChoosen = LINEAR_LAYOUT_MANAGER }
-
        context.let{
+            layoutChoosen = LINEAR_LAYOUT_MANAGER
             layoutChoosen = getLayoutManagerRecycler(it!!, layoutChoosen)
-            Log.i(LAYOUT_MANAGER, layoutChoosen)
             saveUserPreferences()
         }
 
@@ -132,6 +126,7 @@ class ExchangeListFragment : BaseFragment<CoinsContract.CoinsListPresenter>(), C
 
     override fun createPresenter() = CoinsPresenter(this)
 
+    @SuppressLint("SetTextI18n")
     override fun populateCoins(coinsDomain: CoinsDomain) {
         if (context != null) swipeRefresh.background = ContextCompat.getDrawable(context!!, R.drawable.background)
         addCoinsToArray(coinsDomain)
@@ -215,16 +210,13 @@ class ExchangeListFragment : BaseFragment<CoinsContract.CoinsListPresenter>(), C
         }
     }
 
-
-
     private fun getDrawableId(iv: ImageView) = iv.tag as Int
-
 
     private fun saveUserPreferences() {
         if (layoutChoosen == GRID_LAYOUT_MANAGER) {
-            setGridAsLayoutChoosen()
+           setGridAsLayoutChoosen()
         } else {
-            setLinearAsLayoutChoosen()
+           setLinearAsLayoutChoosen()
         }
     }
 

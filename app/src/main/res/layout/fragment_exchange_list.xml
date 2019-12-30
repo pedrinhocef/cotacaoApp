@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/background"
-    android:id="@+id/swipe_refresh"
+    android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/tv_last_update"
+            android:id="@+id/tvLastUpdate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_red_light"
@@ -21,8 +21,8 @@
             android:textColor="@android:color/background_light"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/fragment_loading"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_exchange" />
+            app:layout_constraintStart_toStartOf="@+id/includeLayoutLoading"
+            app:layout_constraintTop_toBottomOf="@+id/includeToolbarExchange" />
         <ImageView
             android:id="@+id/image_perfil_capa_efeito"
             android:layout_width="0dp"
@@ -34,20 +34,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_last_update" />
+            app:layout_constraintTop_toBottomOf="@+id/tvLastUpdate" />
 
         <include
-            android:id="@+id/fragment_error"
+            android:id="@+id/includeLayoutError"
             layout="@layout/fragment_error"
             android:visibility="gone" />
 
         <include
-            android:id="@+id/fragment_loading"
+            android:id="@+id/includeLayoutLoading"
             layout="@layout/fragment_loading"
             android:visibility="gone" />
 
         <include
-            android:id="@+id/toolbar_exchange"
+            android:id="@+id/includeToolbarExchange"
             layout="@layout/toolbar_exchange"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,20 +55,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_list_exchange"
+            android:id="@+id/rvListExchange"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_last_update"
-            app:layout_constraintBottom_toTopOf="@+id/ad_view"
+            app:layout_constraintTop_toBottomOf="@+id/tvLastUpdate"
+            app:layout_constraintBottom_toTopOf="@+id/adView"
             tools:listitem="@layout/layout_item_exchange_linear" />
 
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/ad_view"
+            android:id="@+id/adView"
             android:layout_marginTop="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             ads:layout_constraintStart_toStartOf="parent"

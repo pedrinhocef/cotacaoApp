@@ -2,6 +2,7 @@ package com.pedrosoares.cotacaoapp.presentation.view.fragment
 
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.pedrosoares.cotacaoapp.model.domain.*
 import com.pedrosoares.cotacaoapp.presentation.CurrencyContract
 import com.pedrosoares.cotacaoapp.presentation.presenter.CurrencyPresenter
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateAdapter
+import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateListener
 
 import java.text.SimpleDateFormat
 import java.util.ArrayList
@@ -25,8 +27,21 @@ import kotlinx.android.synthetic.main.fragment_exchange_list.*
 
 class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter>(), CurrencyContract.CurrencyListView {
 
-    private lateinit var exchangeRateAdapter: ExchangeRateAdapter
-    private lateinit var currencyDomainList: MutableList<Any>
+    private val exchangeRateAdapter : ExchangeRateAdapter by lazy {
+        ExchangeRateAdapter(context!!, currencyDomainList)
+//                , object : ExchangeRateListener {
+//            override fun onCurrencySelected(bid: String) {
+//                val converterFragment = ConverterFragment()
+//                val bundle = Bundle()
+//                bundle.putString("usd", bid)
+//                converterFragment.arguments = bundle
+//                converterFragment.getCurrencyDataSelected(bundle.let { converterFragment.arguments!! })
+//            }
+//        })
+
+    }
+
+    private var currencyDomainList: MutableList<Any> = ArrayList()
 
     override fun createPresenter() = CurrencyPresenter(this)
 
@@ -42,7 +57,6 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
         super.onViewCreated(view, savedInstanceState)
 
         imageRefreshError.setOnClickListener { presenter!!.fetchCurrency() }
-
         initUi()
     }
 
@@ -68,8 +82,6 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
     private fun initUi() {
 
         presenter!!.fetchCurrency()
-        currencyDomainList = ArrayList()
-        exchangeRateAdapter = ExchangeRateAdapter(context!!, currencyDomainList)
 
         with(rvListExchange){
             adapter = exchangeRateAdapter
@@ -85,10 +97,6 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
         addCurrencyToArray(currencyDomain)
         tvLastUpdate.text = "${getString(R.string.last_update)} ${currencyDomain.btc?.createDate?.let {changeDateFormat(it)}}"
         exchangeRateAdapter.notifyDataSetChanged()
-        val converterFragment = ConverterFragment()
-        val bundle = Bundle()
-        bundle.putParcelable("currency",currencyDomain)
-        converterFragment.arguments = bundle
     }
 
     private fun addCurrencyToArray(currencyDomain: CurrencyDomain) {

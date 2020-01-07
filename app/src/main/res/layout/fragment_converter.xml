@@ -46,14 +46,26 @@
             android:gravity="center"
             tools:text="Dólar Americano com IOF Turismo" />
 
-
+        <TextView
+            android:id="@+id/tvCurrencyAbbreviation"
+            app:layout_constraintBottom_toTopOf="@+id/tvValue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/color_white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="36sp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="USD" />
         <ImageView
             android:id="@+id/ivMinus"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintHorizontal_bias="0.1"
             android:layout_marginTop="32dp"
             android:src="@drawable/icn_minus"
             android:layout_width="wrap_content"
@@ -64,18 +76,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.80"
+            app:layout_constraintHorizontal_bias="0.9"
             android:layout_marginTop="32dp"
             android:src="@drawable/icn_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/tvCurrencyExchange"
+            android:id="@+id/tvValue"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="0dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
@@ -86,8 +98,8 @@
             android:text="1,00" />
 
         <TextView
-            android:id="@+id/tvCalculationExchange"
-            app:layout_constraintTop_toBottomOf="@+id/tvCurrencyExchange"
+            android:id="@+id/tvCalculateToConvertToReal"
+            app:layout_constraintTop_toBottomOf="@+id/tvValue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:textColor="@color/color_white"
@@ -97,7 +109,7 @@
             android:textSize="24sp"
             android:gravity="center"
             android:textAlignment="center"
-            android:text="1 USD = 3,453 BRL" />
+            android:text="3,453 BRL" />
 
 
         

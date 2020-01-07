@@ -16,4 +16,8 @@ interface CurrencyContract {
         fun fetchCurrency()
     }
 
+//    interface CurrencyListener {
+//        fun onItemClickListener(item : CurrencyDomain)
+//    }
+
 }

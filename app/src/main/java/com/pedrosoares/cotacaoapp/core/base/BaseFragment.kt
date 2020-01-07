@@ -61,10 +61,10 @@ abstract class BaseFragment<P : BaseContract.Presenter> : Fragment(), BaseContra
 
         }
 
-        fun removeFragment(activity: FragmentActivity, fragment: Fragment?) {
+        fun removeFragment(fragmentActivity: FragmentActivity, fragment: Fragment?) {
             try {
                 if (fragment != null) {
-                    activity.supportFragmentManager.popBackStack(fragment.tag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    fragmentActivity.supportFragmentManager.popBackStack(fragment.tag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 }
             } catch (e: Exception) {
                 Log.e(e.message, e.toString())

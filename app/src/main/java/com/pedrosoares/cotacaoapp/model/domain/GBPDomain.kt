@@ -1,5 +1,9 @@
 package com.pedrosoares.cotacaoapp.model.domain
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class GBPDomain (
         var varBid: String? = null,
         var high: String? = null,
@@ -12,4 +16,5 @@ data class GBPDomain (
         var bid: String? = null,
         var createDate: String? = null,
         var timestamp: String? = null
-)
+): Parcelable
+

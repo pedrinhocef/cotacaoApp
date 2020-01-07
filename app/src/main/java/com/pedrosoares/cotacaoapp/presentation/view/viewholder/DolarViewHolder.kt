@@ -3,9 +3,13 @@ package com.pedrosoares.cotacaoapp.presentation.view.viewholder
 import android.view.View
 import com.pedrosoares.cotacaoapp.core.base.BaseViewHolder
 import com.pedrosoares.cotacaoapp.model.domain.USDDomain
+import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateListener
 import kotlinx.android.synthetic.main.layout_item_exchange_linear.view.*
 
-class DolarViewHolder(itemView: View) : BaseViewHolder<USDDomain>(itemView) {
+
+class DolarViewHolder(itemView: View)
+                      //, val listener: ExchangeRateListener )
+                        : BaseViewHolder<USDDomain>(itemView){
 
 
     override fun bind(type: USDDomain) {
@@ -13,5 +17,9 @@ class DolarViewHolder(itemView: View) : BaseViewHolder<USDDomain>(itemView) {
         type.bid?.let { formatValue(itemView.tvCoinValue, it) }
         type.low?.let { formatValue(itemView.tvLowPrice, it) }
         type.high?.let { formatValue(itemView.tvHighPrice, it) }
+
+        //type.bid?.let{ listener.onCurrencySelected(it) }
     }
+
+
 }

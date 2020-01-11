@@ -2,13 +2,13 @@ package com.pedrosoares.cotacaoapp.presentation.view.fragment
 
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.gms.ads.AdRequest
 
 import com.pedrosoares.cotacaoapp.R
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment
@@ -16,7 +16,6 @@ import com.pedrosoares.cotacaoapp.model.domain.*
 import com.pedrosoares.cotacaoapp.presentation.CurrencyContract
 import com.pedrosoares.cotacaoapp.presentation.presenter.CurrencyPresenter
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateAdapter
-import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateListener
 
 import java.text.SimpleDateFormat
 import java.util.ArrayList
@@ -47,15 +46,14 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
-        //adView.loadAd(AdRequest.Builder().build())
-
         return inflater.inflate(R.layout.fragment_exchange_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
         imageRefreshError.setOnClickListener { presenter!!.fetchCurrency() }
         initUi()
     }

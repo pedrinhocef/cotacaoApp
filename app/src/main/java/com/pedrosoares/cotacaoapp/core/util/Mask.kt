@@ -17,27 +17,27 @@ class Mask(private val campo : EditText) : TextWatcher{
         // Evita que o método seja executado varias vezes.
         // Se tirar ele entre em loop
         if (isUpdating) {
-            isUpdating = false;
-            return;
+            isUpdating = false
+            return
         }
 
         isUpdating = true;
         var str = s.toString();
         // Verifica se já existe a máscara no texto.
         val hasMask = ((str.indexOf("R$") > -1 || str.indexOf("$") > -1) &&
-                    (str.indexOf(".") > -1 || str.indexOf(",") > -1));
+                    (str.indexOf(".") > -1 || str.indexOf(",") > -1))
 
         // Verificamos se existe máscara
         if (hasMask) {
             // Retiramos a máscara
-            str = str.replace("[R$]".toRegex(), "").replace("[,]".toRegex(), "").replace("[.]".toRegex(), "");
+            str = str.replace("[R$]".toRegex(), "").replace("[,]".toRegex(), "").replace("[.]".toRegex(), "")
         }
 
         try {
             // Transformamos o número que está escrito no EditText em monetário
             str = nf.format(str.toDouble() / 100)
             campo.setText(str)
-            campo.setSelection(campo.text.length);
+            campo.setSelection(campo.text.length)
 
         } catch ( e: NumberFormatException) {
             str = ""

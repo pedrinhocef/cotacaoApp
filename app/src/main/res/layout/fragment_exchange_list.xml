@@ -53,19 +53,20 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintTop_toBottomOf="@+id/tvLastUpdate"
             app:layout_constraintBottom_toTopOf="@+id/adView"
             tools:listitem="@layout/layout_item_exchange_linear" />
 
-        <Button
-            android:id="@+id/adView"
-            android:layout_marginTop="12dp"
-            android:paddingBottom="120dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+        <!--<Button-->
+            <!--android:id="@+id/adView"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--android:paddingBottom="120dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"/>-->
 
         <!--<com.google.android.gms.ads.AdView-->
             <!--xmlns:ads="http://schemas.android.com/apk/res-auto"-->
@@ -79,6 +80,17 @@
             <!--android:paddingBottom="90dp"-->
             <!--ads:adSize="SMART_BANNER"-->
             <!--ads:adUnitId="@string/id_banner"/>-->
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            ads:layout_constraintStart_toStartOf="parent"
+            ads:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/id_banner"/>
 
 
 

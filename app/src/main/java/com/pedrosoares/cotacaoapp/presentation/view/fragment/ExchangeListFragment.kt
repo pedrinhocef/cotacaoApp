@@ -116,7 +116,7 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val targetFormat = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
         var d: Date? = null
-        val dateFormatted: String
+        lateinit var dateFormatted : String
         try {
             d = simpleDateFormat.parse(date)
         } catch (e: Exception) {

@@ -40,11 +40,7 @@ class ExchangeRateAdapter(private val context: Context,
 
 
     @Suppress("UNCHECKED_CAST")
-    override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
-        (holder as BaseViewHolder<Any>).bind(currencyDomainList[position])
-
-    }
-
+    override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) = (holder as BaseViewHolder<Any>).bind(currencyDomainList[position])
 
     override fun getItemCount() = currencyDomainList.size
 

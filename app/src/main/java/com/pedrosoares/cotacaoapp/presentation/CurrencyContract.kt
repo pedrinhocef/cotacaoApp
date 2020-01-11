@@ -16,6 +16,10 @@ interface CurrencyContract {
         fun fetchCurrency()
     }
 
+    interface ConverterPresenter : BaseContract.Presenter {
+        fun fetchCurrency()
+    }
+
 //    interface CurrencyListener {
 //        fun onItemClickListener(item : CurrencyDomain)
 //    }

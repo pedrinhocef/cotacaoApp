@@ -2,7 +2,6 @@ package com.pedrosoares.cotacaoapp.presentation.view.fragment
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,23 +10,31 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.pedrosoares.cotacaoapp.MainActivity
 import com.pedrosoares.cotacaoapp.R
+import com.pedrosoares.cotacaoapp.core.base.BaseFragment
 import com.pedrosoares.cotacaoapp.core.util.Mask
 import com.pedrosoares.cotacaoapp.model.domain.CurrencyDomain
+import com.pedrosoares.cotacaoapp.presentation.CurrencyContract
+import com.pedrosoares.cotacaoapp.presentation.presenter.ConverterPresenter
 import kotlinx.android.synthetic.main.fragment_converter.*
 import kotlinx.android.synthetic.main.popup_edit_value.view.*
-import java.lang.Float
 import java.text.DecimalFormat
 import java.text.NumberFormat
 
 
-class ConverterFragment : Fragment(), AdapterView.OnItemSelectedListener{
+class ConverterFragment : BaseFragment<CurrencyContract.ConverterPresenter>(), CurrencyContract.CurrencyListView, AdapterView.OnItemSelectedListener{
 
-    lateinit var valueFormatted : String
-    var currencyItemList = arrayOf("Dólar Americano", "Euro", "Peso Argentino","Libra")
-    private var valueExchange = 1.00f
+    private lateinit var valueFormatted : String
+    private var currencyItemList = arrayOf("Dólar americano", "Euro", "Peso argentino","Libra")
     private lateinit var currencySelected : CurrencyDomain
     private val decimalFormat = DecimalFormat("#,###,###,##0.00")
-    private var bid = 0f
+    private lateinit var bidUsd : String
+    private lateinit var bidEur : String
+    private lateinit var bidArs : String
+    private lateinit var bidGbp : String
+    private var valueBidUsd = 0f
+    private var valueBidEur = 0f
+    private var valueBidArs = 0f
+    private var valueBidGbp = 0f
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View?{
         return inflater.inflate(R.layout.fragment_converter, container, false)
@@ -35,6 +42,7 @@ class ConverterFragment : Fragment(), AdapterView.OnItemSelectedListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        presenter!!.fetchCurrency()
         initSpinner()
         managerClickListeners()
     }
@@ -48,25 +56,29 @@ class ConverterFragment : Fragment(), AdapterView.OnItemSelectedListener{
     override fun onNothingSelected(parent: AdapterView<*>?) {}
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when (currencyItemList[position]) {
-            "Dólar Americano" -> {
+            "Dólar americano" -> {
                 tvFullName.text = getString(R.string.dolar_text)
                 tvCurrencyAbbreviation.text = "USD"
-                tvCalculateToConvertToReal.text = "R$4,02"
+                tvValue.text = "0,00"
+                tvCalculateToConvertToReal.text = "R$0,00"
             }
             "Euro" -> {
                 tvFullName.text = getString(R.string.euro_text)
                 tvCurrencyAbbreviation.text = "EUR"
-                tvCalculateToConvertToReal.text = "R$4,02"
+                tvValue.text = "0,00"
+                tvCalculateToConvertToReal.text = "R$0,00"
             }
-            "Peso Argentino" -> {
+            "Peso argentino" -> {
                 tvFullName.text = getString(R.string.peso_argentine_text)
                 tvCurrencyAbbreviation.text = "ARS"
-                tvCalculateToConvertToReal.text = "R$4,02"
+                tvValue.text = "0,00"
+                tvCalculateToConvertToReal.text = "R$0,00"
             }
             "Libra" -> {
                 tvFullName.text = getString(R.string.gbp_text)
                 tvCurrencyAbbreviation.text = "GBP"
-                tvCalculateToConvertToReal.text = "R$4,02"
+                tvValue.text = "0,00"
+                tvCalculateToConvertToReal.text = "R$0,00"
             }
         }
     }
@@ -93,73 +105,117 @@ class ConverterFragment : Fragment(), AdapterView.OnItemSelectedListener{
     private fun managerClickListeners() {
 
         ivMinus.setOnClickListener {
-            val value = valueExchange - 0.01f
-            valueExchange = value
-            valueFormatted = decimalFormat.format(Float.valueOf(valueExchange))
-            tvValue.text = valueFormatted.replace(".", ",")
-            //convertAnotherCurrencyToReal(verifyArguments())
-            convertAnotherCurrencyToReal(value)
+            when {
+                tvCurrencyAbbreviation.text.toString() == "USD" -> {
+                    val value = valueBidUsd - 0.01f
+                    valueBidUsd = value
+                    valueFormatted = decimalFormat.format(valueBidUsd)
+                    convertAnotherCurrencyToReal(valueFormatted.replace(",", ".").toFloat())
+                    tvValue.text = valueFormatted
+                }
+                tvCurrencyAbbreviation.text.toString() == "EUR" -> {
+                    val value = valueBidEur - 0.01f
+                    valueBidEur = value
+                    valueFormatted = decimalFormat.format(valueBidEur)
+                    convertAnotherCurrencyToReal(valueFormatted.replace(",", ".").toFloat())
+                    tvValue.text = valueFormatted
+                }
+                tvCurrencyAbbreviation.text.toString() == "ARS" -> {
+                    val value = valueBidArs - 0.01f
+                    valueBidArs = value
+                    valueFormatted = decimalFormat.format(valueBidArs)
+                    convertAnotherCurrencyToReal(valueFormatted.replace(",", ".").toFloat())
+                    tvValue.text = valueFormatted
+                }
+                else -> {
+                    val value = valueBidGbp - 0.01f
+                    valueBidGbp = value
+                    valueFormatted = decimalFormat.format(valueBidGbp)
+                    convertAnotherCurrencyToReal(valueFormatted.replace(",", ".").toFloat())
+                    tvValue.text = valueFormatted
+                }
+            }
         }
 
         ivAdd.setOnClickListener {
-            val value = valueExchange + 0.01f
-            valueExchange = value
-            valueFormatted = decimalFormat.format(Float.valueOf(valueExchange))
-            tvValue.text = valueFormatted.replace(".", ",")
-            //convertAnotherCurrencyToReal(verifyArguments())
-            convertAnotherCurrencyToReal(value)
+            when {
+                tvCurrencyAbbreviation.text.toString() == "USD" -> {
+                    val value = valueBidUsd + 0.01f
+                    valueBidUsd = value
+                    valueFormatted = decimalFormat.format(valueBidUsd)
+                    convertAnotherCurrencyToReal(valueFormatted.replace(",", ".").toFloat())
+                    tvValue.text = valueFormatted
+                }
+                tvCurrencyAbbreviation.text.toString() == "EUR" -> {
+                    val value = valueBidEur + 0.01f
+                    valueBidEur = value
+                    valueFormatted = decimalFormat.format(valueBidEur)
+                    convertAnotherCurrencyToReal(valueFormatted.replace(",", ".").toFloat())
+                    tvValue.text = valueFormatted
+                }
+                tvCurrencyAbbreviation.text.toString() == "ARS" -> {
+                    val value = valueBidArs + 0.01f
+                    valueBidArs = value
+                    valueFormatted = decimalFormat.format(valueBidArs)
+                    convertAnotherCurrencyToReal(valueFormatted.replace(",", ".").toFloat())
+                    tvValue.text = valueFormatted
+                }
+                else -> {
+                    val value = valueBidGbp + 0.01f
+                    valueBidGbp = value
+                    valueFormatted = decimalFormat.format(valueBidGbp)
+                    convertAnotherCurrencyToReal(valueFormatted.replace(",", ".").toFloat())
+                    tvValue.text = valueFormatted
+                }
+            }
         }
 
         tvValue.setOnClickListener { showAlertDialogButtonClicked(view) }
 
     }
 
-    private fun convertAnotherCurrencyToReal(value: kotlin.Float) {
+    private fun convertAnotherCurrencyToReal(value: Float) {
 
         val nf = NumberFormat.getCurrencyInstance()
-        val newValue = nf.format(value * 4.0619)
-        //currencySelected.usd?.bid?.let {
-            when (tvFullName.text.toString()) {
-                "Dólar Americano com IOF Turismo" -> {
-                    tvCalculateToConvertToReal.text = newValue
-                }
-                "Euro com IOF Turismo" -> {
-                    tvCalculateToConvertToReal.text = newValue
-                }
-                "Peso Argentino com IOF Turismo" -> {
-                    tvCalculateToConvertToReal.text = newValue
-                }
-                "Libra com IOF Turismo" -> {
-                    tvCalculateToConvertToReal.text = newValue
-                }
+        when (tvFullName.text.toString()) {
+            "Dólar Americano com IOF Turismo" -> {
+                val newValue = nf.format(value * bidUsd.toFloat())
+                tvCalculateToConvertToReal.text = newValue
             }
-        //}
-    }
-
-
-
-
-    private fun verifyArguments() : CurrencyDomain{
-
-        arguments?.let {
-            currencySelected = it.getParcelable("currency")!!
-            return currencySelected
-        }
-        return CurrencyDomain()
-    }
-
-    fun getCurrencyDataSelected(bundle: Bundle) {
-        //bundle = this.arguments
-        if (bundle != null) {
-            val usd = bundle.getString("usd")
-            usd.let {
-                valueFormatted = usd.replace(".","")
-                bid = valueFormatted.toFloat() / 10000
-
+            "Euro com IOF Turismo" -> {
+                val newValue = nf.format(value * bidEur.toFloat())
+                tvCalculateToConvertToReal.text = newValue
+            }
+            "Peso Argentino com IOF Turismo" -> {
+                val newValue = nf.format(value * bidArs.toFloat())
+                tvCalculateToConvertToReal.text = newValue
+            }
+            "Libra com IOF Turismo" -> {
+                val newValue = nf.format(value * bidGbp.toFloat())
+                tvCalculateToConvertToReal.text = newValue
             }
         }
-
     }
+
+
+
+    override fun createPresenter() = ConverterPresenter(this)
+
+    override fun populateCurrency(currencyDomain: CurrencyDomain) {
+        currencySelected = currencyDomain
+        with(currencySelected){
+            bidUsd = this.usd?.bid!! ; valueBidUsd = bidUsd.toFloat()
+            bidEur = this.eur?.bid!! ; valueBidEur = bidEur.toFloat()
+            bidArs = this.ars?.bid!! ; valueBidArs = bidArs.toFloat()
+            bidGbp = this.gbp?.bid!! ; valueBidGbp = bidGbp.toFloat()
+        }
+    }
+
+    override fun success() {}
+    override fun loading() {}
+    override fun error() {}
+
+
 
 
 

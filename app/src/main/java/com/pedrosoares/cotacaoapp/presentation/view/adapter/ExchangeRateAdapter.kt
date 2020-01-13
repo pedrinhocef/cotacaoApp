@@ -10,9 +10,7 @@ import com.pedrosoares.cotacaoapp.model.domain.*
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.*
 
 
-class ExchangeRateAdapter(private val context: Context,
-                          private val currencyDomainList: List<Any>)
-                        : RecyclerView.Adapter<BaseViewHolder<*>>() {
+class ExchangeRateAdapter(private val context: Context,private val currencyDomainList: List<Any>) : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
 

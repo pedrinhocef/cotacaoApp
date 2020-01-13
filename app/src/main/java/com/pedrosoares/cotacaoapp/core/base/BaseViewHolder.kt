@@ -9,7 +9,7 @@ import butterknife.ButterKnife
 abstract class BaseViewHolder<T> protected constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
-    abstract fun bind(type: T)
+    abstract fun bind(currency : T)
 
     protected fun formatValue(tv: TextView, value: String) {
         tv.text = "R$ $value"

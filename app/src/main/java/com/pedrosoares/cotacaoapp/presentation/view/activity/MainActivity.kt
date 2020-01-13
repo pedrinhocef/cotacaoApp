@@ -1,4 +1,4 @@
-package com.pedrosoares.cotacaoapp
+package com.pedrosoares.cotacaoapp.presentation.view.activity
 
 import android.content.ComponentName
 import android.content.Context
@@ -8,11 +8,11 @@ import android.os.Bundle
 import android.os.IBinder
 import com.android.vending.billing.IInAppBillingService
 import com.google.android.gms.ads.MobileAds
+import com.pedrosoares.cotacaoapp.R
 import com.pedrosoares.cotacaoapp.core.base.BaseActivity
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.TabAdapter
 import com.pedrosoares.cotacaoapp.presentation.view.fragment.ConverterFragment
 import com.pedrosoares.cotacaoapp.presentation.view.fragment.ExchangeListFragment
-import com.pedrosoares.cotacaoapp.presentation.view.fragment.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.pedrosoares.cotacaoapp.MainActivity
+import com.pedrosoares.cotacaoapp.presentation.view.activity.MainActivity
 import com.pedrosoares.cotacaoapp.R
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment
 import com.pedrosoares.cotacaoapp.core.util.Mask

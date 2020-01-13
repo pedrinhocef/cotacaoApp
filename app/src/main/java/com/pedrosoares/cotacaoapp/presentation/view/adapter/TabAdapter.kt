@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 
-class TabAdapter(val fm : FragmentManager) : FragmentStatePagerAdapter(fm){
+class TabAdapter(fm : FragmentManager) : FragmentStatePagerAdapter(fm){
 
     private val fragmentList : MutableList<Fragment> = ArrayList()
     private val fragmentTitleList : MutableList<String> = ArrayList()

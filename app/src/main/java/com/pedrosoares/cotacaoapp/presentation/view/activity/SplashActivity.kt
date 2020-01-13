@@ -1,8 +1,9 @@
-package com.pedrosoares.cotacaoapp
+package com.pedrosoares.cotacaoapp.presentation.view.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import com.pedrosoares.cotacaoapp.R
 
 import com.pedrosoares.cotacaoapp.core.base.BaseActivity
 

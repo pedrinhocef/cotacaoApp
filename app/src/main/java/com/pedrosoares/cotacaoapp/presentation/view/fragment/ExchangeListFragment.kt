@@ -1,6 +1,7 @@
 package com.pedrosoares.cotacaoapp.presentation.view.fragment
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
@@ -28,16 +29,6 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
 
     private val exchangeRateAdapter : ExchangeRateAdapter by lazy {
         ExchangeRateAdapter(context!!, currencyDomainList)
-//                , object : ExchangeRateListener {
-//            override fun onCurrencySelected(bid: String) {
-//                val converterFragment = ConverterFragment()
-//                val bundle = Bundle()
-//                bundle.putString("usd", bid)
-//                converterFragment.arguments = bundle
-//                converterFragment.getCurrencyDataSelected(bundle.let { converterFragment.arguments!! })
-//            }
-//        })
-
     }
 
     private var currencyDomainList: MutableList<Any> = ArrayList()
@@ -90,6 +81,7 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
 
 
 
+    @SuppressLint("SetTextI18n")
     override fun populateCurrency(currencyDomain: CurrencyDomain) {
         context?.let { swipeRefresh.background = ContextCompat.getDrawable(context!!, R.drawable.background) }
         addCurrencyToArray(currencyDomain)
@@ -110,6 +102,7 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun changeDateFormat(date: String): String {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val targetFormat = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")

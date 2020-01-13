@@ -52,12 +52,12 @@ class MainActivity : BaseActivity() {
         adapter?.let {
             it.addFragment(ExchangeListFragment(), "COTAÇÃO")
             it.addFragment(ConverterFragment(), "CONVERSOR")
-            it.addFragment(SettingsFragment(), "")
+            //it.addFragment(SettingsFragment(), "")
         }
 
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
-        tabLayout.getTabAt(2)?.setIcon(R.drawable.icn_settings)
+        //tabLayout.getTabAt(2)?.setIcon(R.drawable.icn_settings)
     }
 
 

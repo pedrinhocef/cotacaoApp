@@ -10,7 +10,17 @@ import com.pedrosoares.cotacaoapp.model.domain.*
 import com.pedrosoares.cotacaoapp.presentation.view.viewholder.*
 
 
-class ExchangeRateAdapter(private val context: Context,private val currencyDomainList: List<Any>) : RecyclerView.Adapter<BaseViewHolder<*>>() {
+class ExchangeRateAdapter(private val context: Context,private var currencyDomainList: MutableList<Any>) : RecyclerView.Adapter<BaseViewHolder<*>>() {
+
+
+    companion object {
+        private const val USD_CURRENCY = 0
+        private const val EURO_CURRENCY = 1
+        private const val BITCOIN = 2
+        private const val LITECOIN = 3
+        private const val GBP = 4
+        private const val ARS = 5
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
 
@@ -48,14 +58,14 @@ class ExchangeRateAdapter(private val context: Context,private val currencyDomai
 
     }
 
-    companion object {
-        private const val USD_CURRENCY = 0
-        private const val EURO_CURRENCY = 1
-        private const val BITCOIN = 2
-        private const val LITECOIN = 3
-        private const val GBP = 4
-        private const val ARS = 5
+    fun clear(datas : MutableList<Any>) {
+        currencyDomainList = ArrayList()
+        currencyDomainList.clear()
+        currencyDomainList.addAll(datas)
+        notifyDataSetChanged()
     }
+
+
 
 
 }

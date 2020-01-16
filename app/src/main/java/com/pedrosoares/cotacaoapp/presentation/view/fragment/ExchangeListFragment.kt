@@ -45,7 +45,13 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
 
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
-        imageRefreshError.setOnClickListener { presenter!!.fetchCurrency() }
+
+        imageRefreshError.setOnClickListener {
+            presenter!!.fetchCurrency()
+            exchangeRateAdapter.clear(currencyDomainList)
+            loading()
+        }
+
         initUi()
     }
 
@@ -62,7 +68,9 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
 
         swipeRefresh.setOnRefreshListener {
             swipeRefresh.setColorSchemeResources(android.R.color.holo_green_dark)
-            initUi()
+            presenter!!.fetchCurrency()
+            exchangeRateAdapter.clear(currencyDomainList)
+            loading()
             swipeRefresh.isRefreshing = false
         }
 

@@ -21,7 +21,6 @@ class MainActivity : BaseActivity() {
 
     lateinit var mServiceConn: ServiceConnection
     private var mService: IInAppBillingService? = null
-    private var Product_ID = "product_button_click"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

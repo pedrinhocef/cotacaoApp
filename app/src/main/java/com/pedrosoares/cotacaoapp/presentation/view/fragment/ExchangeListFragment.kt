@@ -105,8 +105,10 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
             val ltc = it.ltc
             val eur = it.eur
             val gbp = it.gbp
+            val eth = it.eth
+            val xrp = it.xrp
 
-            defineCardsPosition(ars!!, btc!!, usd!!, ltc!!, eur!!, gbp!!)
+            defineCardsPosition(ars!!, btc!!, usd!!, ltc!!, eur!!, gbp!!, eth!!, xrp!!)
         }
     }
 
@@ -126,7 +128,7 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
         return dateFormatted.replace("-", "/")
     }
 
-    private fun defineCardsPosition(ars: ARSDomain, btc: BTCDomain, usd: USDDomain, ltc: LTCDomain, eur: EURDomain, gbp: GBPDomain) {
+    private fun defineCardsPosition(ars: ARSDomain, btc: BTCDomain, usd: USDDomain, ltc: LTCDomain, eur: EURDomain, gbp: GBPDomain, eth : ETHDomain, xrp : XRPDomain) {
         with(currencyDomainList) {
             add(0, usd)
             add(1, eur)
@@ -134,6 +136,8 @@ class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter
             add(3, ars)
             add(4, btc)
             add(5, ltc)
+            add(6, eth)
+            add(7, xrp)
         }
     }
 

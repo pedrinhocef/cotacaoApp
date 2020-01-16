@@ -20,6 +20,8 @@ class ExchangeRateAdapter(private val context: Context,private var currencyDomai
         private const val LITECOIN = 3
         private const val GBP = 4
         private const val ARS = 5
+        private const val ETH = 6
+        private const val XRP = 7
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
@@ -33,6 +35,8 @@ class ExchangeRateAdapter(private val context: Context,private var currencyDomai
             LITECOIN -> LiteCoinViewHolder(view)
             GBP -> LibraViewHolder(view)
             ARS -> PesoArgentineViewHolder(view)
+            ETH -> EthereumViewHolder(view)
+            XRP -> RippleViewHolder(view)
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -53,6 +57,8 @@ class ExchangeRateAdapter(private val context: Context,private var currencyDomai
             is LTCDomain -> LITECOIN
             is GBPDomain -> GBP
             is ARSDomain -> ARS
+            is ETHDomain -> ETH
+            is XRPDomain -> XRP
             else -> position
         }
 

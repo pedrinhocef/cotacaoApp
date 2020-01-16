@@ -15,6 +15,8 @@ data class CurrencyDomain (
         var usd: USDDomain? = null,
         var cad: CADDomain? = null,
         var usdt: USDTDomain? = null,
-        var ltc: LTCDomain? = null
+        var ltc: LTCDomain? = null,
+        var eth: ETHDomain? = null,
+        var xrp: XRPDomain? = null
 
 ) : Parcelable

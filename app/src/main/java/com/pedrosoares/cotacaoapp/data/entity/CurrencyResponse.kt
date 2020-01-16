@@ -35,5 +35,11 @@ data class CurrencyResponse (
     var usdt: USDT? = null,
 
     @SerializedName("LTC")
-    var ltc: LTC? = null
+    var ltc: LTC? = null,
+
+    @SerializedName("ETH")
+    var eth: ETH? = null,
+
+    @SerializedName("XRP")
+    var xrp: XRP? = null
 )

@@ -1,19 +1,7 @@
 package com.pedrosoares.cotacaoapp.model.mapper
 
-import com.pedrosoares.cotacaoapp.data.entity.ARS
-import com.pedrosoares.cotacaoapp.data.entity.BTC
-import com.pedrosoares.cotacaoapp.data.entity.CurrencyResponse
-import com.pedrosoares.cotacaoapp.data.entity.EUR
-import com.pedrosoares.cotacaoapp.data.entity.GBP
-import com.pedrosoares.cotacaoapp.data.entity.LTC
-import com.pedrosoares.cotacaoapp.data.entity.USD
-import com.pedrosoares.cotacaoapp.model.domain.ARSDomain
-import com.pedrosoares.cotacaoapp.model.domain.BTCDomain
-import com.pedrosoares.cotacaoapp.model.domain.CurrencyDomain
-import com.pedrosoares.cotacaoapp.model.domain.EURDomain
-import com.pedrosoares.cotacaoapp.model.domain.GBPDomain
-import com.pedrosoares.cotacaoapp.model.domain.LTCDomain
-import com.pedrosoares.cotacaoapp.model.domain.USDDomain
+import com.pedrosoares.cotacaoapp.data.entity.*
+import com.pedrosoares.cotacaoapp.model.domain.*
 
 object CurrencyMapper {
 
@@ -27,6 +15,8 @@ object CurrencyMapper {
             currencyResponseDomain.ltc = transformObjectEntityToDomain(it.ltc!!)
             currencyResponseDomain.gbp = transformObjectEntityToDomain(it.gbp!!)
             currencyResponseDomain.ars = transformObjectEntityToDomain(it.ars!!)
+            currencyResponseDomain.xrp = transformObjectEntityToDomain(it.xrp!!)
+            currencyResponseDomain.eth = transformObjectEntityToDomain(it.eth!!)
         }
         return currencyResponseDomain
     }
@@ -75,6 +65,30 @@ object CurrencyMapper {
         ltcDomain.high = ltcEntity.high
 
         return ltcDomain
+
+    }
+
+    private fun transformObjectEntityToDomain(ethEntity: ETH): ETHDomain {
+        val ethDomain = ETHDomain()
+
+        ethDomain.name = ethEntity.name
+        ethDomain.bid = ethEntity.bid
+        ethDomain.low = ethEntity.low
+        ethDomain.high = ethEntity.high
+
+        return ethDomain
+
+    }
+
+    private fun transformObjectEntityToDomain(xrpEntity: XRP): XRPDomain {
+        val xrpDomain = XRPDomain()
+
+        xrpDomain.name = xrpEntity.name
+        xrpDomain.bid = xrpEntity.bid
+        xrpDomain.low = xrpEntity.low
+        xrpDomain.high = xrpEntity.high
+
+        return xrpDomain
 
     }
 

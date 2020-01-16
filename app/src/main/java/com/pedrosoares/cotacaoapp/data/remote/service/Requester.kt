@@ -7,15 +7,19 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object Requester {
-    private const val URL = "https://economia.awesomeapi.com.br/"
+
+    private val URL = "https://economia.awesomeapi.com.br/"
     private var retrofit: Retrofit? = null
-    @JvmStatic
+
     val service: Retrofit
         get() {
+
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
+
             val client = OkHttpClient.Builder()
             client.addInterceptor(interceptor)
+
             if (retrofit == null) {
                 retrofit = Retrofit.Builder()
                         .baseUrl(URL)
@@ -27,5 +31,3 @@ object Requester {
             return retrofit!!
         }
 }
-
-

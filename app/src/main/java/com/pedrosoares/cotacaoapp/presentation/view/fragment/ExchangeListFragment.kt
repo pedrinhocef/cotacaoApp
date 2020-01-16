@@ -1,47 +1,39 @@
 package com.pedrosoares.cotacaoapp.presentation.view.fragment
 
+
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.google.android.gms.ads.AdRequest
+
 import com.pedrosoares.cotacaoapp.R
 import com.pedrosoares.cotacaoapp.core.base.BaseFragment
-import com.pedrosoares.cotacaoapp.data.preferences.ManagerPreferences.getLayoutManagerRecycler
-import com.pedrosoares.cotacaoapp.data.preferences.ManagerPreferences.setGridLayoutManager
-import com.pedrosoares.cotacaoapp.data.preferences.ManagerPreferences.setLinearLayoutManager
 import com.pedrosoares.cotacaoapp.model.domain.*
-import com.pedrosoares.cotacaoapp.presentation.CoinsContract
-import com.pedrosoares.cotacaoapp.presentation.CoinsContract.ListenerLayout
-import com.pedrosoares.cotacaoapp.presentation.presenter.CoinsPresenter
+import com.pedrosoares.cotacaoapp.presentation.CurrencyContract
+import com.pedrosoares.cotacaoapp.presentation.presenter.CurrencyPresenter
 import com.pedrosoares.cotacaoapp.presentation.view.adapter.ExchangeRateAdapter
+
+import java.text.SimpleDateFormat
+import java.util.ArrayList
+import java.util.Date
+
 import kotlinx.android.synthetic.main.fragment_error.*
 import kotlinx.android.synthetic.main.fragment_exchange_list.*
-import kotlinx.android.synthetic.main.toolbar_exchange.*
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
-class ExchangeListFragment : BaseFragment<CoinsContract.CoinsListPresenter>(), CoinsContract.CoinsListView {
+class ExchangeListFragment : BaseFragment<CurrencyContract.CurrencyListPresenter>(), CurrencyContract.CurrencyListView {
 
-    companion object{
-        private const val LINEAR_LAYOUT_MANAGER = "LINEAR"
-        private const val GRID_LAYOUT_MANAGER = "GRID"
+    private val exchangeRateAdapter : ExchangeRateAdapter by lazy {
+        ExchangeRateAdapter(context!!, currencyDomainList)
     }
 
-    private lateinit var exchangeRateAdapter : ExchangeRateAdapter
-    private lateinit var coinsDomainList : MutableList<Any>
-    private lateinit var layoutManager : RecyclerView.LayoutManager
-    private var iconChoosed = 0
-    lateinit var layoutChoosed: String
+    private var currencyDomainList: MutableList<Any> = ArrayList()
 
+    override fun createPresenter() = CurrencyPresenter(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -54,122 +46,94 @@ class ExchangeListFragment : BaseFragment<CoinsContract.CoinsListPresenter>(), C
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
 
+        imageRefreshError.setOnClickListener {
+            presenter!!.fetchCurrency()
+            exchangeRateAdapter.clear(currencyDomainList)
+            loading()
+        }
+
         initUi()
-
-        imageViewOne.setOnClickListener { setGridAsLayoutChoosen() }
-        imageViewTwo.setOnClickListener { setLinearAsLayoutChoosen() }
-        imageRefreshError.setOnClickListener { presenter!!.fetchCoins() }
-    }
-
-    private fun setLinearAsLayoutChoosen() {
-        iconChoosed = getDrawableId(imageViewOne)
-        imageViewOne.visibility = View.VISIBLE
-        imageViewTwo.visibility = View.GONE
-        layoutManager = LinearLayoutManager(context)
-        layoutChoosed = LINEAR_LAYOUT_MANAGER
-        setLinearLayoutManager(context!!, layoutChoosed)
-        rvListExchange.layoutManager = layoutManager
-        rvListExchange.setHasFixedSize(true)
-        rvListExchange.adapter = exchangeRateAdapter
-    }
-
-    private fun setGridAsLayoutChoosen() {
-        iconChoosed = getDrawableId(imageViewTwo)
-        imageViewOne.visibility = View.GONE
-        imageViewTwo.visibility = View.VISIBLE
-        layoutManager = GridLayoutManager(context, 2)
-        layoutChoosed = GRID_LAYOUT_MANAGER
-        setGridLayoutManager(context!!, layoutChoosed)
-        rvListExchange.layoutManager = layoutManager
-        rvListExchange.setHasFixedSize(false)
-        rvListExchange.adapter = exchangeRateAdapter
     }
 
     override fun onResume() {
         super.onResume()
 
-        view.let {
-            if (isConnected) {
-                Snackbar.make(it!!, "Conectado", 1000).show()
-                saveUserPreferences()
-            }else
-                Snackbar.make(it!!, "Sem Conexão", 1000).show()
+        if (isConnected) {
+            view.let{ Snackbar.make(view!!, "Conectado", 1000).show() }
+
+        } else {
+            view.let{ Snackbar.make(view!!, "Sem Conexão", 1000).show() }
         }
 
 
         swipeRefresh.setOnRefreshListener {
             swipeRefresh.setColorSchemeResources(android.R.color.holo_green_dark)
-            initUi()
+            presenter!!.fetchCurrency()
+            exchangeRateAdapter.clear(currencyDomainList)
+            loading()
             swipeRefresh.isRefreshing = false
         }
 
     }
 
     private fun initUi() {
-        presenter!!.fetchCoins()
-        coinsDomainList = ArrayList()
-        exchangeRateAdapter = ExchangeRateAdapter(context!!, coinsDomainList, listenerLayout())
-        rvListExchange.adapter = exchangeRateAdapter
 
-        imageViewOne.tag = R.drawable.icn_grid_manager
-        imageViewTwo.tag = R.drawable.icn_linear_manager
-        iconChoosed = getDrawableId(imageViewOne)
+        presenter!!.fetchCurrency()
 
-       context.let{
-            layoutChoosed = LINEAR_LAYOUT_MANAGER
-            layoutChoosed = getLayoutManagerRecycler(it!!, layoutChoosed)
-            saveUserPreferences()
+        with(rvListExchange){
+            adapter = exchangeRateAdapter
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(activity)
         }
-
     }
 
+
+
     @SuppressLint("SetTextI18n")
-    override fun populateCoins(coinsDomain: CoinsDomain) {
-        if (context != null) swipeRefresh.background = ContextCompat.getDrawable(context!!, R.drawable.background)
-        addCoinsToArray(coinsDomain)
-        tvLastUpdate.text = getString(R.string.last_update) + (" " + coinsDomain.btc?.createDate?.let { changeDateFormat(it) })
+    override fun populateCurrency(currencyDomain: CurrencyDomain) {
+        context?.let { swipeRefresh.background = ContextCompat.getDrawable(context!!, R.drawable.background) }
+        addCurrencyToArray(currencyDomain)
+        tvLastUpdate.text = "${getString(R.string.last_update)} ${currencyDomain.btc?.createDate?.let {changeDateFormat(it)}}"
         exchangeRateAdapter.notifyDataSetChanged()
     }
 
-    private fun addCoinsToArray(coinsDomain: CoinsDomain) {
-        coinsDomain.let {
-            defineCardsPosition(
-                    ars = it.ars!!,
-                    btc = it.btc!!,
-                    usd = it.usd!!,
-                    ltc = it.ltc!!,
-                    eur = it.eur!!,
-                    gbp = it.gbp!!,
-                    xrp = it.xrp!!,
-                    eth = it.eth!!
-            )
+    private fun addCurrencyToArray(currencyDomain: CurrencyDomain) {
+        currencyDomain.let {
+            val ars = it.ars
+            val btc = it.btc
+            val usd = it.usd
+            val ltc = it.ltc
+            val eur = it.eur
+            val gbp = it.gbp
+
+            defineCardsPosition(ars!!, btc!!, usd!!, ltc!!, eur!!, gbp!!)
         }
     }
 
-    private fun changeDateFormat(date: String): String? {
+    @SuppressLint("SimpleDateFormat")
+    private fun changeDateFormat(date: String): String {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val targetFormat = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
-        lateinit var d : Date
+        var d: Date? = null
         lateinit var dateFormatted : String
         try {
             d = simpleDateFormat.parse(date)
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
         dateFormatted = targetFormat.format(d)
         return dateFormatted.replace("-", "/")
     }
 
-    private fun defineCardsPosition(ars: ARSDomain, btc: BTCDomain, usd: USDDomain, ltc: LTCDomain, eur: EURDomain, gbp: GBPDomain, xrp: XRPDomain, eth: ETHDomain) {
-        with(coinsDomainList){
+    private fun defineCardsPosition(ars: ARSDomain, btc: BTCDomain, usd: USDDomain, ltc: LTCDomain, eur: EURDomain, gbp: GBPDomain) {
+        with(currencyDomainList) {
             add(0, usd)
             add(1, eur)
             add(2, gbp)
             add(3, ars)
             add(4, btc)
             add(5, ltc)
-            add(6, xrp)
-            add(7, eth)
         }
     }
 
@@ -178,7 +142,6 @@ class ExchangeListFragment : BaseFragment<CoinsContract.CoinsListPresenter>(), C
         rvListExchange.visibility = View.VISIBLE
         includeLayoutLoading.visibility = View.GONE
         includeLayoutError.visibility = View.GONE
-        includeToolbarExchange.visibility = View.VISIBLE
     }
 
     override fun loading() {
@@ -186,36 +149,17 @@ class ExchangeListFragment : BaseFragment<CoinsContract.CoinsListPresenter>(), C
         includeLayoutLoading.visibility = View.VISIBLE
         includeLayoutError.visibility = View.GONE
         rvListExchange.visibility = View.GONE
-        includeToolbarExchange.visibility = View.VISIBLE
     }
 
     override fun error() {
         tvLastUpdate.text = ""
-        activity.let { swipeRefresh.setBackgroundColor(it!!.resources.getColor(R.color.color_white)) }
+        if (activity != null) swipeRefresh.setBackgroundColor(activity!!.resources.getColor(R.color.color_white))
         includeLayoutError.visibility = View.VISIBLE
         includeLayoutLoading.visibility = View.GONE
         rvListExchange.visibility = View.GONE
-        includeToolbarExchange.visibility = View.GONE
     }
 
 
-    private fun listenerLayout(): ListenerLayout {
-        return object : ListenerLayout {
-            override fun verifyLayout(): Boolean {
-                return layoutChoosed == GRID_LAYOUT_MANAGER
-            }
-        }
-    }
 
-    private fun saveUserPreferences() {
-        if (layoutChoosed == GRID_LAYOUT_MANAGER) {
-           setGridAsLayoutChoosen()
-        } else {
-           setLinearAsLayoutChoosen()
-        }
-    }
-
-    private fun getDrawableId(iv: ImageView) = iv.tag as Int
-    override fun createPresenter() = CoinsPresenter(this)
 
 }

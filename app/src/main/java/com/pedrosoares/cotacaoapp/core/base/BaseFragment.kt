@@ -8,9 +8,9 @@ import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.util.Log
 import android.view.View
-import com.pedrosoares.cotacaoapp.core.base.BaseContract.Presenter
 
-abstract class BaseFragment<P : Presenter?> : Fragment(), BaseContract.View<P> {
+abstract class BaseFragment<P : BaseContract.Presenter> : Fragment(), BaseContract.View<P> {
+
     protected var presenter: P? = null
 
     val isConnected: Boolean
@@ -61,10 +61,10 @@ abstract class BaseFragment<P : Presenter?> : Fragment(), BaseContract.View<P> {
 
         }
 
-        fun removeFragment(activity: FragmentActivity, fragment: Fragment?) {
+        fun removeFragment(fragmentActivity: FragmentActivity, fragment: Fragment?) {
             try {
                 if (fragment != null) {
-                    activity.supportFragmentManager.popBackStack(fragment.tag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    fragmentActivity.supportFragmentManager.popBackStack(fragment.tag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 }
             } catch (e: Exception) {
                 Log.e(e.message, e.toString())

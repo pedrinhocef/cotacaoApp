@@ -19,7 +19,13 @@
 
     <string name="id_app">ca-app-pub-5636473178706347~6209036855</string>
     <string name="id_banner">ca-app-pub-5636473178706347/2078220152</string>
-
+    <string name="btn_save">Salvar</string>
+    <string name="alert_exchange">Quero ser avisado, quando o cambio chegar em</string>
+    <string name="dolar_text">Dólar Americano com IOF Turismo</string>
+    <string name="euro_text">Euro com IOF Turismo</string>
+    <string name="peso_argentine_text">Peso Argentino com IOF Turismo</string>
+    <string name="gbp_text">Libra com IOF Turismo</string>
+    <string name="type_value">Digite abaixo o valor desejado</string>
 
 
 </resources>
